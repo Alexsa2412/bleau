@@ -1,0 +1,16 @@
+input{
+    text-transform: capitalize;
+}
+
+.email{
+    text-transform: lowercase;
+}
+
+.UF{
+    text-transform: uppercase;
+}
+
+
+option{
+    align-self: center;
+}
