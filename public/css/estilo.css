@@ -14,3 +14,11 @@ input{
 option{
     align-self: center;
 }
+
+.form-sublabel {
+    font-size: 0.8rem !important;
+    font-style: italic;
+    color: darkgrey;
+    padding-left: 6px;
+    display: inline-block;
+}

@@ -14,39 +14,55 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/estilo.css') }}">
 </head>
 <body>
     <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a href="{{ route('meus-dados.index') }}" class="nav-link" title="Meus Dados">Meus Dados</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('meus-dados.index') }}" class="nav-link" title="Meus Dados">Meu Endereço</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('meus-dados.index') }}" class="nav-link" title="Meus Dados">Meus Documentos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('meus-dados.index') }}" class="nav-link" title="Meus Dados">Alterar Minha Senha</a>
+                </li>
+            </ul>
+        </nav>
         <div class="row">
             <div class="col">
-                <a href="{{ route('meus-dados.index') }}" title="Meus Dados">Meus Dados</a>  |  
-                <a href="{{ route('meus-dados.index') }}" title="Meus Dados">Alterar Minha Senha</a>  |  
-                <a href="{{ route('meus-dados.index') }}" title="Meus Dados">Alterar Meu Endereço</a>  |  
-                <a href="{{ route('meus-dados.index') }}" title="Meus Dados">Alterar Meus Dados de Documentos</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-
             </div>
         </div>
         <div class="row">
             <div class="col-8">
-                <label for="nome" class="form-label">Nome</label>
-                <input type="text" name="nome" id="nome" class="form-control" value="{{ $pessoa->nome }}">
-            </div>
-            <div class="col-2">
-                <label for="cpf" class="form-label">CPF</label>
-                <input type="text" name="cpf" id="cpf" class="form-control" value="{{ $pessoa->CPF }}">
-            </div>
-            <div class="col-2">
-                <label for="dataDeNascimento">Data de Nascimento</label>
-                <input type="date" name="dataDeNascimento" id="dataDeNascimento" value="{{ $pessoa->data_nasc }}" class="form-control">
+                
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <label for="" class="form-label"></label>
+            <div class="col-8">
+                <span class="form-label">
+                    Nome <span class="form-sublabel">Name</span>
+                </span>
+                <span class="form-control">{{ $pessoa->nome }}</span>
+            </div>
+            <div class="col-4">
+                <span class="form-label">
+                    CPF <span class="form-sublabel">Security Card</span>
+                </span>
+                <span class="form-control">{{ $pessoa->cpf }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <span class="form-label">
+                    Data de Nascimento <span class="form-sublabel">Birth Date</span>
+                </span>
+                <span class="form-control">{{ $pessoa->data_de_nascimento }}</span>
             </div>
         </div>
     </div>
