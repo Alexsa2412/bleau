@@ -45,7 +45,7 @@
                         <nav class="navbar bg-light">
                           <ul class="navbar-nav">
                             <li class="nav-item">
-                              <a class="nav-link" href="{{ route('pessoas.editdados',)}}">Dados</a>
+                              <a class="nav-link" href="{{ route('pessoas.index',)}}">Dados</a>
                               <a class="nav-link" href="{{ route('pessoas.index')}}">Endereço</a>
                               <a class="nav-link" href="{{ route('pessoas.index')}}">Documento</a>
                               <a class="nav-link" href="{{ route('pessoas.index')}}">Dados Bancários</a>

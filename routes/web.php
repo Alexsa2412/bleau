@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{
+    MeusDadosController,
     PessoaController
 };
 use Illuminate\Support\Facades\Route;
@@ -24,9 +25,11 @@ Route::get('/pessoas/{id}', [PessoaController::class, 'show'] )->name('pessoas.s
 Route::post('/pessoas/create', [PessoaController::class, 'store'] )->name('pessoas.store');
 Route::get('/pessoas/edit/{id}', [PessoaController::class, 'edit'] )->name('pessoas.edit');
 Route::put('/pessoas/{id}', [PessoaController::class, 'update'] )->name('pessoas.update');
-Route::get('/pessoas/editdados/{id}', [PessoaController::class, 'edit'] )->name('pessoas.editdados');
-Route::put('/pessoas/{id}', [PessoaController::class, 'update'] )->name('pessoas.updatedados');
+//Route::get('/pessoas/editdados/{id}', [PessoaController::class, 'edit'] )->name('pessoas.editdados');
+//Route::put('/pessoas/{id}', [PessoaController::class, 'update'] )->name('pessoas.updatedados');
 Route::delete('/pessoas/{id}', [PessoaController::class, 'destroy'] )->name('pessoas.destroy');
+
+Route::get('/meus-dados', [MeusDadosController::class, 'index'])->name('meus-dados.index');
 
 
 Route::get('/', function () {

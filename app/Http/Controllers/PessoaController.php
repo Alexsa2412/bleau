@@ -31,7 +31,7 @@ class PessoaController extends Controller
         $data = $request->all();
 
         
-        if ($request->foto->isValid()) {
+        if ($request->foto != null && $request->foto->isValid()) {
 
             $namefile = Str::of($request->id)->slug('-') . '.' .$request->foto->getClientOriginalExtension();
 
