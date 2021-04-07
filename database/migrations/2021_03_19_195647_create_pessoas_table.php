@@ -16,10 +16,10 @@ class CreatePessoasTable extends Migration
     {
         Schema::create('pessoas', function (Blueprint $table) {
             $table->id();
-            $table->string('cpf', 11);
             $table->string('nome', 255);
             $table->string('email', 255);
-            $table->string('senha', 255)->nullable(true);
+            $table->string('password', 255)->nullable(true);
+            $table->string('cpf', 11)->nullable(true);
             $table->string('foto')->nullable(true);
             $table->date('data_de_nascimento')->nullable(true);
             $table->string('nacionalidade', 100)->nullable(true);

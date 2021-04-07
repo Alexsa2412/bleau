@@ -44,28 +44,38 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-8">
-                <span class="form-label">
-                    Nome <span class="form-sublabel">Name</span>
-                </span>
-                <span class="form-control">{{ $pessoa->nome }}</span>
-            </div>
-            <div class="col-4">
-                <span class="form-label">
-                    CPF <span class="form-sublabel">Security Card</span>
-                </span>
-                <span class="form-control">{{ $pessoa->cpf }}</span>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-3">
-                <span class="form-label">
-                    Data de Nascimento <span class="form-sublabel">Birth Date</span>
-                </span>
-                <span class="form-control">{{ $pessoa->data_de_nascimento }}</span>
+                <div class="row text-center">
+                    <div class="imagem-perfil">
+                        <img src="https://cinepop.com.br/wp-content/uploads/2018/09/capitamarvel21.jpg" alt="minha foto">
+                    </div>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="row pt-2">
+                    <div class="col-8">
+                        <span class="form-label">
+                            Nome<span class="form-sublabel">(Name)</span>
+                        </span>
+                        <span class="form-control">{{ $pessoa->nome }}</span>
+                    </div>
+                    <div class="col-4">
+                        <span class="form-label">
+                            CPF<span class="form-sublabel">(Security Card)</span>
+                        </span>
+                        <span class="form-control">{{ $pessoa->cpf }}</span>
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-3">
+                        <span class="form-label">
+                            Data de Nascimento<span class="form-sublabel">(Birth Date)</span>
+                        </span>
+                        <span class="form-control">{{ $pessoa->data_de_nascimento }}</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -2,12 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Pessoa extends Model
+class Pessoa extends Authenticatable
 {
-    use HasFactory;
+	use Notifiable;
     protected $table = 'pessoas';
-    protected $fillable = ['nome','email','cpf','data_de_nascimento'];
+    protected $fillable = [
+        'email',
+        'nome',
+        'password',
+        'cpf',
+        'foto',
+        'data_de_nascimento',
+        'nacionalidade',
+        'profissao',
+        'situacao',
+        'aportado',
+        'tipo_usuario'
+    ];
 }

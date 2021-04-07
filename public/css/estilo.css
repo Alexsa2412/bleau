@@ -22,3 +22,16 @@ option{
     padding-left: 6px;
     display: inline-block;
 }
+
+.imagem-perfil {
+    
+}
+
+.imagem-perfil img {
+    bottom: 0;
+    max-width: 150px;
+    width: auto;
+    max-height: 150px;
+    height: 100%;
+    border-radius: 75px;
+}

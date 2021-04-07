@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{
+    LoginController,
     MeusDadosController,
     PessoaController
 };
@@ -29,8 +30,15 @@ Route::put('/pessoas/{id}', [PessoaController::class, 'update'] )->name('pessoas
 //Route::put('/pessoas/{id}', [PessoaController::class, 'update'] )->name('pessoas.updatedados');
 Route::delete('/pessoas/{id}', [PessoaController::class, 'destroy'] )->name('pessoas.destroy');
 
-Route::get('/meus-dados', [MeusDadosController::class, 'index'])->name('meus-dados.index');
+Route::get('/meus-dados', [MeusDadosController::class, 'index'])->name('meus-dados.index')->middleware(['auth']);
 
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/login/sucesso', function(){
+    return view('login.sucesso');
+})->name('login.sucesso');
+Route::get('/login/resetarsenha', [LoginController::class, 'resetarsenha'])->name('login.resetarsenha');
 
 Route::get('/', function () {
     return view('welcome');

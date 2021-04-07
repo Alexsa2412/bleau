@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePessoaDocumentosTable extends Migration
+class CreateRegistroGeralTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePessoaDocumentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pessoa_documentos', function (Blueprint $table) {
+        Schema::create('registro_geral', function (Blueprint $table) {
             $table->id();
             $table->string('rg', 15)->nullable(true);
             $table->string('orgao_emissor', 10)->nullable(true);
@@ -31,6 +31,6 @@ class CreatePessoaDocumentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pessoa_documentos');
+        Schema::dropIfExists('registro_geral');
     }
 }

@@ -27,20 +27,8 @@ class PessoaController extends Controller
 
     public function store(StoreUpdatePessoa $request)
     {
-
-        $data = $request->all();
-
-        
-        if ($request->foto != null && $request->foto->isValid()) {
-
-            $namefile = Str::of($request->id)->slug('-') . '.' .$request->foto->getClientOriginalExtension();
-
-            $image = $request->foto->storeAs('fotos', $namefile);
-            $data['foto'] = $image;     
-
-        }
-        
-        $pessoa = Pessoa::create($data);
+        //dd($request->all());
+        $pessoa = Pessoa::create($request->all());
 
         return redirect()
             ->route('pessoas.create')
@@ -52,9 +40,8 @@ class PessoaController extends Controller
        if(!$pessoa = Pessoa::find($id)){
            return redirect()->route('pessoas.index');
        }
-        
+
        return view('admin.pessoas.show', compact('pessoa'));       
-    
     }
 
     public function destroy($id)
