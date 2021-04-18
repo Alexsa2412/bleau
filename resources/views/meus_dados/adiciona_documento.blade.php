@@ -33,18 +33,17 @@
                         </div>
                         <div class="col-3">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="orgao" id="orgao" placeholder="SSP" autocomplete="off">
+                                <input type="text" class="form-control" name="orgao_emissor" id="orgao_emissor" placeholder="SSP" autocomplete="off">
                                 <label for="orgao">Órgão Emissor</label>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="estado_id" id="estado_id" aria-label="Estado Emissor">
-                                    <option value="">selecione o estado</option>
-                                    <option value="ms">Mato Grosso do Sul</option>
-                                    <option value="mt">Mato Grosso</option>
-                                    <option value="sp">São Paulo</option>
-                                    <option value="rj">Rio de Janeiro</option>
+                                    <option value="" selected>selecione o estado</option>
+                                    @foreach($estados as $estado)
+                                        <option value="{{$estado->id}}">{{$estado->sigla}}</option>
+                                    @endforeach
                                 </select>
                                 <label for="estado_id">Estado Emissor</label>
                             </div>

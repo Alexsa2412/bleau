@@ -42,7 +42,7 @@
 
                     <div class="row mt-3">
                         <div class="col text-end">
-                            <a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-plus-circle me-2"></i>Adicionar</a>
+                            <a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
                         </div>
                     </div>
                 </div>
@@ -73,13 +73,9 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row card-text">
-                                            <div class="col-3">
+                                            <div class="col">
                                                 <p class="fw-bold">Número</p>
                                                 {{ $pessoa->cpf->numero }}
-                                            </div>
-                                            <div class="col-3">
-                                                <p class="fw-bold">Órgão Emissor</p>
-                                                {{ $pessoa->cpf->orgao_emissor }}
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +173,7 @@
                     @endif
 
                     <div class="row mt-3">
-                        @if((!$pessoa->rg) || (!$pessoa->passaporte))
+                        @if((!$pessoa->rg) || (!$pessoa->passaporte) || (!$pessoa->cis) || (!$pessoa->cpf))
                             <div class="col text-end">
                                 <a href="{{route('meus_dados.adiciona_documento')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-plus-circle me-2"></i>Adicionar</a>
                             </div>

@@ -20,7 +20,7 @@ class CreatePessoaDocumentoTable extends Migration
             $table->date('data_de_emissao')->nullable(true);
             $table->enum('tipo_documento', ['rg','passaporte','cpf','cis']);
             $table->foreignId('estado_id')->nullable(true);
-            $table->foreignId('pessoa_id');
+            $table->foreignId('pessoa_id')->constrained('pessoa');
             $table->timestamps();
         });
     }

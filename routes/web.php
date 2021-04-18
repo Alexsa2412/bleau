@@ -33,12 +33,13 @@ Route::get('/Banco', function (){
 Route::prefix('/usuario')
     ->group(function(){
         Route::get('login', function(){
-            return view('login');
+            return view('usuario.login');
         })->name('usuario.login');
         Route::post('/login', [UsuarioController::class, 'login'])->name('login');
         Route::get('/logout', [UsuarioController::class, 'logout'])->name('logout');
 });
 
+/*
 Route::middleware(['auth'])
     ->prefix('/admin')
     ->group(function(){
@@ -48,6 +49,7 @@ Route::middleware(['auth'])
         Route::resource('/endereco/cidade', CidadeController::class);
         Route::resource('/pessoa', PessoaController::class);
 });
+*/
 
 Route::middleware(['auth'])
     ->prefix('meus-dados')
