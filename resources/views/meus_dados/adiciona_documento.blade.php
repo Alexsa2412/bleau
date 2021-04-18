@@ -57,7 +57,8 @@
                     </div>
                     <div class="row">
                         <div class="col text-end">
-                            <input class="btn btn-outline-success btn-sm" type="submit" value="Inserir">
+                            <a href="{{route('meus_dados')}}" class="btn btn-outline-secondary">Cancelar</a>
+                            <input class="btn btn-outline-success" type="submit" value="Inserir">
                         </div>
                     </div>
                 </form>

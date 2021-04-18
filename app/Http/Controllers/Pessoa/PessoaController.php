@@ -12,7 +12,7 @@ class PessoaController extends Controller
 {
     private $pessoaRepository;
     private $estadoRepository;
-    private $pessoaDocumentoReposity;
+    private $pessoaDocumentoRepository;
 
     public function __construct(PessoaRepository $pessoaRepository,
                                 EstadoRepository $estadoRepository,
@@ -42,7 +42,18 @@ class PessoaController extends Controller
     {
         $dados = array_merge($request->all(), ['pessoa_id' => auth()->user()->id]);
         $this->pessoaDocumentoRepository->create($dados);
-        flash('Documento inserido com sucesso')->success();
+        flash()->success('Documento inserido com sucesso');
+        return redirect()->route('meus_dados');
+    }
+
+    public function deletaTodosOsDocumentos()
+    {
+        $documentos = $this->pessoaDocumentoRepository->all();
+        $this->pessoaDocumentoRepository
+            ->where('pessoa_id', 1)
+            ->delete();
+        flash()->warning('todos os documetnos deletados');
         return redirect()->route('meus_dados');
     }
 }
+

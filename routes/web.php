@@ -57,4 +57,6 @@ Route::middleware(['auth'])
         Route::get('/', [PessoaController::class, 'meusDados'])->name('meus_dados');
         Route::get('/documento/adiciona', [PessoaController::class, 'adicionaDocumento'])->name('meus_dados.adiciona_documento');
         Route::post('/documento/adiciona', [PessoaController::class, 'adicionaDocumentoPost'])->name('meus_dados.adiciona_documento');
+
+        Route::get('/documento/remove', [PessoaController::class, 'deletaTodosOsDocumentos']);
 });
