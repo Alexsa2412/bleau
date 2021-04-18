@@ -54,7 +54,7 @@ class PessoaController extends Controller
 
     public function alteraPessoa()
     {
-        $pessoa = $this->pessoaRepository->getById(auth()->user->id);
+        $pessoa = $this->pessoaRepository->getById(auth()->user()->id);
         return view('meus_dados.edita_meus_dados', compact('pessoa'));
     }
 
@@ -74,4 +74,3 @@ class PessoaController extends Controller
         return redirect()->route('meus_dados');
     }
 }
-
