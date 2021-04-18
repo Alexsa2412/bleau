@@ -52,11 +52,15 @@ Route::middleware(['auth'])
 */
 
 Route::middleware(['auth'])
-    ->prefix('meus-dados')
+    ->prefix('/meus-dados')
     ->group(function(){
         Route::get('/', [PessoaController::class, 'meusDados'])->name('meus_dados');
+
         Route::get('/documento/adiciona', [PessoaController::class, 'adicionaDocumento'])->name('meus_dados.adiciona_documento');
         Route::post('/documento/adiciona', [PessoaController::class, 'adicionaDocumentoPost'])->name('meus_dados.adiciona_documento');
+
+        Route::get('/altera', [PessoaController::class, 'alteraPessoa'])->name('meus_dados.altera');
+        Route::post('/altera', [PessoaController::class, 'alteraPessoaPost'])->name('meus_dados.altera');
 
         Route::get('/documento/remove', [PessoaController::class, 'deletaTodosOsDocumentos']);
 });

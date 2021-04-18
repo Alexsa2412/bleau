@@ -7,6 +7,7 @@ use App\Repositories\Endereco\EstadoRepository;
 use App\Repositories\Pessoa\PessoaDocumentoRepository;
 use App\Repositories\Pessoa\PessoaRepository;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Array_;
 
 class PessoaController extends Controller
 {
@@ -21,6 +22,10 @@ class PessoaController extends Controller
         $this->pessoaRepository = $pessoaRepository;
         $this->estadoRepository = $estadoRepository;
         $this->pessoaDocumentoRepository = $pessoaDocumentoRepository;
+    }
+
+    private function adicionaIdDaPessoaNoRequest(Array $request){
+        return array_merge($request->all(), ['pessoa_id' => auth()->user()->id]);
     }
 
     public function meusDados()
@@ -40,10 +45,19 @@ class PessoaController extends Controller
 
     public function adicionaDocumentoPost(Request $request)
     {
-        $dados = array_merge($request->all(), ['pessoa_id' => auth()->user()->id]);
+        $dados = $this->adicionaIdDaPessoaNoRequest($request);
         $this->pessoaDocumentoRepository->create($dados);
         flash()->success('Documento inserido com sucesso');
         return redirect()->route('meus_dados');
+    }
+
+    public function alteraPessoa()
+    {
+
+    }
+
+    public function alteraPessoaPost(){
+
     }
 
     public function deletaTodosOsDocumentos()
