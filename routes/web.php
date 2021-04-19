@@ -26,10 +26,6 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/Banco', function (){
-   return view('Banco.index');
-});
-
 Route::prefix('/usuario')
     ->group(function(){
         Route::get('login', function(){
@@ -43,6 +39,7 @@ Route::prefix('/usuario')
 Route::middleware(['auth'])
     ->prefix('/admin')
     ->group(function(){
+        Route::resource('/pessoa', PessoaController::class);
         Route::resource('/banco', BancoController::class);
         Route::resource('/endereco/pais', PaisController::class);
         Route::resource('/endereco/estado', EstadoController::class);
@@ -57,10 +54,13 @@ Route::middleware(['auth'])
         Route::get('/', [PessoaController::class, 'meusDados'])->name('meus_dados');
 
         Route::get('/documento/adiciona', [PessoaController::class, 'adicionaDocumento'])->name('meus_dados.adiciona_documento');
-        Route::post('/documento/adiciona', [PessoaController::class, 'adicionaDocumentoPost'])->name('meus_dados.adiciona_documento');
+        Route::post('/documento/adiciona', [PessoaController::class, 'adicionaDocumentoPost'])->name('meus_dados.adiciona_documento.store');
 
         Route::get('/altera', [PessoaController::class, 'alteraPessoa'])->name('meus_dados.altera');
-        Route::post('/altera', [PessoaController::class, 'alteraPessoaPost'])->name('meus_dados.altera');
+        Route::post('/altera/{pessoa}', [PessoaController::class, 'alteraPessoaPost'])->name('meus_dados.altera.store');
+
+        Route::get('/endereco/altera', [PessoaController::class, 'alteraEndereco'])->name('meus_dados.altera_endereco');
+        Route::post('/endereco/altera/{endereco}', [PessoaController::class, 'alteraEnderecoPost'])->name('meus_dados.altera_endereco.store');
 
         Route::get('/documento/remove', [PessoaController::class, 'deletaTodosOsDocumentos']);
 });

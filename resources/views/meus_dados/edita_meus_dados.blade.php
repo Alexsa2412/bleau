@@ -10,7 +10,7 @@
     </div>
     <div class="card-body">
         <div class="row card-text">
-            <form action="{{route('meus_dados.altera')}}" method="post">
+            <form action="{{route('meus_dados.altera.store', $pessoa)}}" method="post">
                 @csrf
                 <div class="row mt-3">
                     <div class="col-12">

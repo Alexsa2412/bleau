@@ -4,6 +4,7 @@ namespace App\Models\Pessoa;
 
 use App\Repositories\Pessoa\PessoaDocumentoRepository;
 use App\Repositories\Pessoa\PessoaEnderecoRepository;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,6 +34,22 @@ class Pessoa extends Model
     public function enderecos()
     {
         return $this->hasMany(PessoaEndereco::class);
+    }
+
+    public function setDataDeNascimentoAttribute($data)
+    {
+        $this->attributes['data_de_nascimento'] = null;
+        if (!empty($data) && Carbon::createFromFormat('d/m/Y', $data) !== false) {
+            $data_de_nascimento = Carbon::createFromFormat('d/m/Y', $data);
+            $this->attributes['data_de_nascimento'] = $data_de_nascimento->format('Y-m-d');
+        }
+    }
+
+    public function getDataDeNascimentoAttribute()
+    {
+        return ($this->attributes['data_de_nascimento'] != null) ?
+            Carbon::createFromFormat('Y-m-d', $this->attributes['data_de_nascimento'])->format('d/m/Y') :
+            "";
     }
 
     public function getEnderecoAtualAttribute()

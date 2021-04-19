@@ -25,7 +25,7 @@ class PessoaController extends Controller
         $this->pessoaDocumentoRepository = $pessoaDocumentoRepository;
     }
 
-    private function adicionaIdDaPessoaNoRequest(Array $request){
+    private function adicionaIdDaPessoaNoRequest($request){
         return array_merge($request->all(), ['pessoa_id' => auth()->user()->id]);
     }
 
@@ -60,8 +60,8 @@ class PessoaController extends Controller
 
     public function alteraPessoaPost(Request $request, Pessoa $pessoa){
         $this->pessoaRepository->updateById($pessoa->id, $request->all());
-        flash("Dados atualizados");
-        $this->meusDados();
+        flash("Dados pessoais atualizados");
+        return $this->meusDados();
     }
 
     public function deletaTodosOsDocumentos()
