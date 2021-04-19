@@ -5,7 +5,7 @@
 <div class="card text-dark bg-light mb-3">
     <div class="card-header">
         <h6 class="card-title">
-            <i class="far fa-address-card me-2"></i>Editar Meus Dados
+            <i class="far fa-address-card me-2"></i>Editar meus Dados
         </h6>
     </div>
     <div class="card-body">
