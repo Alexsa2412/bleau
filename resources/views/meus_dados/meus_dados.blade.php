@@ -42,7 +42,7 @@
 
                     <div class="row mt-3">
                         <div class="col text-end">
-                            <a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
+                            <a href="{{route('meus_dados.altera')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
                         </div>
                     </div>
                 </div>
