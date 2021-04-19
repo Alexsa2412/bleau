@@ -15,28 +15,28 @@
                 <div class="row mt-3">
                     <div class="col-5">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="logradouro" id="logradouro" placeholder="logradouro" autocomplete="off" value="{{(old('logradouro', $pessoa->logradouro))}}">
+                            <input type="text" class="form-control" name="logradouro" id="logradouro" placeholder="logradouro" autocomplete="off" value="{{(old('logradouro', $endereco->logradouro))}}">
                             <label for="logradouro">Logradouro</label>
                         </div>
                     </div>
 
                     <div class="col-3">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="numero" id="numero" placeholder="numero" autocomplete="off" value="{{(old('numero', $pessoa->numero))}}">
+                            <input type="text" class="form-control" name="numero" id="numero" placeholder="numero" autocomplete="off" value="{{(old('numero', $endereco->numero))}}">
                             <label for="numero">Número</label>
                         </div>
                     </div>
 
                     <div class="col-4">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="bairro" id="bairro" placeholder="bairro" autocomplete="off"  value="{{(old('bairro', $pessoa->bairro))}}">
+                            <input type="text" class="form-control" name="bairro" id="bairro" placeholder="bairro" autocomplete="off"  value="{{(old('bairro', $endereco->bairro))}}">
                             <label for="bairro">Bairro</label>
                         </div>
                     </div>
 
                     <div class="col-4">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="complemento" id="complemento" placeholder="complemento" autocomplete="off" value="{{(old('complemento', $pessoa->complemento))}}">
+                            <input type="text" class="form-control" name="complemento" id="complemento" placeholder="complemento" autocomplete="off" value="{{(old('complemento', $endereco->complemento))}}">
                             <label for="complemento">Complemento</label>
                         </div>
                     </div>
@@ -46,13 +46,12 @@
                             <select class="form-select" name="pais_id" id="pais_id" aria-label="Pais">
                                 <option value="" selected>selecione o país</option>
                                 @foreach($paises as $pais)
-                                    <option value="{{$pais->id}}" {{(old('pais_id')==$pais->id)}}>{{$pais->sigla}}</option>
+                                    <option value="{{$pais->nome}}" {{(old('pais_id')==$pais->id)}}>{{$pais->nome}}</option>
                                 @endforeach
                             </select>
                             <label for="pais_id">País</label>
                         </div>
                     </div>
-
 
                     <div class="col-4">
                         <div class="form-floating mb-3">
@@ -68,14 +67,14 @@
 
                     <div class="col-7">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="cidade" id="cidade" placeholder="cidade" autocomplete="off" value="{{(old('cidade', $pessoa->cidade))}}">
+                            <input type="text" class="form-control" name="cidade" id="cidade" placeholder="cidade" autocomplete="off" value="{{(old('cidade', $endereco->cidade))}}">
                             <label for="cidade">Cidade</label>
                         </div>
                     </div>
 
                     <div class="col-5">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="cep" id="cep" placeholder="cep" autocomplete="off" value="{{(old('cep', $pessoa->cep))}}">
+                            <input type="text" class="form-control" name="cep" id="cep" placeholder="cep" autocomplete="off" value="{{(old('cep', $endereco->cep))}}">
                             <label for="cep">CEP</label>
                         </div>
                     </div>
@@ -84,7 +83,7 @@
 
                 <div class="row">
                     <div class="col text-end">
-                        <a href="#" class="btn btn-outline-secondary">Cancelar</a>
+                        <a href="{{route('meus_dados')}}" class="btn btn-outline-secondary">Cancelar</a>
                         <input class="btn btn-outline-success" type="submit" value="Salvar">
                     </div>
                 </div>

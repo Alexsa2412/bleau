@@ -3,10 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\{
-    Endereco\PaisController,
-    Endereco\EstadoController,
-    Endereco\CidadeController,
-    Banco\BancoController,
     Pessoa\PessoaController,
     Usuario\UsuarioController
 };
@@ -59,7 +55,7 @@ Route::middleware(['auth'])
         Route::get('/altera', [PessoaController::class, 'alteraPessoa'])->name('meus_dados.altera');
         Route::post('/altera/{pessoa}', [PessoaController::class, 'alteraPessoaPost'])->name('meus_dados.altera.store');
 
-        Route::get('/endereco/altera', [PessoaController::class, 'alteraEndereco'])->name('meus_dados.altera_endereco');
+        Route::get('/endereco/altera/{endereco}', [PessoaController::class, 'alteraEndereco'])->name('meus_dados.altera_endereco');
         Route::post('/endereco/altera/{endereco}', [PessoaController::class, 'alteraEnderecoPost'])->name('meus_dados.altera_endereco.store');
 
         Route::get('/documento/remove', [PessoaController::class, 'deletaTodosOsDocumentos']);

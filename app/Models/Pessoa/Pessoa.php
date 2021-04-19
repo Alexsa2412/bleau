@@ -2,8 +2,6 @@
 
 namespace App\Models\Pessoa;
 
-use App\Repositories\Pessoa\PessoaDocumentoRepository;
-use App\Repositories\Pessoa\PessoaEnderecoRepository;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

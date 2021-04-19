@@ -35,14 +35,15 @@
                             </div>
                         @else
                             <div class="col">
-                                <p class="fw-bold text-center">Nenhum endereço cadastrado</p>
+{{--                                <p class="fw-bold text-center">Nenhum endereço cadastrado</p>--}}
+                                <a class="btn btn-outline-primary" href="#"><i class="fas fa-plus-circle me-2"></i>Adicionar endereço</a>
                             </div>
                         @endif
                     </div>
 
                     <div class="row mt-3">
                         <div class="col text-end">
-                            <a href="{{route('meus_dados.altera_endereco')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
+                            <a href="{{route('meus_dados.altera_endereco', $pessoa->enderecoAtual)}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
                         </div>
                     </div>
                 </div>
@@ -94,7 +95,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <h6 class="card-title">
-                                                    <i class="far fa-address-card me-2"></i>Registro Geral (RG)
+                                                    <i class="far fa-address-card me-2"></i>Registro Geral
                                                 </h6>
                                             </div>
                                         </div>
