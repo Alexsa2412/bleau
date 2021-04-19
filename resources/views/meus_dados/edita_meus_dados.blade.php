@@ -55,6 +55,7 @@
                             <label for="profissao">Profissão</label>
                         </div>
                     </div>
+                </div>
 
                 <div class="row">
                     <div class="col text-end">

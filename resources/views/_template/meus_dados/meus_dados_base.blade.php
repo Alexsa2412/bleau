@@ -9,7 +9,7 @@
                             <div class="card-body">
                                 <ul class="nav flex-column">
                                     <li clas="nav-item">
-                                        <a class="nav-link" href="#">Editar Meus Dados</a>
+                                        <a class="nav-link" href="{{route('meus_dados.altera')}}">Editar Meus Dados</a>
                                     </li>
                                     <li clas="nav-item">
                                         <a class="nav-link" href="#">Alterar Minha Senha</a>
