@@ -27,13 +27,13 @@
                         </div>
                         <div class="col-3">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="numero" id="numero" placeholder="000" autocomplete="off" value={{(old('numero', $pessoa->numero))}}>
+                                <input type="text" class="form-control" name="numero" id="numero" placeholder="000" autocomplete="off" value="{{(old('numero', $pessoa->numero))}}">
                                 <label for="numero">Número</label>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="orgao_emissor" id="orgao_emissor" placeholder="SSP" autocomplete="off" value={{(old('orgao_emissor', $pessoa->orgao_emissor))}}>
+                                <input type="text" class="form-control" name="orgao_emissor" id="orgao_emissor" placeholder="SSP" autocomplete="off" value="{{(old('orgao_emissor', $pessoa->orgao_emissor))}}">
                                 <label for="orgao">Órgão Emissor</label>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-3">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="data_de_emissao" id="data_de_emissao" placeholder="01/01/2000" autocomplete="off" value={{(old('data_de_emissao', $pessoa->data_de_emissao))}}>
+                                <input type="text" class="form-control" name="data_de_emissao" id="data_de_emissao" placeholder="01/01/2000" autocomplete="off" value="{{(old('data_de_emissao', $pessoa->data_de_emissao))}}">
                                 <label for="data_de_emissao">Data de Emissão</label>
                             </div>
                         </div>
