@@ -1,0 +1,9 @@
+.form-validation-list{
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+}
+
+.form-validation-list-item{
+    padding: 2px 0 2px 0;
+}

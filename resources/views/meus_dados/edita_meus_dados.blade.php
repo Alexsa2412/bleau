@@ -38,12 +38,12 @@
                         <div class="form-floating mb-3">
                             <select class="form-select" name="estado_civil" id="estado_civil" aria-label="Estado Civil" autofocus >
                                 <option value="">selecione o estado civil</option>
-                                <option value="solteiro" {{ old('estado_civil') == 'solteiro' ? "selected" : "" }} >Solteiro(a)</option>
-                                <option value="casado" {{ old('estado_civil') == 'casado' ? "selected" : "" }} >Casado(a)</option>
-                                <option value="separado" {{ old('estado_civil') == 'separado' ? "selected" : "" }}>Separado(a)</option>
-                                <option value="divorciado" {{ old('estado_civil') == 'divorciado' ? "selected" : "" }}>Divorciado(a)</option>
-                                <option value="viuvo" {{ old('estado_civil') == 'viuvo' ? "selected" : "" }}>Viúvo(a)</option>
-                                <option value="uniao_estavel" {{ old('estado_civil') == 'uniao_estavel' ? "selected" : "" }}>União Estável</option>
+                                <option value="solteiro" {{ old('estado_civil', $pessoa->estado_civil) == 'solteiro' ? "selected" : "" }} >Solteiro(a)</option>
+                                <option value="casado" {{ old('estado_civil', $pessoa->estado_civil) == 'casado' ? "selected" : "" }} >Casado(a)</option>
+                                <option value="separado" {{ old('estado_civil', $pessoa->estado_civil) == 'separado' ? "selected" : "" }}>Separado(a)</option>
+                                <option value="divorciado" {{ old('estado_civil', $pessoa->estado_civil) == 'divorciado' ? "selected" : "" }}>Divorciado(a)</option>
+                                <option value="viuvo" {{ old('estado_civil', $pessoa->estado_civil) == 'viuvo' ? "selected" : "" }}>Viúvo(a)</option>
+                                <option value="uniao_estavel" {{ old('estado_civil', $pessoa->estado_civil) == 'uniao_estavel' ? "selected" : "" }}>União Estável</option>
                             </select>
                             <label for="estado_civil">Estado Civil</label>
                         </div>

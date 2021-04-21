@@ -11,7 +11,7 @@ class Pessoa extends Model
     use HasFactory;
 
     protected $table = 'pessoa';
-    protected $fillable = ['email','data_de_nascimento','nome','profissao','situacao','aportado'];
+    protected $fillable = ['email','data_de_nascimento','nome','profissao','estado_civil','situacao','aportado'];
     protected $hidden = ['password'];
 
     public function contas()

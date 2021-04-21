@@ -25,6 +25,11 @@
         <div class="col">
             <div class="row">
                 <div class="col">
+                    @include('._template.formvalidation')
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     <div class="card text-dark bg-light mb-3">
                         <div class="card-body">
                             <div class="row g-0">

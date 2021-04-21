@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pessoa;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Pessoa\AlteraPessoaRequest;
 use App\Models\Pessoa\Pessoa;
 use App\Models\Pessoa\PessoaEndereco;
 use App\Repositories\Endereco\EstadoRepository;
@@ -66,8 +67,8 @@ class PessoaController extends Controller
         return view('meus_dados.edita_meus_dados', compact('pessoa'));
     }
 
-    public function alteraPessoaPost(Request $request, Pessoa $pessoa){
-        $pessoa = $this->pessoaRepository->updateById($pessoa->id, $request->all());
+    public function alteraPessoaPost(AlteraPessoaRequest $request, Pessoa $pessoa){
+        $this->pessoaRepository->updateById($pessoa->id, $request->all());
         flash("Dados pessoais atualizados");
         return redirect()->route('meus_dados');
     }
