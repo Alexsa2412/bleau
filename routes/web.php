@@ -58,8 +58,8 @@ Route::middleware(['auth'])
         Route::get('/endereco/altera/{endereco}', [PessoaController::class, 'alteraEndereco'])->name('meus_dados.altera_endereco');
         Route::post('/endereco/altera/{endereco}', [PessoaController::class, 'alteraEnderecoPost'])->name('meus_dados.altera_endereco.store');
 
-        Route::get('/conta_bancaria/adiciona', [PessoaController::class, 'adicionaConta'])->name('meus_dados.adiciona_conta');
-        Route::post('/conta_bancaria/adiciona', [PessoaController::class, 'adicionaContaPost'])->name('meus_dados.adiciona_conta.store');
+        Route::get('/conta/adiciona', [PessoaController::class, 'adicionaConta'])->name('meus_dados.adiciona_conta');
+        Route::post('/conta/adiciona', [PessoaController::class, 'adicionaContaPost'])->name('meus_dados.adiciona_conta.store');
 
         Route::get('/documento/remove', [PessoaController::class, 'deletaTodosOsDocumentos']);
 });

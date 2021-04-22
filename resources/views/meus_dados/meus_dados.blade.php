@@ -35,7 +35,6 @@
                             </div>
                         @else
                             <div class="col">
-{{--                                <p class="fw-bold text-center">Nenhum endereço cadastrado</p>--}}
                                 <a class="btn btn-outline-primary" href="#"><i class="fas fa-plus-circle me-2"></i>Adicionar endereço</a>
                             </div>
                         @endif
@@ -177,6 +176,35 @@
                         @if((!$pessoa->rg) || (!$pessoa->passaporte) || (!$pessoa->cis) || (!$pessoa->cpf))
                             <div class="col text-end">
                                 <a href="{{route('meus_dados.adiciona_documento')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-plus-circle me-2"></i>Adicionar</a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <div class="card text-dark bg-light mb-3">
+                <div class="card-header">
+                    <h6 class="card-title">
+                        <i class="fas fa-calculator me-2"></i>Meus Dados Bancários
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row card-text">
+                        @if($pessoa->contaAtual)
+                            <div class="row">
+                                <div class="col">
+                                    <p class="fw-bold">Banco</p>
+                                    <p>{{$pessoa->contaAtual->banco->nome}}</P>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col text-end">
+                                    <a href="{{route('meus_dados.adiciona_conta')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
+                                </div>
+                            </div>
+                        @else
+                            <div class="col text-center">
+                                <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_conta')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar dados bancários</a>
                             </div>
                         @endif
                     </div>

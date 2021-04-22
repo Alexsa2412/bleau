@@ -15,6 +15,7 @@ class BancoSeeder extends Seeder
     public function run()
     {
         //no pais_id nesse instante coloca 1 para todos os paises por favor
+
         //crie uma linha dessa para cada banco que quiser efetuar ot cadastro prévio =)
         //Banco::create(['nome' => 'nome do banco', 'codigo' => 'codigo febraban', 'pais_id' => 1]);
         Banco::create(['nome' => 'Banco Do Brasil S.A', 'codigo' => '001', 'pais_id' => 1]);
