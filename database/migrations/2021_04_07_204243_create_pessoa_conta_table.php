@@ -20,7 +20,7 @@ class CreatePessoaContaTable extends Migration
             $table->string('operacao', 12)->nullable(true);
             $table->enum('tipo', ['corrente','poupanca'])->default('corrente');
             $table->string('pix', 20)->nullable(true);
-            $table->foreignId('banco_id')->constrained('Banco')->nullable(true);
+            $table->foreignId('banco_id')->constrained('banco')->nullable(true);
             $table->foreignId('pessoa_id')->constrained('pessoa');
             $table->timestamps();
         });

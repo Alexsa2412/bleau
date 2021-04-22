@@ -22,8 +22,8 @@ class CreatePessoaEnderecoTable extends Migration
             $table->string('cep', 15)->nullable(true);
             $table->string('cidade_exterior', 255)->nullable(true);
             $table->string('estado_exterior', 5)->nullable(true);
-            $table->foreignId('pais_id')->nullable(true);
-            $table->foreignId('cidade_id')->nullable(true);
+            $table->foreignId('pais_id')->nullable(true)->constrained('pais');
+            $table->foreignId('cidade_id')->nullable(true)->constrained('cidade');
             $table->foreignId('pessoa_id')->constrained('pessoa');
             $table->timestamps();
         });

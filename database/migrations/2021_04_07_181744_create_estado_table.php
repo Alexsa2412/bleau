@@ -17,6 +17,7 @@ class CreateEstadoTable extends Migration
             $table->id();
             $table->string('nome', 150);
             $table->string('sigla', 5);
+            $table->foreignId('pais_id')->constrained('pais');
             $table->timestamps();
         });
     }

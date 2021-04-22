@@ -109,7 +109,7 @@ class PessoaController extends Controller
     public function adicionaConta()
     {
         $bancos = $this->bancoRepository
-            ->orderBy('codigo')
+            ->orderBy('nome')
             ->get();
         return view ('meus_dados.adiciona_conta', compact('bancos'));
     }
