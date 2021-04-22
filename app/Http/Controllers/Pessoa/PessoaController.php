@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Pessoa\AlteraPessoaRequest;
 use App\Models\Pessoa\Pessoa;
 use App\Models\Pessoa\PessoaEndereco;
+use App\Repositories\Banco\BancoRepository;
 use App\Repositories\Endereco\EstadoRepository;
 use App\Repositories\Endereco\PaisRepository;
+use App\Repositories\Pessoa\PessoaContaRepository;
 use App\Repositories\Pessoa\PessoaDocumentoRepository;
 use App\Repositories\Pessoa\PessoaEnderecoRepository;
 use App\Repositories\Pessoa\PessoaRepository;
@@ -20,18 +22,24 @@ class PessoaController extends Controller
     private $pessoaDocumentoRepository;
     private $pessoaEnderecoRepository;
     private $paisRepository;
+    private $pessoaContaRepository;
+    private $bancoRepository;
 
     public function __construct(PessoaRepository $pessoaRepository,
                                 EstadoRepository $estadoRepository,
                                 PessoaDocumentoRepository $pessoaDocumentoRepository,
                                 PessoaEnderecoRepository $pessoaEnderecoRepository,
-                                PaisRepository $paisRepository)
+                                PessoaContaRepository $pessoaContaRepository,
+                                PaisRepository $paisRepository,
+                                BancoRepository $bancoRepository)
     {
         $this->pessoaRepository = $pessoaRepository;
         $this->estadoRepository = $estadoRepository;
         $this->pessoaDocumentoRepository = $pessoaDocumentoRepository;
         $this->pessoaEnderecoRepository = $pessoaEnderecoRepository;
+        $this->pessoaContaRepository = $pessoaContaRepository;
         $this->paisRepository = $paisRepository;
+        $this->bancoRepository = $bancoRepository;
     }
 
     private function adicionaIdDaPessoaNoRequest($request){
@@ -80,17 +88,37 @@ class PessoaController extends Controller
         if ($endereco->pessoa_id !== auth()->user()->id)
             abort(403, "Acesso não autorizado.");
 
-        $paises = $this->paisRepository->all();
+        $paises = $this->paisRepository
+            ->orderBy('nome')
+            ->get();
+
         $estados = $this->estadoRepository
             ->orderBy('nome')
             ->get();
+
         return view('meus_dados.edita_endereco', compact('endereco', 'paises', 'estados'));
     }
 
     public function alteraEnderecoPost(Request $request, PessoaEndereco $endereco)
     {
         $endereco = $this->pessoaEnderecoRepository->updateById($endereco->id, $request->all());
-        flash('Endereço atualizado com sucesso.');
+        flash('Seu endereço foi atualizado');
+        return redirect()->route('meus_dados');
+    }
+
+    public function adicionaConta()
+    {
+        $bancos = $this->bancoRepository
+            ->orderBy('codigo')
+            ->get();
+        return view ('meus_dados.adiciona_conta', compact('bancos'));
+    }
+
+    public function adicionaContaPost(Request $request)
+    {
+        $dados = $this->adicionaIdDaPessoaNoRequest($request);
+        $this->pessoaContaRepository->create($dados);
+        flash('Seus dados bancários foram atualizados');
         return redirect()->route('meus_dados');
     }
 
