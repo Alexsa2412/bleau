@@ -19,6 +19,7 @@ class CreatePessoaContatoTable extends Migration
             $table->enum('tipo_contato', ['residencial','comercial','movel']);
             $table->enum('whatsapp', ['sim','nao'])->default('nao');
             $table->foreignId('pessoa_id')->constrained('pessoa');
+            $table->foreignId('pais_id')->nullable(true)->constrained('pais');
             $table->timestamps();
         });
     }

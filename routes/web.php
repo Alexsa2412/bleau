@@ -61,5 +61,8 @@ Route::middleware(['auth'])
         Route::get('/conta/adiciona', [PessoaController::class, 'adicionaConta'])->name('meus_dados.adiciona_conta');
         Route::post('/conta/adiciona', [PessoaController::class, 'adicionaContaPost'])->name('meus_dados.adiciona_conta.store');
 
+        Route::get('/conta/altera/{conta}', [PessoaController::class, 'alteraConta'])->name('meus_dados.altera_conta');
+        Route::post('/conta/altera/{conta', [PessoaController::class, 'açteraContaPost'])->name('meus_dados.altera_conta.store');
+
         Route::get('/documento/remove', [PessoaController::class, 'deletaTodosOsDocumentos']);
 });

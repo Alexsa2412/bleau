@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Endereco\Pais;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,12 +15,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            PaisSeeder::class,
             EstadoSeeder::class,
             CidadeSeeder::class,
+            BancoSeeder::class,
             /* para desenvolvimento */
-            UsuarioSeeder::class,
-            EnderecoSeeder::class,
-            DocumentoSeeder::class
+            UsuarioSeeder::class
         ]);
     }
 }
