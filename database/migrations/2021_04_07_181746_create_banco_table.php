@@ -13,7 +13,7 @@ class CreateBancoTable extends Migration
      */
     public function up()
     {
-        Schema::create('Banco', function (Blueprint $table) {
+        Schema::create('banco', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 255)->unique('unq_banco_nome');
             $table->string('codigo', 5);
