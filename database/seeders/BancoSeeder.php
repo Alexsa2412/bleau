@@ -287,7 +287,7 @@ class BancoSeeder extends Seeder
         Banco::create(['nome' =>'Bank Of America Merrill Lynch Banco Múltiplo S.A.','codigo' => '755','pais_id' => 1]);
         Banco::create(['nome' =>'Bancoob – Banco Cooperativo Do Brasil S.A.','codigo' => '756','pais_id' => 1]);
         Banco::create(['nome' =>'Banco Keb Hana Do Brasil S.A.','codigo' => '757','pais_id' => 1]);
-        Banco::create(['nome' =>'Next Bank (Mesmo Código Do Bradesco)','codigo' => '237.','pais_id' => 1]);
+        Banco::create(['nome' =>'Next Bank (Mesmo Código Do Bradesco)','codigo' => '237','pais_id' => 1]);
     }
 
 
