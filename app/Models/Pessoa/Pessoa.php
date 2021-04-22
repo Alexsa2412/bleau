@@ -58,6 +58,14 @@ class Pessoa extends Model
             ->first();
     }
 
+    public function getContaAtualAttribute()
+    {
+        return $this->contas()
+            ->where('pessoa_id', $this->id)
+            ->orderBy('id', 'desc')
+            ->first();
+    }
+
     public function getPassaporteAttribute()
     {
         return $this->documentos()
