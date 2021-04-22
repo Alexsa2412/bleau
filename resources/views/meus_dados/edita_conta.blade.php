@@ -19,9 +19,9 @@
                     <div class="col-8">
                         <div class="form-floating mb-3">
                             <select class="form-select" name="banco_id" id="banco_id" aria-label="Banco">
-                                <option value="" selected>selecione o banco</option>
+                                <option value="">selecione o banco</option>
                                 @foreach($bancos as $banco)
-                                    <option value="banco_id" {{(old('banco_id')==$banco->id)}}>{{$banco->nome}}</option>
+                                    <option value="{{$banco->id}}" {{(old('banco_id') == $banco->id) ? "selected" : ""}}>{{$banco->nome}}</option>
                                 @endforeach
                             </select>
                             <label for="banco_id">Banco</label>
