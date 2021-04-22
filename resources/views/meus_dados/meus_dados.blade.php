@@ -51,6 +51,50 @@
             <div class="card text-dark bg-light mb-3">
                 <div class="card-header">
                     <h6 class="card-title">
+                        <i class="far fa-address-book me-2"></i>Meus Contatos ARUUMAR
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row card-text">
+                        @if($pessoa->enderecoAtual)
+                            <div class="row">
+                                <div class="col">
+                                    <p class="fw-bold">Logradouro</p>
+                                    <p>{{$pessoa->enderecoAtual->obterLogradouroCompleto()}}</P>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <p class="fw-bold">Complemento</p>
+                                    <p>{{$pessoa->enderecoAtual->complemento}}</P>
+                                </div>
+                                <div class="col">
+                                    <p class="fw-bold">Cidade/UF</p>
+                                    <p>Campo Grande/MS</P>
+                                </div>
+                                <div class="col">
+                                    <p class="fw-bold">CEP</p>
+                                    <p>{{$pessoa->enderecoAtual->obterCepFormatado()}}</P>
+                                </div>
+                            </div>
+                        @else
+                            <div class="col">
+                                <a class="btn btn-outline-primary" href="#"><i class="fas fa-plus-circle me-2"></i>Adicionar endereço</a>
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col text-end">
+                            <a href="{{route('meus_dados.altera_endereco', $pessoa->enderecoAtual)}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card text-dark bg-light mb-3">
+                <div class="card-header">
+                    <h6 class="card-title">
                         <i class="fas fa-user me-2"></i>Meus Documentos
                     </h6>
                 </div>
@@ -196,7 +240,31 @@
                                     <p class="fw-bold">Banco</p>
                                     <p>{{$pessoa->contaAtual->banco->nome}}</P>
                                 </div>
+
+                                <div class="col">
+                                    <p class="fw-bold">Tipo Conta</p>
+                                    <p>{{$pessoa->contaAtual->tipo->nome}}</P>
+                                </div>
+
+                                <div class="col">
+                                    <p class="fw-bold">Agência</p>
+                                    <p>{{$pessoa->contaAtual->agencia->nome}}</P>
+                                </div>
+                                <div class="col">
+                                    <p class="fw-bold">Número</p>
+                                    <p>{{$pessoa->contaAtual->numero->nome}}</P>
+                                </div>
+
+                                <div class="col">
+                                    <p class="fw-bold">Operação</p>
+                                    <p>{{$pessoa->contaAtual->operacao->nome}}</P>
+                                </div>
+                                <div class="col">
+                                    <p class="fw-bold">Chave Pix</p>
+                                    <p>{{$pessoa->contaAtual->pix->nome}}</P>
+                                </div>
                             </div>
+
                             <div class="row mt-3">
                                 <div class="col text-end">
                                     <a href="{{route('meus_dados.adiciona_conta')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
@@ -204,7 +272,7 @@
                             </div>
                         @else
                             <div class="col text-center">
-                                <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_conta')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar dados bancários</a>
+                                <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_conta')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar</a>
                             </div>
                         @endif
                     </div>
