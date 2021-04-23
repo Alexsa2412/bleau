@@ -22,6 +22,10 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::get('/back', function (){
+   return redirect()->back();
+})->name('back');
+
 Route::prefix('/usuario')
     ->group(function(){
         Route::get('login', function(){
@@ -30,19 +34,6 @@ Route::prefix('/usuario')
         Route::post('/login', [UsuarioController::class, 'login'])->name('login');
         Route::get('/logout', [UsuarioController::class, 'logout'])->name('logout');
 });
-
-/*
-Route::middleware(['auth'])
-    ->prefix('/admin')
-    ->group(function(){
-        Route::resource('/pessoa', PessoaController::class);
-        Route::resource('/banco', BancoController::class);
-        Route::resource('/endereco/pais', PaisController::class);
-        Route::resource('/endereco/estado', EstadoController::class);
-        Route::resource('/endereco/cidade', CidadeController::class);
-        Route::resource('/pessoa', PessoaController::class);
-});
-*/
 
 Route::middleware(['auth'])
     ->prefix('/meus-dados')
