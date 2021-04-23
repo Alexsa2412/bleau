@@ -127,7 +127,8 @@ class PessoaController extends Controller
 
     public function alteraConta(PessoaConta $conta)
     {
-        return view('meus_dados.edita_conta', compact('conta'));
+        $bancos = $this->bancoRepository->orderBy('nome')->get();
+        return view('meus_dados.edita_conta', compact('conta', 'bancos'));
     }
 
     public function alteraContaPost(Request $request, PessoaConta $conta)
