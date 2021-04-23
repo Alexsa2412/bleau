@@ -35,19 +35,6 @@ Route::prefix('/usuario')
         Route::get('/logout', [UsuarioController::class, 'logout'])->name('logout');
 });
 
-/*
-Route::middleware(['auth'])
-    ->prefix('/admin')
-    ->group(function(){
-        Route::resource('/pessoa', PessoaController::class);
-        Route::resource('/banco', BancoController::class);
-        Route::resource('/endereco/pais', PaisController::class);
-        Route::resource('/endereco/estado', EstadoController::class);
-        Route::resource('/endereco/cidade', CidadeController::class);
-        Route::resource('/pessoa', PessoaController::class);
-});
-*/
-
 Route::middleware(['auth'])
     ->prefix('/meus-dados')
     ->group(function(){
