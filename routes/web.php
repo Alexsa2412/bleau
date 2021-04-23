@@ -22,6 +22,10 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::get('/back', function (){
+   return redirect()->back();
+})->name('back');
+
 Route::prefix('/usuario')
     ->group(function(){
         Route::get('login', function(){
