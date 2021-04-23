@@ -35,7 +35,7 @@
                                 <select class="form-select" name="estado_id" id="estado_id" aria-label="Estado Emissor">
                                     <option value="" selected>selecione o estado</option>
                                     @foreach($estados as $estado)
-                                        <option value="{{$estado->id}}" {{(old('estado_id')==$estado->id)}}>{{$estado->sigla}}</option>
+                                        <option value="{{$estado->id}}" {{(old('estado_id', $estado->id)==$estado->id)}}>{{$estado->sigla}}</option>
                                     @endforeach
                                 </select>
                                 <label for="estado_id">Estado Emissor</label>
