@@ -7,7 +7,15 @@
             <div class="card text-dark bg-light mb-3">
                 <div class="card-header">
                     <h6 class="card-title">
-                        <i class="fas fa-house-user me-2"></i>Meu Endereço
+                        <div class="row">
+                            <div class="col-10">
+                                <i class="fas fa-house-user me-2"></i>Meu Endereço
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                        </div>
+
                     </h6>
                 </div>
                 <div class="card-body">
@@ -62,17 +70,16 @@
                                     <p>
                                         {{$contato->tipo_contato}} - {{$contato->numero}}
                                         @if($contato->ehWhatsapp)
-                                        <i class="fab fa-whatsapp mx-3" style="color: #2CC64E"></i>
+                                        <i class="fab fa-whatsapp mx-2" style="color: #2CC64E"></i>
                                         @endif
                                         @if($contato->ehTelegram)
-                                        <i class="fab fa-telegram-plane me-2" style="color: #4EA4F6"></i>
+                                        <i class="fab fa-telegram-plane mx-2" style="color: #4EA4F6"></i>
                                         @endif
                                     </p>
                                 </div>
 
-
-
                             </div>
+
                             <div class="row mt-3">
                                 <div class="col text-end">
                                     <a href="{{route('meus_dados.adiciona_contato')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
@@ -274,7 +281,7 @@
 
                             <div class="row mt-3">
                                 <div class="col text-end">
-                                    <a href="{{route('meus_dados.adiciona_conta')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
+                                    <a href="{{route('meus_dados.altera_conta', g)}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
                                 </div>
                             </div>
                         @else
