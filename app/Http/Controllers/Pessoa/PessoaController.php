@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Pessoa;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pessoa\AlteraPessoaRequest;
 use App\Models\Pessoa\Pessoa;
+use App\Models\Pessoa\PessoaConta;
 use App\Models\Pessoa\PessoaEndereco;
 use App\Repositories\Banco\BancoRepository;
 use App\Repositories\Endereco\EstadoRepository;
@@ -87,8 +88,6 @@ class PessoaController extends Controller
 
     public function alteraEndereco(PessoaEndereco $endereco)
     {
-        $endereco = $this->pessoaEnderecoRepository->getById($endereco->id);
-
         if ($endereco->pessoa_id !== auth()->user()->id)
             abort(403, "Acesso não autorizado.");
 
@@ -105,7 +104,7 @@ class PessoaController extends Controller
 
     public function alteraEnderecoPost(Request $request, PessoaEndereco $endereco)
     {
-        $endereco = $this->pessoaEnderecoRepository->updateById($endereco->id, $request->all());
+        $this->pessoaEnderecoRepository->updateById($endereco->id, $request->all());
         flash('Seu endereço foi atualizado');
         return redirect()->route('meus_dados');
     }
@@ -122,6 +121,18 @@ class PessoaController extends Controller
     {
         $dados = $this->adicionaIdDaPessoaNoRequest($request);
         $this->pessoaContaRepository->create($dados);
+        flash('Seus dados bancários foram atualizados');
+        return redirect()->route('meus_dados');
+    }
+
+    public function alteraConta(PessoaConta $conta)
+    {
+        return view('meus_dados.edita_conta', compact('conta'));
+    }
+
+    public function alteraContaPost(Request $request, PessoaConta $conta)
+    {
+        $this->pessoaContaRepository->updateById($conta->id, $request->all());
         flash('Seus dados bancários foram atualizados');
         return redirect()->route('meus_dados');
     }
