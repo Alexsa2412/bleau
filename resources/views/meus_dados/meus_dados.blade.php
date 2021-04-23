@@ -55,41 +55,32 @@
                 </div>
                 <div class="card-body">
                     <div class="row card-text">
-<<<<<<< HEAD
-                        @if($pessoa->contatos)
-=======
                         @forelse($pessoa->contatos as $contato)
->>>>>>> 27cd3def7aa7f56c89cd915f40b5c5716048ac83
                             <div class="row">
                                 <div class="col">
-                                    <p class="fw-bold">Dados do Contato</p>
+                                    <p class="fw-bold mb-3">Dados do Contato</p>
                                     <p>
-                                        {{$contato->numero}}
+                                        {{$contato->tipo_contato}} - {{$contato->numero}}
                                         @if($contato->ehWhatsapp)
-                                        <i class="fab fa-whatsapp" style="color: #2CC64E"></i>
+                                        <i class="fab fa-whatsapp mx-3" style="color: #2CC64E"></i>
                                         @endif
                                         @if($contato->ehTelegram)
-                                        <i class="fab fa-telegram-plane" style="color: #4EA4F6"></i>
+                                        <i class="fab fa-telegram-plane me-2" style="color: #4EA4F6"></i>
                                         @endif
                                     </p>
                                 </div>
 
-                                @if ($pessoa->contatos->whatsapp)
-
-
-
-                                @endif
 
 
                             </div>
                             <div class="row mt-3">
                                 <div class="col text-end">
-                                    <a href="{{route('meus_dados.adiciona_conta')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
+                                    <a href="{{route('meus_dados.adiciona_contato')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
                                 </div>
                             </div>
                         @empty
                             <div class="col text-center">
-                                <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_conta')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar contato</a>
+                                <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_contato')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar contato</a>
                             </div>
                         @endforelse
                     </div>
@@ -255,27 +246,31 @@
 
                                 <div class="col">
                                     <p class="fw-bold">Tipo Conta</p>
-                                    <p>{{$pessoa->contaAtual->tipo->nome}}</P>
+                                    <p>{{$pessoa->contaAtual->tipo}}</P>
                                 </div>
+                            </div>
 
+
+                            <div class="row mt-3">
                                 <div class="col">
                                     <p class="fw-bold">Agência</p>
-                                    <p>{{$pessoa->contaAtual->agencia->nome}}</P>
+                                    <p>{{$pessoa->contaAtual->agencia}}</P>
                                 </div>
                                 <div class="col">
                                     <p class="fw-bold">Número</p>
-                                    <p>{{$pessoa->contaAtual->numero->nome}}</P>
+                                    <p>{{$pessoa->contaAtual->numero}}</P>
                                 </div>
 
                                 <div class="col">
                                     <p class="fw-bold">Operação</p>
-                                    <p>{{$pessoa->contaAtual->operacao->nome}}</P>
+                                    <p>{{$pessoa->contaAtual->operacao}}</P>
                                 </div>
                                 <div class="col">
                                     <p class="fw-bold">Chave Pix</p>
-                                    <p>{{$pessoa->contaAtual->pix->nome}}</P>
+                                    <p>{{$pessoa->contaAtual->pix}}</P>
                                 </div>
                             </div>
+
 
                             <div class="row mt-3">
                                 <div class="col text-end">

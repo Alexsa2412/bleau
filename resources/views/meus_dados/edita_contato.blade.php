@@ -33,12 +33,12 @@
 
                         <div class="col-3">
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="whatsapp" value="{{(old('whatsapp', $contato->whatsapp))}}">
+                                <input class="form-check-input" type="checkbox" id="whatsapp" name="whatsapp" value="{{(old('whatsapp', $contato->whatsapp))}}">
                                 <label class="form-check-label" for="whatsapp">Whatsapp</label>
                               </div>
 
                               <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="telegram" value="{{(old('telegram', $contato->telegram))}}">
+                                <input class="form-check-input" type="checkbox" id="telegram"  name="telegram" value="{{(old('telegram', $contato->telegram))}}">
                                 <label class="form-check-label" for="telegram">Telegram</label>
                             </div>
 
