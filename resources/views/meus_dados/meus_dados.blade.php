@@ -58,26 +58,29 @@
                         @forelse($pessoa->contatos as $contato)
                             <div class="row">
                                 <div class="col">
-                                    <p class="fw-bold">Dados do Contato</p>
+                                    <p class="fw-bold mb-3">Dados do Contato</p>
                                     <p>
-                                        {{$contato->numero}}
+                                        {{$contato->tipo_contato}} - {{$contato->numero}}
                                         @if($contato->ehWhatsapp)
-                                        <i class="fab fa-whatsapp" style="color: #2CC64E"></i>
+                                        <i class="fab fa-whatsapp mx-3" style="color: #2CC64E"></i>
                                         @endif
                                         @if($contato->ehTelegram)
-                                        <i class="fab fa-telegram-plane" style="color: #4EA4F6"></i>
+                                        <i class="fab fa-telegram-plane me-2" style="color: #4EA4F6"></i>
                                         @endif
                                     </p>
                                 </div>
+
+
+
                             </div>
                             <div class="row mt-3">
                                 <div class="col text-end">
-                                    <a href="{{route('meus_dados.adiciona_conta')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
+                                    <a href="{{route('meus_dados.adiciona_contato')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
                                 </div>
                             </div>
                         @empty
                             <div class="col text-center">
-                                <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_conta')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar contato</a>
+                                <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_contato')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar contato</a>
                             </div>
                         @endforelse
                     </div>
@@ -245,7 +248,10 @@
                                     <p class="fw-bold">Tipo Conta</p>
                                     <p>{{$pessoa->contaAtual->tipo}}</P>
                                 </div>
+                            </div>
 
+
+                            <div class="row mt-3">
                                 <div class="col">
                                     <p class="fw-bold">Agência</p>
                                     <p>{{$pessoa->contaAtual->agencia}}</P>
@@ -264,6 +270,7 @@
                                     <p>{{$pessoa->contaAtual->pix}}</P>
                                 </div>
                             </div>
+
 
                             <div class="row mt-3">
                                 <div class="col text-end">
