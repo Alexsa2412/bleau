@@ -10,6 +10,7 @@ use App\Repositories\Banco\BancoRepository;
 use App\Repositories\Endereco\EstadoRepository;
 use App\Repositories\Endereco\PaisRepository;
 use App\Repositories\Pessoa\PessoaContaRepository;
+use App\Repositories\Pessoa\PessoaContatoRepository;
 use App\Repositories\Pessoa\PessoaDocumentoRepository;
 use App\Repositories\Pessoa\PessoaEnderecoRepository;
 use App\Repositories\Pessoa\PessoaRepository;
@@ -24,6 +25,7 @@ class PessoaController extends Controller
     private $paisRepository;
     private $pessoaContaRepository;
     private $bancoRepository;
+    private $pessoaContatoRepository;
 
     public function __construct(PessoaRepository $pessoaRepository,
                                 EstadoRepository $estadoRepository,
@@ -31,7 +33,8 @@ class PessoaController extends Controller
                                 PessoaEnderecoRepository $pessoaEnderecoRepository,
                                 PessoaContaRepository $pessoaContaRepository,
                                 PaisRepository $paisRepository,
-                                BancoRepository $bancoRepository)
+                                BancoRepository $bancoRepository,
+                                PessoaContatoRepository $pessoaContatoRepository)
     {
         $this->pessoaRepository = $pessoaRepository;
         $this->estadoRepository = $estadoRepository;
@@ -40,6 +43,7 @@ class PessoaController extends Controller
         $this->pessoaContaRepository = $pessoaContaRepository;
         $this->paisRepository = $paisRepository;
         $this->bancoRepository = $bancoRepository;
+        $this->pessoaContatoRepository = $pessoaContatoRepository;
     }
 
     private function adicionaIdDaPessoaNoRequest($request){
@@ -119,6 +123,19 @@ class PessoaController extends Controller
         $dados = $this->adicionaIdDaPessoaNoRequest($request);
         $this->pessoaContaRepository->create($dados);
         flash('Seus dados bancários foram atualizados');
+        return redirect()->route('meus_dados');
+    }
+
+    public function adicionaContato()
+    {
+        return view('meus_dados.adiciona_contato');
+    }
+
+    public function adicionaContatoPost(Request $request)
+    {
+        $dados = $this->adicionaIdDaPessoaNoRequest($request);
+        $this->pessoaContatoRepository->create($dados);
+        flash('Seus contatos foram atualizdos');
         return redirect()->route('meus_dados');
     }
 

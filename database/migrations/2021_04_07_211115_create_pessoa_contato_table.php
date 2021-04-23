@@ -13,7 +13,7 @@ class CreatePessoaContatoTable extends Migration
      */
     public function up()
     {
-        Schema::create('contato', function (Blueprint $table) {
+        Schema::create('pessoa_contato', function (Blueprint $table) {
             $table->id();
             $table->string('numero', 20);
             $table->enum('tipo_contato', ['residencial','comercial','movel']);
