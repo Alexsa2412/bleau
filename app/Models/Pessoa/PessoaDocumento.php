@@ -3,6 +3,7 @@
 namespace App\Models\Pessoa;
 
 use App\Models\Endereco\Estado;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,5 +27,19 @@ class PessoaDocumento extends Model
     public function estado()
     {
         return $this->belongsTo(Estado::class);
+    }
+
+    public function setDataDeEmissaoAttribute($data)
+    {
+        $this->attributes['data_de_emissao'] = null;
+        if(!empty($data) && Carbon::createFromFormat('d/m/Y', $data) !== false)
+            $this->attributes['data_de_emissao'] = Carbon::createFromFormat('d/m/Y', $data)->format('Y-m-d');
+    }
+
+    public function getDateDeEmissaoAttribute()
+    {
+        return ($this->attributes['data_de_emissao']) ?
+            Carbon::createFromFormat('Y-m-d', $this->attributes['data_de_emissao'])->format('d/m/Y') :
+            "";
     }
 }

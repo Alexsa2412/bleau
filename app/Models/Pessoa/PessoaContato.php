@@ -9,5 +9,15 @@ class PessoaContato extends Model
 {
     use HasFactory;
     protected $table = 'pessoa_contato';
-    protected $fillable = ['numero','tipo_contato','whatsapp','pessoa_id'];
+    protected $fillable = ['numero','tipo_contato','whatsapp','telegram','pessoa_id'];
+
+    public function getEhWhatsappAttribute()
+    {
+        return $this->whatsapp === 'sim';
+    }
+
+    public function getEhTelegramAttribute()
+    {
+        return $this->telegram === 'sim';
+    }
 }

@@ -33,12 +33,12 @@
 
                         <div class="col-3">
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="whatsapp" value="whatsapp">
+                                <input class="form-check-input" type="checkbox" name="whatsapp" id="whatsapp" value="sim">
                                 <label class="form-check-label" for="whatsapp">Whatsapp</label>
                               </div>
 
                               <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="telegram" value="telegram">
+                                <input class="form-check-input" type="checkbox" name="telegram" id="telegram" value="sim">
                                 <label class="form-check-label" for="telegram">Telegram</label>
                             </div>
 

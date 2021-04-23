@@ -55,11 +55,23 @@
                 </div>
                 <div class="card-body">
                     <div class="row card-text">
+<<<<<<< HEAD
                         @if($pessoa->contatos)
+=======
+                        @forelse($pessoa->contatos as $contato)
+>>>>>>> 27cd3def7aa7f56c89cd915f40b5c5716048ac83
                             <div class="row">
                                 <div class="col">
                                     <p class="fw-bold">Dados do Contato</p>
-                                    <p>{{$pessoa->contatoAtual->obterContatoCompleto()}}</P>
+                                    <p>
+                                        {{$contato->numero}}
+                                        @if($contato->ehWhatsapp)
+                                        <i class="fab fa-whatsapp" style="color: #2CC64E"></i>
+                                        @endif
+                                        @if($contato->ehTelegram)
+                                        <i class="fab fa-telegram-plane" style="color: #4EA4F6"></i>
+                                        @endif
+                                    </p>
                                 </div>
 
                                 @if ($pessoa->contatos->whatsapp)
@@ -70,17 +82,16 @@
 
 
                             </div>
-                        @else
-                            <div class="col">
-                                <a class="btn btn-outline-primary" href="#"><i class="fas fa-plus-circle me-2"></i>Adicionar contato</a>
+                            <div class="row mt-3">
+                                <div class="col text-end">
+                                    <a href="{{route('meus_dados.adiciona_conta')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
+                                </div>
                             </div>
-                        @endif
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col text-end">
-                            <a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
-                        </div>
+                        @empty
+                            <div class="col text-center">
+                                <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_conta')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar contato</a>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>

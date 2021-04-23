@@ -38,8 +38,7 @@ class Pessoa extends Model
     {
         $this->attributes['data_de_nascimento'] = null;
         if (!empty($data) && Carbon::createFromFormat('d/m/Y', $data) !== false) {
-            $data_de_nascimento = Carbon::createFromFormat('d/m/Y', $data);
-            $this->attributes['data_de_nascimento'] = $data_de_nascimento->format('Y-m-d');
+            $this->attributes['data_de_nascimento'] = Carbon::createFromFormat('d/m/Y', $data)->format('Y-m-d');
         }
     }
 
