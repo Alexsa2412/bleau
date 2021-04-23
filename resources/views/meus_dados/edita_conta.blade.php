@@ -21,7 +21,7 @@
                             <select class="form-select" name="banco_id" id="banco_id" aria-label="Banco">
                                 <option value="">selecione o banco</option>
                                 @foreach($bancos as $banco)
-                                    <option value="{{$banco->id}}" {{(old('banco_id') == $banco->id) ? "selected" : ""}}>{{$banco->nome}}</option>
+                                    <option value="{{$banco->id}}" {{(old('banco_id', $conta->banco_id) == $banco->id) ? "selected" : ""}}>{{$banco->nome}}</option>
                                 @endforeach
                             </select>
                             <label for="banco_id">Banco</label>
@@ -32,8 +32,8 @@
                         <div class="form-floating mb-3">
                             <select class="form-select" name="tipo" id="tipo" aria-label="tipo" autofocus>
                                 <option value="">selecione o tipo da conta</option>
-                                <option value="corrente" {{ old('corrente') == 'corrente' ? "selected" : "" }}>Conta corrente</option>
-                                <option value="poupanca" {{ old('poupanca') == 'poupanca' ? "selected" : "" }}>Poupança</option>
+                                <option value="corrente" {{ old('corrente', $conta->tipo) == 'corrente' ? "selected" : "" }}>Conta corrente</option>
+                                <option value="poupanca" {{ old('poupanca', $conta->tipo) == 'poupanca' ? "selected" : "" }}>Poupança</option>
                             </select>
                             <label for="tipo">Tipo Conta</label>
                         </div>
@@ -74,7 +74,7 @@
 
                 <div class="row">
                     <div class="col text-end">
-                        <a href="#" class="btn btn-outline-secondary">Cancelar</a>
+                        <a href="{{route('meus_dados')}}" class="btn btn-outline-secondary">Cancelar</a>
                         <input class="btn btn-outline-success" type="submit" value="Salvar">
                     </div>
                 </div>
