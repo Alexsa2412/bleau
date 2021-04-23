@@ -55,12 +55,20 @@
                 </div>
                 <div class="card-body">
                     <div class="row card-text">
-                        @if($pessoa->contatoAtual)
+                        @if($pessoa->contatos)
                             <div class="row">
                                 <div class="col">
                                     <p class="fw-bold">Dados do Contato</p>
                                     <p>{{$pessoa->contatoAtual->obterContatoCompleto()}}</P>
                                 </div>
+
+                                @if ($pessoa->contatos->whatsapp)
+
+
+
+                                @endif
+
+
                             </div>
                         @else
                             <div class="col">

@@ -5,7 +5,7 @@
     <div class="card text-dark bg-light mb-3">
         <div class="card-header">
             <h6 class="card-title">
-            <i class="fas fa-phone"></i></i>Adicionar Contato
+            <i class="fas fa-phone me-2"></i></i>Adicionar Contato
             </h6>
         </div>
         <div class="card-body">
@@ -13,7 +13,7 @@
                 <form action="#" method="post">
                     @csrf
                     <div class="row mt-3">
-                        <div class="col-3">
+                        <div class="col-6">
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="tipo_contato" id="tipo_contato" aria-label="Tipo de contato" autofocus>
                                     <option value="">selecione o tipo do contato</option>
