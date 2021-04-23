@@ -243,25 +243,25 @@
 
                                 <div class="col">
                                     <p class="fw-bold">Tipo Conta</p>
-                                    <p>{{$pessoa->contaAtual->tipo->nome}}</P>
+                                    <p>{{$pessoa->contaAtual->tipo}}</P>
                                 </div>
 
                                 <div class="col">
                                     <p class="fw-bold">Agência</p>
-                                    <p>{{$pessoa->contaAtual->agencia->nome}}</P>
+                                    <p>{{$pessoa->contaAtual->agencia}}</P>
                                 </div>
                                 <div class="col">
                                     <p class="fw-bold">Número</p>
-                                    <p>{{$pessoa->contaAtual->numero->nome}}</P>
+                                    <p>{{$pessoa->contaAtual->numero}}</P>
                                 </div>
 
                                 <div class="col">
                                     <p class="fw-bold">Operação</p>
-                                    <p>{{$pessoa->contaAtual->operacao->nome}}</P>
+                                    <p>{{$pessoa->contaAtual->operacao}}</P>
                                 </div>
                                 <div class="col">
                                     <p class="fw-bold">Chave Pix</p>
-                                    <p>{{$pessoa->contaAtual->pix->nome}}</P>
+                                    <p>{{$pessoa->contaAtual->pix}}</P>
                                 </div>
                             </div>
 
