@@ -7,7 +7,7 @@
             <div class="card text-dark bg-light mb-3">
                 <div class="card-header">
                     <h6 class="card-title">
-                        <i class="fas fa-house-user me-2"></i>Meu Endereço Atual
+                        <i class="fas fa-house-user me-2"></i>Meu Endereço
                     </h6>
                 </div>
                 <div class="card-body">
@@ -33,17 +33,16 @@
                                     <p>{{$pessoa->enderecoAtual->obterCepFormatado()}}</P>
                                 </div>
                             </div>
+                            <div class="row mt-3">
+                                <div class="col text-end">
+                                    <a href="{{route('meus_dados.altera_endereco', $pessoa->enderecoAtual)}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
+                                </div>
+                            </div>
                         @else
-                            <div class="col">
+                            <div class="col text-center">
                                 <a class="btn btn-outline-primary" href="#"><i class="fas fa-plus-circle me-2"></i>Adicionar endereço</a>
                             </div>
                         @endif
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col text-end">
-                            <a href="{{route('meus_dados.altera_endereco', $pessoa->enderecoAtual)}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -77,17 +76,16 @@
                                     <p>{{$pessoa->enderecoAtual->obterCepFormatado()}}</P>
                                 </div>
                             </div>
+                            <div class="row mt-3">
+                                <div class="col text-end">
+                                    <a href="{{route('meus_dados.altera_endereco', $pessoa->enderecoAtual)}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
+                                </div>
+                            </div>
                         @else
-                            <div class="col">
+                            <div class="col text-center">
                                 <a class="btn btn-outline-primary" href="#"><i class="fas fa-plus-circle me-2"></i>Adicionar endereço</a>
                             </div>
                         @endif
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col text-end">
-                            <a href="{{route('meus_dados.altera_endereco', $pessoa->enderecoAtual)}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -216,13 +214,21 @@
                     </div>
                     @endif
 
+                    @if((!$pessoa->rg) || (!$pessoa->passaporte) || (!$pessoa->cis) || (!$pessoa->cpf))
                     <div class="row mt-3">
-                        @if((!$pessoa->rg) || (!$pessoa->passaporte) || (!$pessoa->cis) || (!$pessoa->cpf))
-                            <div class="col text-end">
-                                <a href="{{route('meus_dados.adiciona_documento')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-plus-circle me-2"></i>Adicionar</a>
-                            </div>
-                        @endif
+                        <div class="col text-end">
+                            <a href="{{route('meus_dados.adiciona_documento')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-plus-circle me-2"></i>Adicionar</a>
+                        </div>
                     </div>
+                    @endif
+
+                    @if((!$pessoa->rg) && (!$pessoa->passaporte) && (!$pessoa->cis) && (!$pessoa->cpf))
+                    <div class="row mt-3">
+                        <div class="col text-center">
+                            <a href="{{route('meus_dados.adiciona_documento')}}" class="btn btn-outline-primary"><i class="fas fa-plus-circle me-2"></i>Adicionar Documento</a>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -272,7 +278,7 @@
                             </div>
                         @else
                             <div class="col text-center">
-                                <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_conta')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar</a>
+                                <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_conta')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar Dados Bancários</a>
                             </div>
                         @endif
                     </div>
