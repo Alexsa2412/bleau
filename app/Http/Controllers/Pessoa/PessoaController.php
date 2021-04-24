@@ -59,11 +59,10 @@ class PessoaController extends Controller
 
     public function adicionaDocumento()
     {
-        $pessoa = $this->pessoaRepository->getById(auth()->user()->id)->first();
         $estados = $this->estadoRepository
             ->orderBy('sigla')
             ->get();
-        return view('meus_dados.adiciona_documento', compact('pessoa','estados'));
+        return view('meus_dados.adiciona_documento', compact('estados'));
     }
 
     public function adicionaDocumentoPost(Request $request)
@@ -72,6 +71,12 @@ class PessoaController extends Controller
         $this->pessoaDocumentoRepository->create($dados);
         flash()->success('Documento inserido com sucesso');
         return redirect()->route('meus_dados');
+    }
+
+    public function alteraDocumento()
+    {
+        $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
+        return view('meus_dados.edita_documento', compact('estados'));
     }
 
     public function alteraPessoa()
