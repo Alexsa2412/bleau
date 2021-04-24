@@ -11,4 +11,8 @@ class EstadoRepository extends BaseRepository
     {
         return Estado::class;
     }
+
+    public function obterEstadosOrdenadosPorSigla(){
+        return $this->orderBy('sigla', 'asc')->get();
+    }
 }
