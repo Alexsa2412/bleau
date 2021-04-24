@@ -11,4 +11,9 @@ class PaisRepository extends BaseRepository
     {
         return Pais::class;
     }
+
+    public function obterPaisesOrdenadosPorNome()
+    {
+        return $this->orderBy('nome', 'asc')->get();
+    }
 }
