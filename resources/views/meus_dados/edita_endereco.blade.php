@@ -46,7 +46,7 @@
                             <select class="form-select" name="pais_id" id="pais_id" aria-label="Pais">
                                 <option value="" selected>selecione o país</option>
                                 @foreach($paises as $pais)
-                                    <option value="{{$pais->nome}}" {{(old('pais_id')==$pais->id)}}>{{$pais->nome}}</option>
+                                    <option value="{{$pais->nome}}" {{(old('pais_id', $pais->id)==$pais->id)}}>{{$pais->nome}}</option>
                                 @endforeach
                             </select>
                             <label for="pais_id">País</label>
@@ -58,7 +58,7 @@
                             <select class="form-select" name="estado_id" id="estado_id" aria-label="UF">
                                 <option value="" selected>selecione o estado</option>
                                 @foreach($estados as $estado)
-                                    <option value="{{$estado->id}}" {{(old('estado_id')==$estado->id)}}>{{$estado->sigla}}</option>
+                                    <option value="{{$estado->id}}" {{(old('estado_id', $estado->id)==$estado->id)}}>{{$estado->sigla}}</option>
                                 @endforeach
                             </select>
                             <label for="estado_id">Estado</label>
