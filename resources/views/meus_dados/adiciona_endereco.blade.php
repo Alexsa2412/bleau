@@ -27,7 +27,7 @@
                         </div>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-8">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="bairro" id="bairro" placeholder="bairro" autocomplete="off"  value="{{(old('bairro'))}}">
                             <label for="bairro">Bairro</label>
@@ -41,27 +41,55 @@
                         </div>
                     </div>
 
+                    <div class="col-5">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="cep" id="cep" placeholder="cep" autocomplete="off" value="{{(old('cep'))}}">
+                            <label for="cep">CEP</label>
+                        </div>
+                    </div>
+
                     <div class="col-4">
                         <div class="form-floating mb-3">
                             <select class="form-select" name="pais_id" id="pais_id" aria-label="Pais">
                                 <option value="" selected>selecione o país</option>
                                 @foreach($paises as $pais)
-                                    <option value="{{$pais->nome}}" {{(old('pais_id')==$pais->id)}}>{{$pais->nome}}</option>
+                                    <option value="{{$pais->id}}" {{(old('pais_id')==$pais->id) ? "selected" : ""}}>{{$pais->nome}}</option>
                                 @endforeach
                             </select>
                             <label for="pais_id">País</label>
                         </div>
                     </div>
 
+                    <!--
+
                     <div class="col-4">
                         <div class="form-floating mb-3">
                             <select class="form-select" name="estado_id" id="estado_id" aria-label="UF">
                                 <option value="" selected>selecione o estado</option>
                                 @foreach($estados as $estado)
-                                    <option value="{{$estado->id}}" {{(old('estado_id')==$estado->id)}}>{{$estado->sigla}}</option>
+                                    <option value="{{$estado->id}}" {{(old('estado_id')==$estado->id)? "selected" : ""}}>{{$estado->sigla}}</option>
                                 @endforeach
                             </select>
                             <label for="estado_id">Estado</label>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" name="cidade_id" id="cidade_id" aria-label="Cidade">
+                                <option value="" selected>selecione a cidade</option>
+                                @foreach($cidades as $cidade)
+                                    <option value="{{$cidade->id}}" {{(old('cidade_id')==$cidade->id) ? "selected" : ""}}>{{$cidade->nome}}</option>
+                                @endforeach
+                            </select>
+                            <label for="cidade_id">Cidade</label>
+                        </div>
+                    </div>
+
+                    <div class="col-7">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="estado" id="estado" placeholder="estado" autocomplete="off" value="{{(old('estado'))}}">
+                            <label for="estado">Estado</label>
                         </div>
                     </div>
 
@@ -72,12 +100,9 @@
                         </div>
                     </div>
 
-                    <div class="col-5">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="cep" id="cep" placeholder="cep" autocomplete="off" value="{{(old('cep'))}}">
-                            <label for="cep">CEP</label>
-                        </div>
-                    </div>
+                    -->
+
+
 
                 </div>
 

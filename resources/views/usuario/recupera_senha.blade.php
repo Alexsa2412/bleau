@@ -5,7 +5,7 @@
 <div class="card text-dark bg-light mb-3">
     <div class="card-header">
         <h6 class="card-title">
-            <i class="fas fa-key me-2"></i>Alterar minha senha
+            <i class="fas fa-key me-2"></i>Recuperação de senha
         </h6>
     </div>
     <div class="card-body">
@@ -13,11 +13,9 @@
             <form action="#" method="post">
                 @csrf
                 <div class="row mt-3">
-                    <div class="col-4">
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control" name="senhaatual" id="senhaatual" placeholder="senhaatual" autocomplete="off" >
-                            <label for="senhaatual">Senha Atual</label>
-                        </div>
+                    <div class="form-floating first mb-3">
+                        <input type="text" name="email" class="form-control email" placeholder="email@servidor.com">
+                        <label for="email">Digite seu E-mail</label>
                     </div>
                 </div>
 
@@ -31,15 +29,13 @@
                     </div>
                 </div>
 
-                <div class="row mt-3">
-                    <div class="col-4">
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control" name="confirmarsenha" id="confirmarsenha" placeholder="confirmarsenha" autocomplete="off" >
-                            <label for="confirmarsenha">Confirmar nova senha</label>
-                        </div>
+
+                <div class="row">
+                    <div class="col text-end">
+                        <a href="#" class="btn btn-outline-secondary">Cancelar</a>
+                        <input class="btn btn-outline-success" type="submit" value="Salvar">
                     </div>
                 </div>
-
 
                 <div class="row">
                     <div class="col text-end">
