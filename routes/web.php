@@ -39,18 +39,17 @@ Route::middleware(['auth'])
     ->prefix('/meus-dados')
     ->group(function(){
         Route::get('/', [PessoaController::class, 'meusDados'])->name('meus_dados');
+        Route::get('/altera', [PessoaController::class, 'alteraPessoa'])->name('meus_dados.altera');
+        Route::post('/altera/{pessoa}', [PessoaController::class, 'alteraPessoaPost'])->name('meus_dados.altera.store');
 
         Route::prefix('/documento')
             ->group(function(){
                 Route::get('/adiciona', [PessoaController::class, 'adicionaDocumento'])->name('meus_dados.adiciona_documento');
                 Route::post('/adiciona', [PessoaController::class, 'adicionaDocumentoPost'])->name('meus_dados.adiciona_documento.store');
-                Route::get('/altera/{doumento}', [PessoaController::class, 'alteraDocumento'])->name('meus_dados.adiciona_documento');
+                Route::get('/altera/{doumento}', [PessoaController::class, 'alteraDocumento'])->name('meus_dados.altera_documento');
                 Route::post('/altera/{documento}', [PessoaController::class, 'alteraDocumentoPost'])->name('meus_dados.altera_documento.store');
-            });
-
-
-        Route::get('/altera', [PessoaController::class, 'alteraPessoa'])->name('meus_dados.altera');
-        Route::post('/altera/{pessoa}', [PessoaController::class, 'alteraPessoaPost'])->name('meus_dados.altera.store');
+            }
+        );
 
         Route::get('/endereco/altera/{endereco}', [PessoaController::class, 'alteraEndereco'])->name('meus_dados.altera_endereco');
         Route::post('/endereco/altera/{endereco}', [PessoaController::class, 'alteraEnderecoPost'])->name('meus_dados.altera_endereco.store');
@@ -65,7 +64,8 @@ Route::middleware(['auth'])
         Route::post('/contato/adiciona', [PessoaController::class, 'adicionaContatoPost'])->name('meus_dados.adiciona_contato.store');
 
         Route::get('/contato/altera', [PessoaController::class, 'alteraContato'])->name('meus_dados.altera_contato');
-        Route::get('/contato/altera', [PessoaController::class, 'alteraContatoPost'])->name('meus_dados.altera_contato.store');
+        Route::post('/contato/altera', [PessoaController::class, 'alteraContatoPost'])->name('meus_dados.altera_contato.store');
 
         Route::get('/documento/remove', [PessoaController::class, 'deletaTodosOsDocumentos']);
-});
+    }
+);

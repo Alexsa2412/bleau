@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Pessoa\AlteraPessoaRequest;
 use App\Models\Pessoa\Pessoa;
 use App\Models\Pessoa\PessoaConta;
+use App\Models\Pessoa\PessoaContato;
 use App\Models\Pessoa\PessoaEndereco;
 use App\Repositories\Banco\BancoRepository;
 use App\Repositories\Endereco\EstadoRepository;
@@ -16,6 +17,7 @@ use App\Repositories\Pessoa\PessoaDocumentoRepository;
 use App\Repositories\Pessoa\PessoaEnderecoRepository;
 use App\Repositories\Pessoa\PessoaRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PessoaController extends Controller
 {
@@ -47,7 +49,7 @@ class PessoaController extends Controller
         $this->pessoaContatoRepository = $pessoaContatoRepository;
     }
 
-    private function adicionaIdDaPessoaNoRequest($request){
+    private function adicionaIdDaPessoaNoRequest($request):array{
         return array_merge($request->all(), ['pessoa_id' => auth()->user()->id]);
     }
 
@@ -95,7 +97,7 @@ class PessoaController extends Controller
         return view('meus_dados.edita_endereco', compact('endereco', 'paises', 'estados'));
     }
 
-    public function alteraEnderecoPost(Request $request, PessoaEndereco $endereco)
+    public function alteraEnderecoPost(Request $request, PessoaEndereco $endereco):Redirect
     {
         $this->pessoaEnderecoRepository->updateById($endereco->id, $request->all());
         flash('Seu endereço foi atualizado');
@@ -139,5 +141,16 @@ class PessoaController extends Controller
         $this->pessoaContatoRepository->create($this->adicionaIdDaPessoaNoRequest($request));
         flash('Seus contatos foram atualizados');
         return redirect()->route('meus_dados');
+    }
+
+    public function alteraContato(PessoaContato $contato)
+    {
+        $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
+        return view('meus_dados.edita_contato', compact('paises'));
+    }
+
+    public function alteraContatoPost(Request $request, PessoaContato $contato)
+    {
+        $this->pessoaContatoRepository->updateById($contato->id, $request->all());
     }
 }
