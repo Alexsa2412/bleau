@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Pessoa;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pessoa\InsereAlteraContatoRequest;
-use App\Models\Pessoa\Pessoa;
 use App\Models\Pessoa\PessoaContato;
 use App\Repositories\Endereco\PaisRepository;
 use App\Repositories\Pessoa\PessoaContatoRepository;
-use Illuminate\Http\Request;
 
 class PessoaContatoController extends Controller
 {

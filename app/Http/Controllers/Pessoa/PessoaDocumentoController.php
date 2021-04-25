@@ -8,7 +8,7 @@ use App\Repositories\Endereco\EstadoRepository;
 use App\Repositories\Pessoa\PessoaDocumentoRepository;
 use Illuminate\Http\Request;
 
-class PessoaDoumentoController extends Controller
+class PessoaDocumentoController extends Controller
 {
     private $estadoRepository;
     private $pessoaDocumentoRepository;
@@ -33,9 +33,9 @@ class PessoaDoumentoController extends Controller
         return redirect()->route('meus_dados');
     }
 
-    public function alteraDocumento()
+    public function alteraDocumento($documento)
     {
         $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
-        return view('meus_dados.edita_documento', compact('estados'));
+        return view('meus_dados.edita_documento', compact('estados', 'documento'));
     }
 }

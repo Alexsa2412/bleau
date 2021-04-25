@@ -4,12 +4,7 @@ namespace App\Http\Controllers\Pessoa;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pessoa\AlteraPessoaRequest;
-use App\Http\Requests\Pessoa\InsereAlteraContaRequest;
-use App\Http\Requests\Pessoa\InsereAlteraContatoRequest;
-use App\Http\Requests\Pessoa\InsereAlteraDocumentoRequest;
 use App\Models\Pessoa\Pessoa;
-use App\Models\Pessoa\PessoaConta;
-use App\Models\Pessoa\PessoaContato;
 use App\Repositories\Banco\BancoRepository;
 use App\Repositories\Endereco\EstadoRepository;
 use App\Repositories\Endereco\PaisRepository;
@@ -25,13 +20,7 @@ class PessoaController extends Controller
     private $paisRepository;
 
     public function __construct(PessoaRepository $pessoaRepository,
-                                EstadoRepository $estadoRepository,
-                                PessoaDocumentoRepository $pessoaDocumentoRepository,
-                                PessoaEnderecoRepository $pessoaEnderecoRepository,
-                                PessoaContaRepository $pessoaContaRepository,
-                                PaisRepository $paisRepository,
-                                BancoRepository $bancoRepository,
-                                PessoaContatoRepository $pessoaContatoRepository)
+                                PaisRepository $paisRepository)
     {
         $this->pessoaRepository = $pessoaRepository;
         $this->paisRepository = $paisRepository;
