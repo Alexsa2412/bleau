@@ -16,6 +16,7 @@ class PessoaEnderecoController extends Controller
     private $paisRepository;
     private $estadoRepository;
     private $cidadeRepository;
+    private $mensagemOK = "Seu endereço foi atualizado";
 
     public function __construct(PessoaEnderecoRepository $pessoaEnderecoRepository,
         PaisRepository $paisRepository,
@@ -38,7 +39,7 @@ class PessoaEnderecoController extends Controller
     public function alteraEnderecoPost(InsereAlteraEnderecoRequest $request, PessoaEndereco $endereco)
     {
         $this->pessoaEnderecoRepository->updateById($endereco->id, $request->all());
-        flash('Seu endereço foi atualizado');
+        flash($this->mensagemOK);
         return redirect()->route('meus_dados');
     }
 
@@ -53,7 +54,7 @@ class PessoaEnderecoController extends Controller
     public function adicionaEnderecoPost(InsereAlteraEnderecoRequest $request)
     {
         $this->pessoaEnderecoRepository->create($request->all());
-        flash('Seu endereço foi atualizado');
+        flash($this->mensagemOK);
         return redirect()->route('meus_dados');
     }
 }

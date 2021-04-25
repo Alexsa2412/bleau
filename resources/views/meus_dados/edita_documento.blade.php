@@ -14,8 +14,7 @@
                     @csrf
                     <div class="row mt-3">
                         <div class="col-12">
-                            <p class="form-control">{{documento->tipo_documento_descricao}}</p>
-
+                            <p class="form-control">{{$documento->tipo_documento_descricao}}</p>
                         </div>
 
                         <div class="col-3">

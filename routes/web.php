@@ -6,6 +6,8 @@ use App\Http\Controllers\{
     Pessoa\PessoaController,
     Pessoa\PessoaEnderecoController,
     Pessoa\PessoaContaController,
+    Pessoa\PessoaContatoController,
+    Pessoa\PessoaDocumentoController,
     Usuario\UsuarioController
 };
 
@@ -46,19 +48,19 @@ Route::middleware(['auth'])
 
         Route::prefix('/documento')
             ->group(function(){
-                Route::get('/adiciona', [PessoaController::class, 'adicionaDocumento'])->name('meus_dados.adiciona_documento');
-                Route::post('/adiciona', [PessoaController::class, 'adicionaDocumentoPost'])->name('meus_dados.adiciona_documento.store');
-                Route::get('/altera/{doumento}', [PessoaController::class, 'alteraDocumento'])->name('meus_dados.altera_documento');
-                Route::post('/altera/{documento}', [PessoaController::class, 'alteraDocumentoPost'])->name('meus_dados.altera_documento.store');
+                Route::get('/adiciona', [PessoaDocumentoController::class, 'adicionaDocumento'])->name('meus_dados.adiciona_documento');
+                Route::post('/adiciona', [PessoaDocumentoController::class, 'adicionaDocumentoPost'])->name('meus_dados.adiciona_documento.store');
+                Route::get('/altera/{doumento}', [PessoaDocumentoController::class, 'alteraDocumento'])->name('meus_dados.altera_documento');
+                Route::post('/altera/{documento}', [PessoaDocumentoController::class, 'alteraDocumentoPost'])->name('meus_dados.altera_documento.store');
             }
         );
 
         Route::prefix('/endereco')
             ->group(function(){
-                Route::get('/altera/{endereco}', [PessoaEnderecoController::class, 'alteraEndereco'])->name('meus_dados.altera_endereco');
-                Route::post('/altera/{endereco}', [PessoaEnderecoController::class, 'alteraEnderecoPost'])->name('meus_dados.altera_endereco.store');
                 Route::get('/adiciona', [PessoaEnderecoController::class, 'adicionaEndereco'])->name('meus_dados.adiciona_endereco');
                 Route::post('/adiciona', [PessoaEnderecoController::class, 'adicionaEnderecoPost'])->name('meus_dados.adiciona_endereco.store');
+                Route::get('/altera/{endereco}', [PessoaEnderecoController::class, 'alteraEndereco'])->name('meus_dados.altera_endereco');
+                Route::post('/altera/{endereco}', [PessoaEnderecoController::class, 'alteraEnderecoPost'])->name('meus_dados.altera_endereco.store');
             }
         );
 
@@ -73,10 +75,10 @@ Route::middleware(['auth'])
 
         Route::prefix('/contato')
             ->group(function(){
-                Route::get('/adiciona', [PessoaController::class, 'adicionaContato'])->name('meus_dados.adiciona_contato');
-                Route::post('/adiciona', [PessoaController::class, 'adicionaContatoPost'])->name('meus_dados.adiciona_contato.store');
-                Route::get('/altera', [PessoaController::class, 'alteraContato'])->name('meus_dados.altera_contato');
-                Route::post('/altera', [PessoaController::class, 'alteraContatoPost'])->name('meus_dados.altera_contato.store');
+                Route::get('/adiciona', [PessoaContatoController::class, 'adicionaContato'])->name('meus_dados.adiciona_contato');
+                Route::post('/adiciona', [PessoaContatoController::class, 'adicionaContatoPost'])->name('meus_dados.adiciona_contato.store');
+                Route::get('/altera/{contato}', [PessoaContatoController::class, 'alteraContato'])->name('meus_dados.altera_contato');
+                Route::post('/altera/{contato}', [PessoaContatoController::class, 'alteraContatoPost'])->name('meus_dados.altera_contato.store');
             }
         );
     }
