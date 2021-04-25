@@ -15,7 +15,6 @@
                                 <i class="fas fa-plus-circle"></i>
                             </div>
                         </div>
-
                     </h6>
                 </div>
                 <div class="card-body">
@@ -77,10 +76,10 @@
                                     <p>
                                         {{$contato->tipo_contato}} - {{$contato->numero}}
                                         @if($contato->ehWhatsapp)
-                                        <i class="fab fa-whatsapp mx-2" style="color: #2CC64E"></i>
+                                        <i class="fab fa-whatsapp me-2 fw-bold" style="color: #2CC64E"></i>
                                         @endif
                                         @if($contato->ehTelegram)
-                                        <i class="fab fa-telegram-plane mx-2" style="color: #4EA4F6"></i>
+                                        <i class="fab fa-telegram-plane mx-e fw-bold" style="color: #4EA4F6"></i>
                                         @endif
                                     </p>
                                 </div>
@@ -113,23 +112,24 @@
                     @if($pessoa->cpf)
                     <div class="row card-text">
                         <div class="col">
-                            <div class="col">
-                                <div class="card text-dark bg-light mb-3">
-                                    <div class="card-header">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h6 class="card-title">
-                                                    <i class="far fa-address-card me-2"></i>CPF
-                                                </h6>
-                                            </div>
+                            <div class="card text-dark bg-light mb-3">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h6 class="card-title">
+                                                <i class="far fa-address-card me-2"></i>CPF
+                                            </h6>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <a href="{{route('meus_dados.altera_documento', $pessoa->cpf)}}" class="text-secondary"><i class="fas fa-edit"></i></a>
                                         </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row card-text">
-                                            <div class="col">
-                                                <p class="fw-bold">Número</p>
-                                                {{ $pessoa->cpf->numero }}
-                                            </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row card-text">
+                                        <div class="col">
+                                            <p class="fw-bold">Número</p>
+                                            {{ $pessoa->cpf->numero }}
                                         </div>
                                     </div>
                                 </div>
@@ -141,30 +141,31 @@
                     @if($pessoa->rg)
                     <div class="row card-text">
                         <div class="col">
-                            <div class="col">
-                                <div class="card text-dark bg-light mb-3">
-                                    <div class="card-header">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h6 class="card-title">
-                                                    <i class="far fa-address-card me-2"></i>Registro Geral
-                                                </h6>
-                                            </div>
+                            <div class="card text-dark bg-light mb-3">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h6 class="card-title">
+                                                <i class="far fa-address-card me-2"></i>Registro Geral
+                                            </h6>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <a href="{{route('meus_dados.altera_documento', $pessoa->rg)}}" class="text-secondary"><i class="fas fa-edit"></i></a>
                                         </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row card-text">
-                                            <div class="col-3">
-                                                <p class="fw-bold">Número</p>
-                                                {{ $pessoa->rg->numero }}
-                                            </div>
-                                            <div class="col-3">
-                                                <p class="fw-bold">Órgão Emissor</p>
-                                                {{ $pessoa->rg->orgao_emissor }}
-                                            </div>
-                                            <div class="col-3">
+                                </div>
+                                <div class="card-body">
+                                    <div class="row card-text">
+                                        <div class="col-3">
+                                            <p class="fw-bold">Número</p>
+                                            {{ $pessoa->rg->numero }}
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="fw-bold">Órgão Emissor</p>
+                                            {{ $pessoa->rg->orgao_emissor }}
+                                        </div>
+                                        <div class="col-3">
 
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -179,10 +180,13 @@
                             <div class="card text-dark bg-light mb-3">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-6">
                                             <h6 class="card-title">
                                                 <i class="far fa-address-card me-2"></i>Passaporte
                                             </h6>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <a href="{{route('meus_dados.altera_documento', $pessoa->passaporte)}}" class="text-secondary"><i class="fas fa-edit"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -205,10 +209,13 @@
                             <div class="card text-dark bg-light">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-6">
                                             <h6 class="card-title">
                                                 <i class="far fa-address-card me-2"></i>CIS
                                             </h6>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <a href="{{route('meus_dados.altera_documento', $pessoa->cis)}}" class="text-secondary"><i class="fas fa-edit"></i></a>
                                         </div>
                                     </div>
                                 </div>
