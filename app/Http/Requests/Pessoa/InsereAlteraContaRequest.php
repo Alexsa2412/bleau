@@ -29,8 +29,7 @@ class InsereAlteraContaRequest extends FormRequest
             'operacao' => 'max:12',
             'tipo' => 'required',
             'pix' => 'max:20',
-
-            'banco_id'=> 'required'             
+            'banco_id'=> 'required'
         ];
     }
 
@@ -40,6 +39,14 @@ class InsereAlteraContaRequest extends FormRequest
             'agencia.required' => 'número da agência requerido',
             'numero.require' => 'número da conta requerida',
             'tipo.required' => 'informe se é conta corrente ou poupança'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'banco_id' => 'banco',
+            'tipo' => 'tipo de conta'
         ];
     }
 }

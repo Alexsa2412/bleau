@@ -15,13 +15,6 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="email" id="email" placeholder="email@provedor.com" autocomplete="off" value="{{(old('email', $pessoa->email))}}">
-                            <label for="email">E-mail</label>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="nome" id="nome" placeholder="nome" autocomplete="off" value="{{(old('nome', $pessoa->nome))}}">
                             <label for="nome">Nome</label>
                         </div>

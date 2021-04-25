@@ -34,16 +34,17 @@ class Pessoa extends Model
         return $this->hasMany(PessoaEndereco::class);
     }
 
-    public function setDataDeNascimentoAttribute($data)
+    public function setDataDeNascimentoAttribute($value)
     {
         $this->attributes['data_de_nascimento'] = null;
-        if (!empty($data) && Carbon::createFromFormat('d/m/Y', $data) !== false) {
-            $this->attributes['data_de_nascimento'] = Carbon::createFromFormat('d/m/Y', $data)->format('Y-m-d');
+        if (!empty($value) && Carbon::createFromFormat('d/m/Y', $value) !== false) {
+            $this->attributes['data_de_nascimento'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
         }
     }
 
-    public function getDataDeNascimentoAttribute()
+    public function getDataDeNascimentoAttribute($value)
     {
+        dd($value);
         return ($this->attributes['data_de_nascimento'] != null) ?
             Carbon::createFromFormat('Y-m-d', $this->attributes['data_de_nascimento'])->format('d/m/Y') :
             "";

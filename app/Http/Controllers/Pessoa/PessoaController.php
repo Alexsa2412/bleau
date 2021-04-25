@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Pessoa;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pessoa\AlteraPessoaRequest;
+use App\Http\Requests\Pessoa\InsereAlteraContaRequest;
+use App\Http\Requests\Pessoa\InsereAlteraContatoRequest;
+use App\Http\Requests\Pessoa\InsereAlteraDocumentoRequest;
 use App\Models\Pessoa\Pessoa;
 use App\Models\Pessoa\PessoaConta;
 use App\Models\Pessoa\PessoaContato;
-use App\Models\Pessoa\PessoaEndereco;
 use App\Repositories\Banco\BancoRepository;
 use App\Repositories\Endereco\EstadoRepository;
 use App\Repositories\Endereco\PaisRepository;
@@ -16,15 +18,12 @@ use App\Repositories\Pessoa\PessoaContatoRepository;
 use App\Repositories\Pessoa\PessoaDocumentoRepository;
 use App\Repositories\Pessoa\PessoaEnderecoRepository;
 use App\Repositories\Pessoa\PessoaRepository;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class PessoaController extends Controller
 {
     private $pessoaRepository;
     private $estadoRepository;
     private $pessoaDocumentoRepository;
-    private $pessoaEnderecoRepository;
     private $paisRepository;
     private $pessoaContaRepository;
     private $bancoRepository;
@@ -65,7 +64,7 @@ class PessoaController extends Controller
         return view('meus_dados.adiciona_documento', compact('estados'));
     }
 
-    public function adicionaDocumentoPost(Request $request)
+    public function adicionaDocumentoPost(InsereAlteraDocumentoRequest $request)
     {
         $this->pessoaDocumentoRepository->create($this->adicionaIdDaPessoaNoRequest($request));
         flash()->success('Documento inserido com sucesso');
@@ -90,53 +89,13 @@ class PessoaController extends Controller
         return redirect()->route('meus_dados');
     }
 
-    public function alteraEndereco(PessoaEndereco $endereco)
-    {
-        $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
-        $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
-        return view('meus_dados.edita_endereco', compact('endereco', 'paises', 'estados'));
-    }
-
-    public function alteraEnderecoPost(Request $request, PessoaEndereco $endereco):Redirect
-    {
-        $this->pessoaEnderecoRepository->updateById($endereco->id, $request->all());
-        flash('Seu endereço foi atualizado');
-        return redirect()->route('meus_dados');
-    }
-
-    public function adicionaConta()
-    {
-        $bancos = $this->bancoRepository->obterBancosOrdenadosPorNome();
-        return view ('meus_dados.adiciona_conta', compact('bancos'));
-    }
-
-    public function adicionaContaPost(Request $request)
-    {
-        $this->pessoaContaRepository->create($this->adicionaIdDaPessoaNoRequest($request));
-        flash('Seus dados bancários foram atualizados');
-        return redirect()->route('meus_dados');
-    }
-
-    public function alteraConta(PessoaConta $conta)
-    {
-        $bancos = $this->bancoRepository->obterBancosOrdenadosPorNome();
-        return view('meus_dados.edita_conta', compact('conta', 'bancos'));
-    }
-
-    public function alteraContaPost(Request $request, PessoaConta $conta)
-    {
-        $this->pessoaContaRepository->updateById($conta->id, $request->all());
-        flash('Seus dados bancários foram atualizados');
-        return redirect()->route('meus_dados');
-    }
-
     public function adicionaContato()
     {
         $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
         return view('meus_dados.adiciona_contato', compact('paises'));
     }
 
-    public function adicionaContatoPost(Request $request)
+    public function adicionaContatoPost(InsereAlteraContatoRequest $request)
     {
         $this->pessoaContatoRepository->create($this->adicionaIdDaPessoaNoRequest($request));
         flash('Seus contatos foram atualizados');
@@ -146,10 +105,10 @@ class PessoaController extends Controller
     public function alteraContato(PessoaContato $contato)
     {
         $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
-        return view('meus_dados.edita_contato', compact('paises'));
+        return view('meus_dados.edita_contato', compact('paises', 'contato'));
     }
 
-    public function alteraContatoPost(Request $request, PessoaContato $contato)
+    public function alteraContatoPost(InsereAlteraContatoRequest $request, PessoaContato $contato)
     {
         $this->pessoaContatoRepository->updateById($contato->id, $request->all());
     }

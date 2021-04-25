@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\{
     Pessoa\PessoaController,
+    Pessoa\PessoaEnderecoController,
+    Pessoa\PessoaContaController,
     Usuario\UsuarioController
 };
 
@@ -51,21 +53,31 @@ Route::middleware(['auth'])
             }
         );
 
-        Route::get('/endereco/altera/{endereco}', [PessoaController::class, 'alteraEndereco'])->name('meus_dados.altera_endereco');
-        Route::post('/endereco/altera/{endereco}', [PessoaController::class, 'alteraEnderecoPost'])->name('meus_dados.altera_endereco.store');
+        Route::prefix('/endereco')
+            ->group(function(){
+                Route::get('/altera/{endereco}', [PessoaEnderecoController::class, 'alteraEndereco'])->name('meus_dados.altera_endereco');
+                Route::post('/altera/{endereco}', [PessoaEnderecoController::class, 'alteraEnderecoPost'])->name('meus_dados.altera_endereco.store');
+                Route::get('/adiciona', [PessoaEnderecoController::class, 'adicionaEndereco'])->name('meus_dados.adiciona_endereco');
+                Route::post('/adiciona', [PessoaEnderecoController::class, 'adicionaEnderecoPost'])->name('meus_dados.adiciona_endereco.store');
+            }
+        );
 
-        Route::get('/conta/adiciona', [PessoaController::class, 'adicionaConta'])->name('meus_dados.adiciona_conta');
-        Route::post('/conta/adiciona', [PessoaController::class, 'adicionaContaPost'])->name('meus_dados.adiciona_conta.store');
+        Route::prefix('/conta')
+            ->group(function(){
+                Route::get('/adiciona', [PessoaContaController::class, 'adicionaConta'])->name('meus_dados.adiciona_conta');
+                Route::post('/adiciona', [PessoaContaController::class, 'adicionaContaPost'])->name('meus_dados.adiciona_conta.store');
+                Route::get('/altera/{conta}', [PessoaContaController::class, 'alteraConta'])->name('meus_dados.altera_conta');
+                Route::post('/altera/{conta}', [PessoaContaController::class, 'alteraContaPost'])->name('meus_dados.altera_conta.store');
+            }
+        );
 
-        Route::get('/conta/altera/{conta}', [PessoaController::class, 'alteraConta'])->name('meus_dados.altera_conta');
-        Route::post('/conta/altera/{conta}', [PessoaController::class, 'alteraContaPost'])->name('meus_dados.altera_conta.store');
-
-        Route::get('/contato/adiciona', [PessoaController::class, 'adicionaContato'])->name('meus_dados.adiciona_contato');
-        Route::post('/contato/adiciona', [PessoaController::class, 'adicionaContatoPost'])->name('meus_dados.adiciona_contato.store');
-
-        Route::get('/contato/altera', [PessoaController::class, 'alteraContato'])->name('meus_dados.altera_contato');
-        Route::post('/contato/altera', [PessoaController::class, 'alteraContatoPost'])->name('meus_dados.altera_contato.store');
-
-        Route::get('/documento/remove', [PessoaController::class, 'deletaTodosOsDocumentos']);
+        Route::prefix('/contato')
+            ->group(function(){
+                Route::get('/adiciona', [PessoaController::class, 'adicionaContato'])->name('meus_dados.adiciona_contato');
+                Route::post('/adiciona', [PessoaController::class, 'adicionaContatoPost'])->name('meus_dados.adiciona_contato.store');
+                Route::get('/altera', [PessoaController::class, 'alteraContato'])->name('meus_dados.altera_contato');
+                Route::post('/altera', [PessoaController::class, 'alteraContatoPost'])->name('meus_dados.altera_contato.store');
+            }
+        );
     }
 );

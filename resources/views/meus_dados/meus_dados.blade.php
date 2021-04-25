@@ -8,10 +8,10 @@
                 <div class="card-header">
                     <h6 class="card-title">
                         <div class="row">
-                            <div class="col-10">
+                            <div class="col-6">
                                 <i class="fas fa-house-user me-2"></i>Meu Endereço
                             </div>
-                            <div class="col-2">
+                            <div class="col-6 text-end">
                                 <i class="fas fa-plus-circle"></i>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                             </div>
                         @else
                             <div class="col text-center">
-                                <a class="btn btn-outline-primary" href="#"><i class="fas fa-plus-circle me-2"></i>Adicionar endereço</a>
+                                <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_endereco')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar endereço</a>
                             </div>
                         @endif
                     </div>
@@ -58,7 +58,14 @@
             <div class="card text-dark bg-light mb-3">
                 <div class="card-header">
                     <h6 class="card-title">
-                        <i class="far fa-address-book me-2"></i>Meus Contatos
+                        <div class="row">
+                            <div class="col-6">
+                                <i class="far fa-address-book me-2"></i>Meus Contatos
+                            </div>
+                            <div class="col-6">
+
+                            </div>
+                        </div>
                     </h6>
                 </div>
                 <div class="card-body">
