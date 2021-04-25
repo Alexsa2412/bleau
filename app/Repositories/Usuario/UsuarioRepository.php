@@ -18,4 +18,11 @@ class UsuarioRepository extends BaseRepository
             ->select(['nome','email'])
             ->first();
     }
+
+    public function alterarSenha($novaSenha)
+    {
+        $usuario = $this->getById(auth()->user()->id);
+        $usuario->password = $novaSenha;
+        $usuario->save();
+    }
 }

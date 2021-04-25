@@ -33,9 +33,10 @@ class InsereAlteraEnderecoRequest extends FormRequest
              'estado_exterior' => 'max:255',
 
              'pais_id' => 'required',
-             
-         ];         
- 
+
+         ];
+     }
+
      public function messages()
      {
          return [

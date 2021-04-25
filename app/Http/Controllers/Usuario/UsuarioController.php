@@ -43,4 +43,9 @@ class UsuarioController extends Controller
         session()->flush();
         return redirect()->route('login');
     }
+
+    public function alterarSenha(Request $request)
+    {
+
+    }
 }

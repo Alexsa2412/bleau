@@ -11,4 +11,9 @@ class BancoRepository extends BaseRepository
     {
         return Banco::class;
     }
+
+    public function obterBancosOrdenadosPorNome()
+    {
+        return $this->orderBy('nome', 'asc')->get();
+    }
 }

@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Pessoa;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pessoa\AlteraPessoaRequest;
+use App\Http\Requests\Pessoa\InsereAlteraContaRequest;
+use App\Http\Requests\Pessoa\InsereAlteraContatoRequest;
+use App\Http\Requests\Pessoa\InsereAlteraDocumentoRequest;
 use App\Models\Pessoa\Pessoa;
 use App\Models\Pessoa\PessoaConta;
-use App\Models\Pessoa\PessoaEndereco;
+use App\Models\Pessoa\PessoaContato;
 use App\Repositories\Banco\BancoRepository;
 use App\Repositories\Endereco\EstadoRepository;
 use App\Repositories\Endereco\PaisRepository;
@@ -15,14 +18,12 @@ use App\Repositories\Pessoa\PessoaContatoRepository;
 use App\Repositories\Pessoa\PessoaDocumentoRepository;
 use App\Repositories\Pessoa\PessoaEnderecoRepository;
 use App\Repositories\Pessoa\PessoaRepository;
-use Illuminate\Http\Request;
 
 class PessoaController extends Controller
 {
     private $pessoaRepository;
     private $estadoRepository;
     private $pessoaDocumentoRepository;
-    private $pessoaEnderecoRepository;
     private $paisRepository;
     private $pessoaContaRepository;
     private $bancoRepository;
@@ -47,7 +48,7 @@ class PessoaController extends Controller
         $this->pessoaContatoRepository = $pessoaContatoRepository;
     }
 
-    private function adicionaIdDaPessoaNoRequest($request){
+    private function adicionaIdDaPessoaNoRequest($request):array{
         return array_merge($request->all(), ['pessoa_id' => auth()->user()->id]);
     }
 
@@ -59,16 +60,13 @@ class PessoaController extends Controller
 
     public function adicionaDocumento()
     {
-        $estados = $this->estadoRepository
-            ->orderBy('sigla')
-            ->get();
+        $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
         return view('meus_dados.adiciona_documento', compact('estados'));
     }
 
-    public function adicionaDocumentoPost(Request $request)
+    public function adicionaDocumentoPost(InsereAlteraDocumentoRequest $request)
     {
-        $dados = $this->adicionaIdDaPessoaNoRequest($request);
-        $this->pessoaDocumentoRepository->create($dados);
+        $this->pessoaDocumentoRepository->create($this->adicionaIdDaPessoaNoRequest($request));
         flash()->success('Documento inserido com sucesso');
         return redirect()->route('meus_dados');
     }
@@ -81,7 +79,7 @@ class PessoaController extends Controller
 
     public function alteraPessoa()
     {
-        $pessoa = $this->pessoaRepository->getById(auth()->user()->id);
+        $pessoa = auth()->user();
         return view('meus_dados.edita_meus_dados', compact('pessoa'));
     }
 
@@ -91,78 +89,27 @@ class PessoaController extends Controller
         return redirect()->route('meus_dados');
     }
 
-    public function alteraEndereco(PessoaEndereco $endereco)
-    {
-        if ($endereco->pessoa_id !== auth()->user()->id)
-            abort(403, "Acesso não autorizado.");
-
-        $paises = $this->paisRepository
-            ->orderBy('nome')
-            ->get();
-
-        $estados = $this->estadoRepository
-            ->orderBy('nome')
-            ->get();
-
-        return view('meus_dados.edita_endereco', compact('endereco', 'paises', 'estados'));
-    }
-
-    public function alteraEnderecoPost(Request $request, PessoaEndereco $endereco)
-    {
-        $this->pessoaEnderecoRepository->updateById($endereco->id, $request->all());
-        flash('Seu endereço foi atualizado');
-        return redirect()->route('meus_dados');
-    }
-
-    public function adicionaConta()
-    {
-        $bancos = $this->bancoRepository
-            ->orderBy('nome')
-            ->get();
-        return view ('meus_dados.adiciona_conta', compact('bancos'));
-    }
-
-    public function adicionaContaPost(Request $request)
-    {
-        $dados = $this->adicionaIdDaPessoaNoRequest($request);
-        $this->pessoaContaRepository->create($dados);
-        flash('Seus dados bancários foram atualizados');
-        return redirect()->route('meus_dados');
-    }
-
-    public function alteraConta(PessoaConta $conta)
-    {
-        $bancos = $this->bancoRepository->orderBy('nome')->get();
-        return view('meus_dados.edita_conta', compact('conta', 'bancos'));
-    }
-
-    public function alteraContaPost(Request $request, PessoaConta $conta)
-    {
-        $this->pessoaContaRepository->updateById($conta->id, $request->all());
-        flash('Seus dados bancários foram atualizados');
-        return redirect()->route('meus_dados');
-    }
-
     public function adicionaContato()
     {
-        return view('meus_dados.adiciona_contato');
+        $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
+        return view('meus_dados.adiciona_contato', compact('paises'));
     }
 
-    public function adicionaContatoPost(Request $request)
+    public function adicionaContatoPost(InsereAlteraContatoRequest $request)
     {
-        $dados = $this->adicionaIdDaPessoaNoRequest($request);
-        $this->pessoaContatoRepository->create($dados);
-        flash('Seus contatos foram atualizdos');
+        $this->pessoaContatoRepository->create($this->adicionaIdDaPessoaNoRequest($request));
+        flash('Seus contatos foram atualizados');
         return redirect()->route('meus_dados');
     }
 
-    public function deletaTodosOsDocumentos()
+    public function alteraContato(PessoaContato $contato)
     {
-        $documentos = $this->pessoaDocumentoRepository->all();
-        $this->pessoaDocumentoRepository
-            ->where('pessoa_id', 1)
-            ->delete();
-        flash()->warning('todos os documentos deletados');
-        return redirect()->route('meus_dados');
+        $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
+        return view('meus_dados.edita_contato', compact('paises', 'contato'));
+    }
+
+    public function alteraContatoPost(InsereAlteraContatoRequest $request, PessoaContato $contato)
+    {
+        $this->pessoaContatoRepository->updateById($contato->id, $request->all());
     }
 }

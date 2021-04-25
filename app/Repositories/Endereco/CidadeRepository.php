@@ -11,4 +11,8 @@ class CidadeRepository extends BaseRepository
     {
         return Cidade::class;
     }
+
+    public function obterCidadesOrdenadasPorNome(){
+        return $this->orderBy('nome', 'asc')->get();
+    }
 }
