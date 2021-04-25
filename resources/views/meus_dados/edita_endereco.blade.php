@@ -13,14 +13,14 @@
             <form action="#" method="post">
                 @csrf
                 <div class="row mt-3">
-                    <div class="col-5">
+                    <div class="col-6">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="logradouro" id="logradouro" placeholder="logradouro" autocomplete="off" value="{{(old('logradouro', $endereco->logradouro))}}">
                             <label for="logradouro">Logradouro</label>
                         </div>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-2">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="numero" id="numero" placeholder="numero" autocomplete="off" value="{{(old('numero', $endereco->numero))}}">
                             <label for="numero">Número</label>
@@ -34,12 +34,33 @@
                         </div>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-8">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="complemento" id="complemento" placeholder="complemento" autocomplete="off" value="{{(old('complemento', $endereco->complemento))}}">
                             <label for="complemento">Complemento</label>
                         </div>
                     </div>
+
+                    <div class="col-4">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="cep" id="cep" placeholder="cep" autocomplete="off" value="{{(old('cep', $endereco->cep))}}">
+                            <label for="cep">CEP</label>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" name="pais_id" id="pais_id" aria-label="Pais">
+                                <option value="" selected>selecione o país</option>
+                                @foreach($paises as $pais)
+                                    <option value="{{$pais->id}}" {{(old('pais_id', $endereco->pais_id)==$pais->id) ? "selected" : ""}}>{{$pais->nome}}</option>
+                                @endforeach
+                            </select>
+                            <label for="pais_id">País</label>
+                        </div>
+                    </div>
+
+
                    <!--
 
                     <div class="col-4">
@@ -66,14 +87,14 @@
                         </div>
                     </div>
 
-                    <div class="col-7">
+                    <div class="col-4">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="estado" id="estado" placeholder="estado" autocomplete="off" value="{{(old('estado',$endereco->estado))}}">
                             <label for="estado">Estado</label>
                         </div>
                     </div>
 
-                    <div class="col-7">
+                    <div class="col-4">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="cidade" id="cidade" placeholder="cidade" autocomplete="off" value="{{(old('cidade',$endereco->cidade))}}">
                             <label for="cidade">Cidade</label>
@@ -81,13 +102,6 @@
                     </div>
 
                     -->
-
-                    <div class="col-5">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="cep" id="cep" placeholder="cep" autocomplete="off" value="{{(old('cep', $endereco->cep))}}">
-                            <label for="cep">CEP</label>
-                        </div>
-                    </div>
 
                 </div>
 
