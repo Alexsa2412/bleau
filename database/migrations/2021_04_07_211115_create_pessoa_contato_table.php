@@ -16,7 +16,7 @@ class CreatePessoaContatoTable extends Migration
         Schema::create('pessoa_contato', function (Blueprint $table) {
             $table->id();
             $table->string('numero', 20);
-            $table->enum('tipo_contato', ['residencial','comercial','movel']);
+            $table->enum('tipo_contato', ['residencial','comercial','celular']);
             $table->enum('whatsapp', ['sim','nao'])->default('nao');
             $table->enum('telegram', ['sim','nao'])->default('nao');
             $table->foreignId('pessoa_id')->constrained('pessoa');

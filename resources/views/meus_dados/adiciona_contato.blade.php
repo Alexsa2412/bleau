@@ -19,7 +19,7 @@
                                     <option value="">selecione o tipo do contato</option>
                                     <option value="residencial" {{ old('tipo_contato') == 'residencial' ? "selected" : "" }}>Residencial</option>
                                     <option value="comercial" {{ old('tipo_contato') == 'comercial' ? "selected" : "" }}>Comercial</option>
-                                    <option value="movel" {{ old('tipo_contato') == 'movel' ? "selected" : "" }}>Celular</option>
+                                    <option value="celular" {{ old('tipo_contato') == 'celular' ? "selected" : "" }}>Celular</option>
                                 </select>
                                 <label for="tipo_contato">Tipo de Contato</label>
                             </div>
