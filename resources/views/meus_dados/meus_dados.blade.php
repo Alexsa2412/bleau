@@ -71,24 +71,25 @@
                                         <div class="col-6">
                                             <h6 class="card-title">
                                                 @if($contato->tipo_contato === "celular")
-                                                    <i class="fas fa-mobile-alt me-1"></i>
+                                                    <i class="fas fa-mobile-alt me-2"></i>Celular
                                                     @if($contato->ehWhatsapp)
-                                                        <i class="fab fa-whatsapp me-1" style="color: #2CC64E"></i>
+                                                        <i class="fab fa-whatsapp" style="color: #2CC64E"></i>
                                                     @endif
                                                     @if($contato->ehTelegram)
                                                         <i class="fab fa-telegram-plane" style="color: #4EA4F6"></i>
                                                     @endif
                                                 @endif
                                                 @if($contato->tipo_contato === "residencial")
-                                                        <i class="fas fa-home"></i>
+                                                        <i class="fas fa-home me-2"></i>Residencial
                                                 @endif
                                                 @if($contato->tipo_contato === "comercial")
-                                                    <i class="fas fa-home"></i>
+                                                        <i class="fas fa-phone-square-alt me-2"></i>Comercial
                                                 @endif
                                             </h6>
                                         </div>
                                         <div class="col-6 text-end">
                                             <a href="{{route('meus_dados.altera_contato', $contato)}}" class="text-secondary"><i class="fas fa-edit"></i></a>
+                                            <a href="{{route('meus_dados.altera_contato', $contato)}}" class="text-danger"><i class="far fa-trash-alt"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -252,7 +253,7 @@
                     </div>
                     @endif
 
-                    @if((!$pessoa->rg) xor (!$pessoa->passaporte) xor (!$pessoa->cis) xor (!$pessoa->cpf))
+                    @if((!$pessoa->rg) or (!$pessoa->passaporte) or (!$pessoa->cis) or (!$pessoa->cpf))
                     <div class="row mt-3">
                         <div class="col text-end">
                             <a href="{{route('meus_dados.adiciona_documento')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-plus-circle me-2"></i>Adicionar</a>

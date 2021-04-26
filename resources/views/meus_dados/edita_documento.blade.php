@@ -13,9 +13,13 @@
                 <form action="#" method="post">
                     @csrf
                     <div class="row mt-3">
-                        <div class="form-floating mb-3">
-                            <p class="form-control" placeholder="000">{{$documento->tipo_documento_descricao}}</p>
-                            <label for="numero">Tipo de Documento</label>
+                        <div class="col-12">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" name="tipo_documento" id="tipo_documento" aria-label="Tipo de Documento">
+                                    <option value="{{$documento->tipo_documento}}" selected>{{$documento->tipo_documento_descricao}}</option>
+                                </select>
+                                <label for="tipo_de_documento">Tipo de Documento</label>
+                            </div>
                         </div>
 
                         <div class="col-3">

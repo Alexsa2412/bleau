@@ -13,6 +13,7 @@ class PessoaDocumentoController extends Controller
 {
     private $estadoRepository;
     private $pessoaDocumentoRepository;
+    private $mensagemOK = "Seus documentos foram atualizados";
 
     public function __construct(EstadoRepository $estadoRepository,
         PessoaDocumentoRepository $pessoaDocumentoRepository)
@@ -34,7 +35,7 @@ class PessoaDocumentoController extends Controller
     public function adicionaDocumentoPost(InsereAlteraDocumentoRequest $request)
     {
         $this->pessoaDocumentoRepository->create($this->adicionaIdDaPessoaNoRequest($request));
-        flash()->success('Documento inserido com sucesso');
+        flash()->success($this->mensagemOK);
         return redirect()->route('meus_dados');
     }
 
@@ -42,5 +43,12 @@ class PessoaDocumentoController extends Controller
     {
         $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
         return view('meus_dados.edita_documento', compact('estados', 'documento'));
+    }
+
+    public function alteraDocumentoPost(Request $request, PessoaDocumento $documento)
+    {
+        $this->pessoaDocumentoRepository->updateById($documento->id, $request->all());
+        flash($this->mensagemOK)->success();
+        return redirect()->route('meus_dados');
     }
 }
