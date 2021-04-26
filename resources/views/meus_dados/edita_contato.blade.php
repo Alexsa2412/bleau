@@ -5,7 +5,7 @@
     <div class="card text-dark bg-light mb-3">
         <div class="card-header">
             <h6 class="card-title">
-            <i class="fas fa-phone"></i></i>Editar Contato
+            <i class="fas fa-phone me-2"></i></i>Editar Contato
             </h6>
         </div>
         <div class="card-body">
@@ -13,6 +13,18 @@
                 <form action="#" method="post">
                     @csrf
                     <div class="row mt-3">
+                        <div class="col-3">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" name="pais_id" id="pais_id" aria-label="Pais">
+                                    <option value="" selected>selecione o país</option>
+                                    @foreach($paises as $pais)
+                                        <option value="{{$pais->id}}" {{(old('pais_id')==$pais->id) ? "selected" : ""}}>{{$pais->nome}}</option>
+                                    @endforeach
+                                </select>
+                                <label for="pais_id">País</label>
+                            </div>
+                        </div>
+
                         <div class="col-3">
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="tipo_contato" id="tipo_contato" aria-label="Tipo de contato" autofocus>
