@@ -29,18 +29,10 @@
                     </div>
                 </div>
 
-
                 <div class="row">
                     <div class="col text-end">
                         <a href="#" class="btn btn-outline-secondary">Cancelar</a>
-                        <input class="btn btn-outline-success" type="submit" value="Salvar">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col text-end">
-                        <a href="{{route('meus_dados')}}" class="btn btn-outline-secondary">Cancelar</a>
-                        <input class="btn btn-outline-success" type="submit" value="Salvar">
+                        <input class="btn btn-outline-success" type="submit" value="Enviar">
                     </div>
                 </div>
             </form>

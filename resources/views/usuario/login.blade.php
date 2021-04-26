@@ -15,7 +15,7 @@
             <div class="position-relative h-100 w-100">
                 <div class="position-absolute top-50 start-50 h-50 w-50 translate-middle">
                     <div class="row">
-                        <div class="col p-5 border border-secondary">
+                        <div class="col p-5 border border-primary">
 
                             <form action="{{route("usuario.login")}}" method="post">
                                 @csrf
