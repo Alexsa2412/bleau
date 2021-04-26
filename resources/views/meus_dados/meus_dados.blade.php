@@ -8,11 +8,8 @@
                 <div class="card-header">
                     <h6 class="card-title">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col">
                                 <i class="fas fa-house-user me-2"></i>Meu Endereço
-                            </div>
-                            <div class="col-6 text-end">
-                                <i class="fas fa-plus-circle"></i>
                             </div>
                         </div>
                     </h6>
@@ -58,11 +55,8 @@
                 <div class="card-header">
                     <h6 class="card-title">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col">
                                 <i class="far fa-address-book me-2"></i>Meus Contatos
-                            </div>
-                            <div class="col-6">
-
                             </div>
                         </div>
                     </h6>
@@ -70,18 +64,30 @@
                 <div class="card-body">
                     <div class="row card-text">
                         @forelse($pessoa->contatos as $contato)
-                            <div class="row">
-                                <div class="col">
-                                    <p class="fw-bold mb-3">Dados do Contato</p>
-                                    <p>
-                                        {{$contato->tipo_contato}} - {{$contato->numero}}
-                                        @if($contato->ehWhatsapp)
-                                        <i class="fab fa-whatsapp me-2 fw-bold" style="color: #2CC64E"></i>
+                            <div class="card text-dark bg-light mb-3">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h6 class="card-title">
+                                            </h6>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <a href="#" class="text-secondary"><i class="fas fa-edit"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row card-text">
+                                        @if($contato->tipo_contato === "celular")
+                                            <i class="fas fa-mobile-alt"></i>
+                                            @if($contato->ehWhatsapp)
+                                                <i class="fab fa-whatsapp me-2 fw-bold" style="color: #2CC64E"></i>
+                                            @endif
+                                            @if($contato->ehTelegram)
+                                                <i class="fab fa-telegram-plane mx-e fw-bold" style="color: #4EA4F6"></i>
+                                            @endif
                                         @endif
-                                        @if($contato->ehTelegram)
-                                        <i class="fab fa-telegram-plane mx-e fw-bold" style="color: #4EA4F6"></i>
-                                        @endif
-                                    </p>
+                                    </div>
                                 </div>
                             </div>
                         @empty
@@ -99,9 +105,7 @@
                         <i class="fas fa-user me-2"></i>Meus Documentos
                     </h6>
                 </div>
-
                 <div class="card-body">
-
                     @if($pessoa->cpf)
                     <div class="row card-text">
                         <div class="col">
@@ -225,7 +229,7 @@
                     </div>
                     @endif
 
-                    @if((!$pessoa->rg) || (!$pessoa->passaporte) || (!$pessoa->cis) || (!$pessoa->cpf))
+                    @if((!$pessoa->rg) xor (!$pessoa->passaporte) xor (!$pessoa->cis) xor (!$pessoa->cpf))
                     <div class="row mt-3">
                         <div class="col text-end">
                             <a href="{{route('meus_dados.adiciona_documento')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-plus-circle me-2"></i>Adicionar</a>

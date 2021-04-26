@@ -20,6 +20,16 @@ class PessoaContatoController extends Controller
         $this->paisRepository = $paisRepository;
     }
 
+    private function adicionaIdDaPessoaNoRequest($request):array{
+        return array_merge($request->all(), ['pessoa_id' => auth()->user()->id]);
+    }
+
+    public function adicionaContato()
+    {
+        $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
+        return view('meus_dados.adiciona_contato', compact('paises'));
+    }
+
     public function adicionaContatoPost(InsereAlteraContatoRequest $request)
     {
         $this->pessoaContatoRepository->create($this->adicionaIdDaPessoaNoRequest($request));

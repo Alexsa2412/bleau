@@ -20,6 +20,10 @@ class PessoaDocumentoController extends Controller
         $this->pessoaDocumentoRepository = $pessoaDocumentoRepository;
     }
 
+    private function adicionaIdDaPessoaNoRequest($request):array{
+        return array_merge($request->all(), ['pessoa_id' => auth()->user()->id]);
+    }
+
     public function adicionaDocumento()
     {
         $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
@@ -28,7 +32,7 @@ class PessoaDocumentoController extends Controller
 
     public function adicionaDocumentoPost(InsereAlteraDocumentoRequest $request)
     {
-        $this->pessoaDocumentoRepository->create();
+        $this->pessoaDocumentoRepository->create($this->adicionaIdDaPessoaNoRequest($request));
         flash()->success('Documento inserido com sucesso');
         return redirect()->route('meus_dados');
     }

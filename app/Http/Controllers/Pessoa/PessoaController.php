@@ -5,13 +5,7 @@ namespace App\Http\Controllers\Pessoa;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pessoa\AlteraPessoaRequest;
 use App\Models\Pessoa\Pessoa;
-use App\Repositories\Banco\BancoRepository;
-use App\Repositories\Endereco\EstadoRepository;
 use App\Repositories\Endereco\PaisRepository;
-use App\Repositories\Pessoa\PessoaContaRepository;
-use App\Repositories\Pessoa\PessoaContatoRepository;
-use App\Repositories\Pessoa\PessoaDocumentoRepository;
-use App\Repositories\Pessoa\PessoaEnderecoRepository;
 use App\Repositories\Pessoa\PessoaRepository;
 
 class PessoaController extends Controller
@@ -47,11 +41,4 @@ class PessoaController extends Controller
         flash("Dados pessoais atualizados");
         return redirect()->route('meus_dados');
     }
-
-    public function adicionaContato()
-    {
-        $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
-        return view('meus_dados.adiciona_contato', compact('paises'));
-    }
-
 }
