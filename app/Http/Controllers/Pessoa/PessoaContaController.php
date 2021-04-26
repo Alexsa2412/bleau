@@ -20,6 +20,10 @@ class PessoaContaController extends Controller
         $this->bancoRepository = $bancoRepository;
     }
 
+    private function adicionaIdDaPessoaNoRequest($request):array{
+        return array_merge($request->all(), ['pessoa_id' => auth()->user()->id]);
+    }
+
     public function adicionaConta()
     {
         $bancos = $this->bancoRepository->obterBancosOrdenadosPorNome();

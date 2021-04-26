@@ -9,7 +9,7 @@
                     <h6 class="card-title">
                         <div class="row">
                             <div class="col">
-                                <i class="fas fa-house-user me-2"></i>Meu Endereço
+                                <i class="fas fa-house-user me-2"></i>Meu Endereço - {{ $pessoa->nome }}
                             </div>
                         </div>
                     </h6>
@@ -63,30 +63,40 @@
                 </div>
                 <div class="card-body">
                     <div class="row card-text">
+                        <div class="col">
                         @forelse($pessoa->contatos as $contato)
                             <div class="card text-dark bg-light mb-3">
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col-6">
                                             <h6 class="card-title">
+                                                @if($contato->tipo_contato === "celular")
+                                                    <i class="fas fa-mobile-alt me-1"></i>
+                                                    @if($contato->ehWhatsapp)
+                                                        <i class="fab fa-whatsapp me-1" style="color: #2CC64E"></i>
+                                                    @endif
+                                                    @if($contato->ehTelegram)
+                                                        <i class="fab fa-telegram-plane" style="color: #4EA4F6"></i>
+                                                    @endif
+                                                @endif
+                                                @if($contato->tipo_contato === "residencial")
+                                                        <i class="fas fa-home"></i>
+                                                @endif
+                                                @if($contato->tipo_contato === "comercial")
+                                                    <i class="fas fa-home"></i>
+                                                @endif
                                             </h6>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <a href="#" class="text-secondary"><i class="fas fa-edit"></i></a>
+                                            <a href="{{route('meus_dados.altera_contato', $contato)}}" class="text-secondary"><i class="fas fa-edit"></i></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="row card-text">
-                                        @if($contato->tipo_contato === "celular")
-                                            <i class="fas fa-mobile-alt"></i>
-                                            @if($contato->ehWhatsapp)
-                                                <i class="fab fa-whatsapp me-2 fw-bold" style="color: #2CC64E"></i>
-                                            @endif
-                                            @if($contato->ehTelegram)
-                                                <i class="fab fa-telegram-plane mx-e fw-bold" style="color: #4EA4F6"></i>
-                                            @endif
-                                        @endif
+                                        <div class="col">
+                                            +{{ $contato->pais->codigo_de_area }} {{ $contato->numero }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +105,15 @@
                                 <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_contato')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar contato</a>
                             </div>
                         @endforelse
+                        </div>
                     </div>
+                    @if($pessoa->contatos)
+                    <div class="row mt-3">
+                        <div class="col text-end">
+                            <a href="{{route('meus_dados.adiciona_contato')}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-plus-circle me-2"></i>Adicionar</a>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -162,7 +180,12 @@
                                             {{ $pessoa->rg->orgao_emissor }}
                                         </div>
                                         <div class="col-3">
-
+                                            <p class="fw-bold">UF do Órgão Emissor</p>
+                                            {{ $pessoa->rg->estado->sigla }}
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="fw-bold">Data de Emissão</p>
+                                            {{ $pessoa->rg->data_de_emissao }}
                                         </div>
                                     </div>
                                 </div>
@@ -267,8 +290,6 @@
                                     <p>{{$pessoa->contaAtual->tipo}}</P>
                                 </div>
                             </div>
-
-
                             <div class="row mt-3">
                                 <div class="col">
                                     <p class="fw-bold">Agência</p>
@@ -278,7 +299,6 @@
                                     <p class="fw-bold">Número</p>
                                     <p>{{$pessoa->contaAtual->numero}}</P>
                                 </div>
-
                                 <div class="col">
                                     <p class="fw-bold">Operação</p>
                                     <p>{{$pessoa->contaAtual->operacao}}</P>
@@ -288,19 +308,20 @@
                                     <p>{{$pessoa->contaAtual->pix}}</P>
                                 </div>
                             </div>
-
-
                             <div class="row mt-3">
                                 <div class="col text-end">
                                     <a href="{{route('meus_dados.altera_conta', $pessoa->contaAtual)}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit me-2"></i>Editar</a>
                                 </div>
                             </div>
-                        @else
-                            <div class="col text-center">
-                                <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_conta')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar Dados Bancários</a>
-                            </div>
                         @endif
                     </div>
+                    @if(!$pessoa->contaAtual)
+                    <div class="row mt-3">
+                        <div class="col text-center">
+                            <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_conta')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar Dados Bancários</a>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

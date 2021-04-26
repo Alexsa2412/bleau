@@ -46,5 +46,6 @@ class PessoaContatoController extends Controller
     public function alteraContatoPost(InsereAlteraContatoRequest $request, PessoaContato $contato)
     {
         $this->pessoaContatoRepository->updateById($contato->id, $request->all());
+        return redirect()->route('meus_dados');
     }
 }

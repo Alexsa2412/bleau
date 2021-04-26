@@ -36,7 +36,7 @@ class PessoaDocumento extends Model
             $this->attributes['data_de_emissao'] = Carbon::createFromFormat('d/m/Y', $data)->format('Y-m-d');
     }
 
-    public function getDateDeEmissaoAttribute()
+    public function getDataDeEmissaoAttribute()
     {
         return ($this->attributes['data_de_emissao']) ?
             Carbon::createFromFormat('Y-m-d', $this->attributes['data_de_emissao'])->format('d/m/Y') :

@@ -26,13 +26,14 @@ class PessoaController extends Controller
 
     public function meusDados()
     {
-        $pessoa = $this->pessoaRepository->getById(auth()->user()->id)->first();
+        $pessoa = $this->pessoaRepository
+            ->getById(auth()->user()->id);
         return view('meus_dados.meus_dados', compact('pessoa'));
     }
 
     public function alteraPessoa()
     {
-        $pessoa = auth()->user();
+        $pessoa = $this->pessoaRepository->getById(auth()->user()->id);
         return view('meus_dados.edita_meus_dados', compact('pessoa'));
     }
 

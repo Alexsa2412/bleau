@@ -21,7 +21,7 @@ class Pessoa extends Model
 
     public function contatos()
     {
-        return $this->hasMany(PessoaContato::class);
+        return $this->hasMany(PessoaContato::class, 'pessoa_id', 'id');
     }
 
     public function documentos()
@@ -42,9 +42,8 @@ class Pessoa extends Model
         }
     }
 
-    public function getDataDeNascimentoAttribute($value)
+    public function getDataDeNascimentoAttribute()
     {
-        dd($value);
         return ($this->attributes['data_de_nascimento'] != null) ?
             Carbon::createFromFormat('Y-m-d', $this->attributes['data_de_nascimento'])->format('d/m/Y') :
             "";
