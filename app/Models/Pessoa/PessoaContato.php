@@ -23,6 +23,7 @@ class PessoaContato extends Model
 
     public function getEhTelegramAttribute()
     {
+        //dd($this->telegram);
         return $this->telegram === 'sim';
     }
 }

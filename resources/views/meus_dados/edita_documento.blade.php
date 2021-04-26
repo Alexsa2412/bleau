@@ -13,8 +13,9 @@
                 <form action="#" method="post">
                     @csrf
                     <div class="row mt-3">
-                        <div class="col-12">
-                            <p class="form-control">{{$documento->tipo_documento_descricao}}</p>
+                        <div class="form-floating mb-3">
+                            <p class="form-control" placeholder="000">{{$documento->tipo_documento_descricao}}</p>
+                            <label for="numero">Tipo de Documento</label>
                         </div>
 
                         <div class="col-3">

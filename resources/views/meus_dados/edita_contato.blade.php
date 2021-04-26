@@ -18,7 +18,7 @@
                                 <select class="form-select" name="pais_id" id="pais_id" aria-label="Pais">
                                     <option value="" selected>selecione o país</option>
                                     @foreach($paises as $pais)
-                                        <option value="{{$pais->id}}" {{(old('pais_id', $pais->pais_id)==$pais->id) ? "selected" : ""}}>{{$pais->nome}}</option>
+                                        <option value="{{$pais->id}}" {{(old('pais_id', $contato->pais_id) == $pais->id) ? "selected" : ""}}>{{$pais->nome}}</option>
                                     @endforeach
                                 </select>
                                 <label for="pais_id">País</label>
@@ -31,7 +31,7 @@
                                     <option value="">selecione o tipo do contato</option>
                                     <option value="residencial" {{ old('tipo_contato', $contato->tipo_contato) == 'residencial' ? "selected" : "" }}>Residencial</option>
                                     <option value="comercial" {{ old('tipo_contato', $contato->tipo_contato) == 'comercial' ? "selected" : "" }}>Comercial</option>
-                                    <option value="celular" {{ old('tipo_contato', $contato->tipo_contato) == 'contato' ? "selected" : "" }}>Celular</option>
+                                    <option value="celular" {{ old('tipo_contato', $contato->tipo_contato) == 'celular' ? "selected" : "" }}>Celular</option>
                                 </select>
                                 <label for="tipo_contato">Tipo de Contato</label>
                             </div>
@@ -45,12 +45,12 @@
 
                         <div class="col-3">
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="whatsapp" name="whatsapp" value="{{(old('whatsapp', $contato->whatsapp))}}">
+                                <input class="form-check-input" type="checkbox" id="whatsapp" name="whatsapp" value="sim" {{(old('whatsapp', $contato->whatsapp)) == "sim" ? "checked" : ""}}>
                                 <label class="form-check-label" for="whatsapp">Whatsapp</label>
                               </div>
 
                               <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="telegram"  name="telegram" value="{{(old('telegram', $contato->telegram))}}">
+                                <input class="form-check-input" type="checkbox" id="telegram"  name="telegram" value="sim" {{(old('telegram', $contato->telegram)) == "sim" ? "checked" : ""}}>
                                 <label class="form-check-label" for="telegram">Telegram</label>
                             </div>
 

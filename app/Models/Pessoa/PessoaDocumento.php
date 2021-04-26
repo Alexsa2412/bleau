@@ -21,6 +21,7 @@ class PessoaDocumento extends Model
             case "passaporte": return "Passaporte";
             case "cpf": return "CPF";
             case "cis": return "CIS";
+            default: return "";
         }
     }
 

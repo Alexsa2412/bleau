@@ -50,7 +50,7 @@ Route::middleware(['auth'])
             ->group(function(){
                 Route::get('/adiciona', [PessoaDocumentoController::class, 'adicionaDocumento'])->name('meus_dados.adiciona_documento');
                 Route::post('/adiciona', [PessoaDocumentoController::class, 'adicionaDocumentoPost'])->name('meus_dados.adiciona_documento.store');
-                Route::get('/altera/{doumento}', [PessoaDocumentoController::class, 'alteraDocumento'])->name('meus_dados.altera_documento');
+                Route::get('/altera/{documento}', [PessoaDocumentoController::class, 'alteraDocumento'])->name('meus_dados.altera_documento');
                 Route::post('/altera/{documento}', [PessoaDocumentoController::class, 'alteraDocumentoPost'])->name('meus_dados.altera_documento.store');
             }
         );

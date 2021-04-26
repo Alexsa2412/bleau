@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pessoa;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pessoa\InsereAlteraDocumentoRequest;
+use App\Models\Pessoa\PessoaDocumento;
 use App\Repositories\Endereco\EstadoRepository;
 use App\Repositories\Pessoa\PessoaDocumentoRepository;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class PessoaDocumentoController extends Controller
         return redirect()->route('meus_dados');
     }
 
-    public function alteraDocumento($documento)
+    public function alteraDocumento(PessoaDocumento $documento)
     {
         $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
         return view('meus_dados.edita_documento', compact('estados', 'documento'));

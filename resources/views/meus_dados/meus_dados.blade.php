@@ -9,7 +9,7 @@
                     <h6 class="card-title">
                         <div class="row">
                             <div class="col">
-                                <i class="fas fa-house-user me-2"></i>Meu Endereço - {{ $pessoa->nome }}
+                                <i class="fas fa-house-user me-2"></i>Meu Endereço
                             </div>
                         </div>
                     </h6>
