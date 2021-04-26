@@ -16,4 +16,6 @@ class PessoaConta extends Model
     {
         return $this->belongsTo(Banco::class);
     }
+
+
 }
