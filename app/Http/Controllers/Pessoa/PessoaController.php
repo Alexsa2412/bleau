@@ -5,19 +5,15 @@ namespace App\Http\Controllers\Pessoa;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pessoa\AlteraPessoaRequest;
 use App\Models\Pessoa\Pessoa;
-use App\Repositories\Endereco\PaisRepository;
 use App\Repositories\Pessoa\PessoaRepository;
 
 class PessoaController extends Controller
 {
     private $pessoaRepository;
-    private $paisRepository;
 
-    public function __construct(PessoaRepository $pessoaRepository,
-                                PaisRepository $paisRepository)
+    public function __construct(PessoaRepository $pessoaRepository)
     {
         $this->pessoaRepository = $pessoaRepository;
-        $this->paisRepository = $paisRepository;
     }
 
     private function adicionaIdDaPessoaNoRequest($request):array{
