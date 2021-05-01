@@ -22,7 +22,7 @@ class UsuarioRepository extends BaseRepository
     public function alterarSenha($novaSenha)
     {
         $usuario = $this->getById(auth()->user()->id);
-        $usuario->password = $novaSenha;
+        $usuario->password = bcrypt($novaSenha);
         $usuario->save();
     }
 }

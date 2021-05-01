@@ -23,6 +23,8 @@ use App\Http\Controllers\{
 */
 
 Route::get('/', function () {
+    if (auth()->check())
+        return redirect()->route('meus_dados');
     return redirect()->route('login');
 });
 
@@ -30,14 +32,24 @@ Route::get('/back', function (){
    return redirect()->back();
 })->name('back');
 
-Route::prefix('/usuario')
+Route::prefix('/')
     ->group(function(){
         Route::get('login', function(){
             return view('usuario.login');
         })->name('usuario.login');
         Route::post('/login', [UsuarioController::class, 'login'])->name('login');
         Route::get('/logout', [UsuarioController::class, 'logout'])->name('logout');
+        Route::get('esqueci-minha-senha', [UsuarioController::class, 'esqueciMinhaSenha'])->name('esqueci_minha_senha');
+        Route::post('esqueci-minha-senha', [UsuarioController::class, 'iniciarProcessoDeRecuperacaoDeConta'])->name('esqueci_minha_senha.post');
 });
+
+Route::middleware(['auth'])
+    ->prefix('/usuario')
+    ->group(function(){
+        Route::get('/alterar-minha-senha', [UsuarioController::class, 'alterarSenha'])->name('usuario.alterar_senha');
+        Route::patch('/alterar-minha-senha', [UsuarioController::class, 'alterarSenhaPost'])->name('usuario.alterar_senha.store');
+    }
+);
 
 Route::middleware(['auth'])
     ->prefix('/meus-dados')

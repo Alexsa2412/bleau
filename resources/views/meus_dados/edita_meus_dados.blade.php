@@ -15,7 +15,7 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="nome" id="nome" placeholder="nome" autocomplete="off" value="{{(old('nome', $pessoa->nome))}}">
+                            <input type="text" class="form-control" name="nome" id="nome" placeholder="nome" autocomplete="off" value="{{(old('nome', $pessoa->nome))}}" autofocus>
                             <label for="nome">Nome</label>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
 
                     <div class="col-4">
                         <div class="form-floating mb-3">
-                            <select class="form-select" name="estado_civil" id="estado_civil" aria-label="Estado Civil" autofocus >
+                            <select class="form-select" name="estado_civil" id="estado_civil" aria-label="Estado Civil">
                                 <option value="">selecione o estado civil</option>
                                 <option value="solteiro" {{ old('estado_civil', $pessoa->estado_civil) == 'solteiro' ? "selected" : "" }} >Solteiro(a)</option>
                                 <option value="casado" {{ old('estado_civil', $pessoa->estado_civil) == 'casado' ? "selected" : "" }} >Casado(a)</option>

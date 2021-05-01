@@ -10,12 +10,12 @@
     </div>
     <div class="card-body">
         <div class="row card-text">
-            <form action="#" method="post">
+            <form action="{{route('meus_dados.altera_endereco.store', $endereco)}}" method="post">
                 @csrf
                 <div class="row mt-3">
                     <div class="col-6">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="logradouro" id="logradouro" placeholder="logradouro" autocomplete="off" value="{{(old('logradouro', $endereco->logradouro))}}">
+                            <input type="text" class="form-control" name="logradouro" id="logradouro" placeholder="logradouro" autocomplete="off" value="{{(old('logradouro', $endereco->logradouro))}}" autofocus>
                             <label for="logradouro">Logradouro</label>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
 
                     <div class="col-4">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="cep" id="cep" placeholder="cep" autocomplete="off" value="{{(old('cep', $endereco->cep))}}">
+                            <input type="text" class="form-control cep" name="cep" id="cep" placeholder="cep" autocomplete="off" value="{{(old('cep', $endereco->cep))}}">
                             <label for="cep">CEP</label>
                         </div>
                     </div>

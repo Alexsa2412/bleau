@@ -10,28 +10,25 @@
     </div>
     <div class="card-body">
         <div class="row card-text">
-            <form action="#" method="post">
+            <form action="{{route('usuario.alterar_senha.store')}}" method="post">
                 @csrf
+                @method('patch')
                 <div class="row mt-3">
                     <div class="col-4">
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" name="senhaatual" id="senhaatual" placeholder="senhaatual" autocomplete="off" >
+                            <input type="password" class="form-control" name="senhaatual" id="senhaatual" placeholder="senhaatual" autocomplete="off" autofocus>
                             <label for="senhaatual">Senha Atual</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="row mt-3">
-
                     <div class="col-4">
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control" name="novasenha" id="novasenha" placeholder="novasenha" autocomplete="off" >
                             <label for="novasenha">Nova senha</label>
                         </div>
                     </div>
-                </div>
-
-                <div class="row mt-3">
                     <div class="col-4">
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control" name="confirmarsenha" id="confirmarsenha" placeholder="confirmarsenha" autocomplete="off" >
@@ -39,7 +36,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <div class="row">
                     <div class="col text-end">

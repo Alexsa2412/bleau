@@ -15,10 +15,10 @@
                     <div class="row mt-3">
                         <div class="col-3">
                             <div class="form-floating mb-3">
-                                <select class="form-select" name="pais_id" id="pais_id" aria-label="Pais">
+                                <select class="form-select" name="pais_id" id="pais_id" aria-label="Pais" autofocus>
                                     <option value="" selected>selecione o país</option>
                                     @foreach($paises as $pais)
-                                        <option value="{{$pais->id}}" {{(old('pais_id')==$pais->id) ? "selected" : ""}}>{{$pais->nome}}</option>
+                                        <option value="{{$pais->id}}" {{(old('pais_id') == $pais->id) ? "selected" : ""}}>{{$pais->nome}}</option>
                                     @endforeach
                                 </select>
                                 <label for="pais_id">País</label>
@@ -27,8 +27,8 @@
 
                         <div class="col-3">
                             <div class="form-floating mb-3">
-                                <select class="form-select" name="tipo_contato" id="tipo_contato" aria-label="Tipo de contato" autofocus>
-                                    <option value="">selecione o tipo do contato</option>
+                                <select class="form-select" name="tipo_contato" id="tipo_contato" aria-label="Tipo de contato">
+                                    <option value="">selecione o tipo</option>
                                     <option value="residencial" {{ old('tipo_contato') == 'residencial' ? "selected" : "" }}>Residencial</option>
                                     <option value="comercial" {{ old('tipo_contato') == 'comercial' ? "selected" : "" }}>Comercial</option>
                                     <option value="celular" {{ old('tipo_contato') == 'celular' ? "selected" : "" }}>Celular</option>

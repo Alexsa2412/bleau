@@ -17,5 +17,8 @@ class PessoaConta extends Model
         return $this->belongsTo(Banco::class);
     }
 
-
+    public function getTipoDescricaoAttribute()
+    {
+        return $this->tipo == "corrente" ? "Conta Corrente" : "Conta Poupança";
+    }
 }

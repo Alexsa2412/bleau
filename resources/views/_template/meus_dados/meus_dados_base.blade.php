@@ -1,5 +1,5 @@
-@extends('_template.base')
-@section('conteudo_base')
+@extends('_template.base_logado')
+@section('conteudo_base_logado')
     <div class="row">
 
         <div class="col-3">
@@ -13,7 +13,7 @@
                                         <a class="nav-link" href="{{route('meus_dados.altera')}}">Editar Meus Dados</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a class="nav-link" href="#">Alterar Minha Senha</a>
+                                        <a class="nav-link" href="{{route('usuario.alterar_senha')}}">Alterar Minha Senha</a>
                                     </li>
                                 </ul>
                             </div>
