@@ -14,7 +14,7 @@
         Clique no botão abaixo para efetivar sua participação.
     </div>
     </p>
-    <button type="button" name="Enviar" value="" style="padding-top:10px; padding-bottom:10px; padding-left: 8px; padding-right 20px; cursor: pointer; background-color: DodgerBlue; color:white; border-style:none">Enviar</button>
+    <button type="button" name="Enviar" value="" style="padding-top:10px; padding-bottom:10px; padding-left: 8px; padding-right 20px; cursor: pointer; background-color: DodgerBlue; color:white; border-style:none">Quero participar</button>
 
 </body>
 </html>
