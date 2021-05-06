@@ -16,7 +16,8 @@ class PessoaController extends Controller
         $this->pessoaRepository = $pessoaRepository;
     }
 
-    private function adicionaIdDaPessoaNoRequest($request):array{
+    private function adicionaIdDaPessoaNoRequest($request) : array
+    {
         return array_merge($request->all(), ['pessoa_id' => auth()->user()->id]);
     }
 
@@ -33,7 +34,8 @@ class PessoaController extends Controller
         return view('meus_dados.edita_meus_dados', compact('pessoa'));
     }
 
-    public function alteraPessoaPost(AlteraPessoaRequest $request, Pessoa $pessoa){
+    public function alteraPessoaPost(AlteraPessoaRequest $request, Pessoa $pessoa)
+    {
         $this->pessoaRepository->updateById($pessoa->id, $request->all());
         flash("Dados pessoais atualizados");
         return redirect()->route('meus_dados');

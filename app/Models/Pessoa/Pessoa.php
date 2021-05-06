@@ -34,6 +34,11 @@ class Pessoa extends Model
         return $this->hasMany(PessoaEndereco::class);
     }
 
+    public function getPrimeiroNomeAttribute()
+    {
+        return explode(' ', $this->attributes['nome'])[0];
+    }
+
     public function setDataDeNascimentoAttribute($value)
     {
         $this->attributes['data_de_nascimento'] = null;

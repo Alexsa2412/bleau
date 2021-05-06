@@ -1,4 +1,4 @@
-$("div.alert").not(".alert-important").delay(6000).fadeOut(2000);
+$("div.alert").not(".alert-important").delay(10000).fadeOut(2000);
 
 $('.cpf').mask('000.000.000-00', {reverse: false});
 $('.cpf').attr('placeholder', '___.___.___-__');

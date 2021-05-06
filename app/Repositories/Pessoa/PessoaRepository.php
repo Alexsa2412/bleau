@@ -11,4 +11,9 @@ class PessoaRepository extends BaseRepository
     {
         return Pessoa::class;
     }
+
+    public function emailJaUtilizado($email)
+    {
+        return $this->getByColumn($email, 'email')->first();
+    }
 }

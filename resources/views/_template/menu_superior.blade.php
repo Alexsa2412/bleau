@@ -7,7 +7,7 @@
                         <a href="{{route('meus_dados')}}" class="nav-link active">Meus Dados</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Enviar Convite</a>
+                        <a href="{{route('convite.convidar')}}" class="nav-link">Enviar Convite</a>
                     </li>
                 </ul>
             </div>

@@ -8,7 +8,8 @@ use App\Http\Controllers\{
     Pessoa\PessoaContaController,
     Pessoa\PessoaContatoController,
     Pessoa\PessoaDocumentoController,
-    Usuario\UsuarioController
+    Usuario\UsuarioController,
+    Convite\ConviteController
 };
 
 /*
@@ -28,9 +29,13 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/back', function (){
+Route::get('/back', function () {
    return redirect()->back();
 })->name('back');
+
+Route::get('/email', function () {
+    return view('convite.emails.convite');
+});
 
 Route::prefix('/')
     ->group(function(){
@@ -42,6 +47,16 @@ Route::prefix('/')
         Route::get('esqueci-minha-senha', [UsuarioController::class, 'esqueciMinhaSenha'])->name('esqueci_minha_senha');
         Route::post('esqueci-minha-senha', [UsuarioController::class, 'iniciarProcessoDeRecuperacaoDeConta'])->name('esqueci_minha_senha.post');
 });
+
+Route::prefix('/convite')
+    ->group(function(){
+        Route::get('/', function(){
+            return redirect()->route('convite.convidar');
+        });
+        Route::get('/enviar', [ConviteController::class, 'convidar'])->name('convite.convidar');
+        Route::post('/enviar', [ConviteController::class, 'convidarPost'])->name('convite.convidar.store');
+    }
+);
 
 Route::middleware(['auth'])
     ->prefix('/usuario')
