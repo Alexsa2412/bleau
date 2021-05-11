@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-3">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="numero" id="numero" placeholder="000" autocomplete="off" value="{{(old('numero'))}}">
+                                <input type="text" class="form-control cpf" name="numero" id="numero" placeholder="000" autocomplete="off" value="{{(old('numero'))}}">
                                 <label for="numero">Número</label>
                             </div>
                         </div>
