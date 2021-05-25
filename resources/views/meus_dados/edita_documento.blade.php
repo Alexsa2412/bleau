@@ -28,10 +28,10 @@
                                 <label for="numero">Número</label>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-3" {{ ($documento->tipo_documento) != "rg" ? 'style="display: none"' : "" }}>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="orgao_emissor" id="orgao_emissor" placeholder="SSP" autocomplete="off" value="{{(old('orgao_emissor', $documento->orgao_emissor))}}">
-                                <label for="orgao">Órgão Emissor</label>
+                                <label for="orgao_emissor">Órgão Emissor</label>
                             </div>
                         </div>
                         <div class="col-3">

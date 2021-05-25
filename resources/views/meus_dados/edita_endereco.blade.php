@@ -60,9 +60,6 @@
                         </div>
                     </div>
 
-
-                   <!--
-
                     <div class="col-4">
                         <div class="form-floating mb-3">
                             <select class="form-select" name="estado_id" id="estado_id" aria-label="UF">
@@ -100,9 +97,6 @@
                             <label for="cidade">Cidade</label>
                         </div>
                     </div>
-
-                    -->
-
                 </div>
 
                 <div class="row">
