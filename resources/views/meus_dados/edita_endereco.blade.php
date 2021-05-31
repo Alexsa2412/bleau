@@ -1,5 +1,9 @@
 @extends('_template.meus_dados.meus_dados_base')
 
+@section('resources_include')
+    <script src="{{asset('js/meus_dados/adiciona_edita_endereco.js')}}"></script>
+@endsection
+
 @section('conteudo_meusdados')
 
 <div class="card text-dark bg-light mb-3">
@@ -60,7 +64,7 @@
                         </div>
                     </div>
 
-                    <div class="col-4">
+                    <div id="div-estado_id" class="col-4" style="display: none">
                         <div class="form-floating mb-3">
                             <select class="form-select" name="estado_id" id="estado_id" aria-label="UF">
                                 <option value="" selected>selecione o estado</option>
@@ -72,7 +76,7 @@
                         </div>
                     </div>
 
-                    <div class="col-4">
+                    <div id="div-cidade_id" class="col-4" style="display: none">
                         <div class="form-floating mb-3">
                             <select class="form-select" name="cidade_id" id="cidade_id" aria-label="Cidade">
                                 <option value="" selected>selecione a cidade</option>
@@ -84,14 +88,14 @@
                         </div>
                     </div>
 
-                    <div class="col-4">
+                    <div id="div-estado" class="col-2" style="display: none">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="estado" id="estado" placeholder="estado" autocomplete="off" value="{{(old('estado',$endereco->estado))}}">
                             <label for="estado">Estado</label>
                         </div>
                     </div>
 
-                    <div class="col-4">
+                    <div id="div-cidade" class="col-6" style="display: none">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="cidade" id="cidade" placeholder="cidade" autocomplete="off" value="{{(old('cidade',$endereco->cidade))}}">
                             <label for="cidade">Cidade</label>

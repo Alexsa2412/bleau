@@ -2,6 +2,7 @@
 
 namespace App\Models\Pessoa;
 
+use App\Models\Endereco\Cidade;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,11 @@ class PessoaEndereco extends Model
 
     private function obterNumeroDescricao(){
         return $this->numero == '' ? 'S/N' : $this->numero;
+    }
+
+    public function cidade()
+    {
+        return $this->belongsTo(Cidade::class);
     }
 
     public function obterLogradouroCompleto()

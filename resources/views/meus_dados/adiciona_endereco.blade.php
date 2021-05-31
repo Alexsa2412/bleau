@@ -1,5 +1,9 @@
 @extends('_template.meus_dados.meus_dados_base')
 
+@section('resources_include')
+    <script src="{{asset('js/meus_dados/adiciona_edita_endereco.js')}}"></script>
+@endsection
+
 @section('conteudo_meusdados')
 
 <div class="card text-dark bg-light mb-3">

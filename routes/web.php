@@ -46,7 +46,8 @@ Route::prefix('/')
         Route::get('/logout', [UsuarioController::class, 'logout'])->name('logout');
         Route::get('esqueci-minha-senha', [UsuarioController::class, 'esqueciMinhaSenha'])->name('esqueci_minha_senha');
         Route::post('esqueci-minha-senha', [UsuarioController::class, 'iniciarProcessoDeRecuperacaoDeConta'])->name('esqueci_minha_senha.post');
-});
+    }
+);
 
 Route::prefix('/convite')
     ->group(function(){

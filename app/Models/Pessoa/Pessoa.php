@@ -56,7 +56,6 @@ class Pessoa extends Model
 
     public function getEnderecoAtualAttribute()
     {
-        //dd($this->enderecos());
         return $this->enderecos()
             ->where('pessoa_id', $this->id)
             ->orderBy('id', 'desc')

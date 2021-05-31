@@ -36,9 +36,10 @@ class PessoaEnderecoController extends Controller
 
     public function alteraEndereco(PessoaEndereco $endereco)
     {
+        dd($endereco->cidade->estado);
         $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
         $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
-        $cidades = $this->cidadeRepository->obterCidadesOrdenadasPorNome();
+        $cidades = $this->cidadeRepository->obterCidadesOrdenadasPorNome()->where('estado_id', '=', $endereco->cidade->estado->id);
         return view('meus_dados.edita_endereco', compact('endereco', 'paises', 'estados','cidades'));
     }
 
