@@ -26,6 +26,8 @@
                         <p class="fw-bolder">Cidade/UF</p>
                         @if($pessoa->enderecoAtual->cidade)
                             <p>{{optional($pessoa->enderecoAtual->cidade)->nome . "/" . optional(optional($pessoa->enderecoAtual->cidade)->estado)->sigla}}</p>
+                        @else
+                            <p>{{$pessoa->enderecoAtual->cidade_exterior . "/" . $pessoa->enderecoAtual->estado_exterior}}</p>
                         @endif
                     </div>
                     <div class="col">

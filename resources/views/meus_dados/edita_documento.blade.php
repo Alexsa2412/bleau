@@ -1,5 +1,9 @@
 @extends('_template.meus_dados.meus_dados_base')
 
+@section('resources_include')
+    <script src="{{asset('js/meus_dados/adiciona_edita_documento.js')}}"></script>
+@endsection
+
 @section('conteudo_meusdados')
 
     <div class="card text-dark bg-light mb-3">
@@ -28,13 +32,13 @@
                                 <label for="numero">Número</label>
                             </div>
                         </div>
-                        <div class="col-3" {{ ($documento->tipo_documento) != "rg" ? 'style="display: none"' : "" }}>
+                        <div class="col-3" id="div_orgao-emissor">
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" name="orgao_emissor" id="orgao_emissor" placeholder="SSP" autocomplete="off" value="{{(old('orgao_emissor', $documento->orgao_emissor))}}">
                                 <label for="orgao_emissor">Órgão Emissor</label>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-3" id="div_estado-id">
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="estado_id" id="estado_id" aria-label="Estado Emissor">
                                     <option value="" selected>selecione o estado</option>
@@ -45,9 +49,9 @@
                                 <label for="estado_id">Estado Emissor</label>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-3" id="div_data-de-emissao">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="data_de_emissao" id="data_de_emissao" placeholder="01/01/2000" autocomplete="off" value="{{(old('data_de_emissao', $documento->data_de_emissao))}}">
+                                <input type="text" class="form-control data" name="data_de_emissao" id="data_de_emissao" placeholder="01/01/2000" autocomplete="off" value="{{(old('data_de_emissao', $documento->data_de_emissao))}}">
                                 <label for="data_de_emissao">Data de Emissão</label>
                             </div>
                         </div>

@@ -15,4 +15,8 @@ class CidadeRepository extends BaseRepository
     public function obterCidadesOrdenadasPorNome(){
         return $this->orderBy('nome', 'asc')->get();
     }
+
+    public function obterCidadesPorEstado($estado_id){
+        return $this->where('estado_id', '=', $estado_id)->orderBy('nome')->get();
+    }
 }

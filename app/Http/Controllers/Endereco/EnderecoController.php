@@ -3,20 +3,21 @@
 namespace App\Http\Controllers\Endereco;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Endereco\EstadoRepository;
+use App\Repositories\Endereco\CidadeRepository;
 use Illuminate\Http\Request;
 
 class EnderecoController extends Controller
 {
-    private $estadoRepository;
+    private $cidadeRepository;
 
-    public function __construct(EstadoRepository $estadoRepository)
+    public function __construct(CidadeRepository $cidadeRepository)
     {
-        $this->estadoRepository = $estadoRepository;
+        $this->cidadeRepository = $cidadeRepository;
     }
 
-    public function obterCidadesPorEstadoAPI($id){
-        $estado = $this->estadoRepository->getById($id);
-        return $estado->cidades->where('id', '!=', $id);
+    public function obterCidadesPorEstadoAPI($estado_id)
+    {
+        $cidades = $this->cidadeRepository->obterCidadesPorEstado($estado_id);
+        return response()->json($cidades);
     }
 }

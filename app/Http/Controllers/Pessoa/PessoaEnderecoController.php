@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Pessoa;
 
+use App\Helpers\StringHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pessoa\InsereAlteraEnderecoRequest;
 use App\Models\Pessoa\PessoaEndereco;
@@ -9,6 +10,7 @@ use App\Repositories\Endereco\CidadeRepository;
 use App\Repositories\Endereco\EstadoRepository;
 use App\Repositories\Endereco\PaisRepository;
 use App\Repositories\Pessoa\PessoaEnderecoRepository;
+use Illuminate\Http\Request;
 
 class PessoaEnderecoController extends Controller
 {
@@ -29,23 +31,37 @@ class PessoaEnderecoController extends Controller
         $this->cidadeRepository = $cidadeRepository;
     }
 
-    private function adicionaIdDaPessoaNoRequest($request) : array
+    private function adicionaIdDaPessoaNoRequest(Request $request) : Request
     {
-        return array_merge($request->all(), ['pessoa_id' => auth()->user()->id]);
+        return $request->merge(['pessoa_id' => auth()->user()->id]);
     }
 
     public function alteraEndereco(PessoaEndereco $endereco)
     {
-        dd($endereco->cidade->estado);
         $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
         $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
-        $cidades = $this->cidadeRepository->obterCidadesOrdenadasPorNome()->where('estado_id', '=', $endereco->cidade->estado->id);
+        $cidades = $this->cidadeRepository
+            ->obterCidadesOrdenadasPorNome()
+            ->where('estado_id', '=', optional(optional($endereco->cidade)->estado)->id);
         return view('meus_dados.edita_endereco', compact('endereco', 'paises', 'estados','cidades'));
+    }
+
+    public function trataDadosDaRequisicao(Request $request) : Request
+    {
+        if ($request->pais_id == 1)
+            $request->merge(['estado_exterior' => null, 'cidade_exterior' => null]);
+
+        if ($request->pais_id != 1)
+            $request->merge(['estado_id' => null, 'cidade_id' => null]);
+
+        $request->merge(['cep' => StringHelper::removeCaracteresEspeciais($request->cep)]);
+
+        return $request;
     }
 
     public function alteraEnderecoPost(InsereAlteraEnderecoRequest $request, PessoaEndereco $endereco)
     {
-        $this->pessoaEnderecoRepository->updateById($endereco->id, $request->all());
+        $this->pessoaEnderecoRepository->updateById($endereco->id, $this->trataDadosDaRequisicao($request)->all());
         flash($this->mensagemOK);
         return redirect()->route('meus_dados');
     }
@@ -60,7 +76,7 @@ class PessoaEnderecoController extends Controller
 
     public function adicionaEnderecoPost(InsereAlteraEnderecoRequest $request)
     {
-        $this->pessoaEnderecoRepository->create($this->adicionaIdDaPessoaNoRequest($request));
+        $this->pessoaEnderecoRepository->create($this->adicionaIdDaPessoaNoRequest($request)->all());
         flash($this->mensagemOK);
         return redirect()->route('meus_dados');
     }

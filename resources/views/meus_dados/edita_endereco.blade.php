@@ -64,43 +64,44 @@
                         </div>
                     </div>
 
-                    <div id="div-estado_id" class="col-4" style="display: none">
+                    <div id="div-estado_id" class="col-2">
                         <div class="form-floating mb-3">
                             <select class="form-select" name="estado_id" id="estado_id" aria-label="UF">
-                                <option value="" selected>selecione o estado</option>
+                                <option value="" selected>selecione</option>
                                 @foreach($estados as $estado)
-                                    <option value="{{$estado->id}}" {{(old('estado_id', $endereco->estado_id)==$estado->id) ? "selected" : ""}}>{{$estado->sigla}}</option>
+                                    <option value="{{$estado->id}}" {{(old('estado_id') == $estado->id || optional(optional($endereco->cidade)->estado)->id == $estado->id) ? "selected" : ""}}>{{$estado->sigla}}</option>
                                 @endforeach
                             </select>
-                            <label for="estado_id">Estado</label>
+                            <label for="estado_id">Estado {{optional($endereco->estado)->id}}</label>
                         </div>
                     </div>
 
-                    <div id="div-cidade_id" class="col-4" style="display: none">
+                    <div id="div-cidade_id" class="col-6">
                         <div class="form-floating mb-3">
                             <select class="form-select" name="cidade_id" id="cidade_id" aria-label="Cidade">
                                 <option value="" selected>selecione a cidade</option>
                                 @foreach($cidades as $cidade)
-                                    <option value="{{$cidade->id}}" {{(old('cidade_id', $endereco->cidade_id)==$cidade->id) ? "selected" : ""}}>{{$cidade->nome}}</option>
+                                    <option value="{{$cidade->id}}" {{(old('cidade_id') == $cidade->id || $endereco->cidade->id == $cidade->id) ? "selected" : ""}}>{{$cidade->nome}}</option>
                                 @endforeach
                             </select>
                             <label for="cidade_id">Cidade</label>
                         </div>
                     </div>
 
-                    <div id="div-estado" class="col-2" style="display: none">
+                    <div id="div-estado" class="col-2">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="estado" id="estado" placeholder="estado" autocomplete="off" value="{{(old('estado',$endereco->estado))}}">
+                            <input type="text" class="form-control" name="estado_exterior" id="estado_exterior" placeholder="estado" autocomplete="off" value="{{(old('estado_exterior', $endereco->estado_exterior))}}" maxlength="2">
                             <label for="estado">Estado</label>
                         </div>
                     </div>
 
-                    <div id="div-cidade" class="col-6" style="display: none">
+                    <div id="div-cidade" class="col-6">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="cidade" id="cidade" placeholder="cidade" autocomplete="off" value="{{(old('cidade',$endereco->cidade))}}">
+                            <input type="text" class="form-control" name="cidade_exterior" id="cidade_exterior" placeholder="cidade" autocomplete="off" value="{{(old('cidade_exterior', $endereco->cidade_exterior))}}">
                             <label for="cidade">Cidade</label>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="row">

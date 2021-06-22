@@ -50,8 +50,7 @@ class Pessoa extends Model
     public function getDataDeNascimentoAttribute()
     {
         return ($this->attributes['data_de_nascimento'] != null) ?
-            Carbon::createFromFormat('Y-m-d', $this->attributes['data_de_nascimento'])->format('d/m/Y') :
-            "";
+            Carbon::createFromFormat('Y-m-d', $this->attributes['data_de_nascimento'])->format('d/m/Y') : "";
     }
 
     public function getEnderecoAtualAttribute()

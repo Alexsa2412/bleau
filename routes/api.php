@@ -18,4 +18,4 @@ use App\Http\Controllers\{
 |
 */
 
-Route::get('/endereco/estados/{id}', [EnderecoController::class, 'obterCidadesPorEstadoAPI']);
+Route::get('/endereco/estados/{estado_id}/cidades', [EnderecoController::class, 'obterCidadesPorEstadoAPI']);
