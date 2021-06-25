@@ -29,4 +29,14 @@ class PessoaDocumentoRepository extends BaseRepository
     {
         return $this->obterDocumentoPorTipoEPessoa('rg', $pessoa_id);
     }
+
+    public function obterCpf($pessoa_id)
+    {
+        return $this->obterDocumentoPorTipoEPessoa('cpf', $pessoa_id);
+    }
+
+    public function obterNis($pessoa_id)
+    {
+        return $this->obterDocumentoPorTipoEPessoa('nis', $pessoa_id);
+    }
 }
