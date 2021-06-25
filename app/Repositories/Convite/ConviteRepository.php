@@ -14,7 +14,10 @@ class ConviteRepository extends BaseRepository
 
     public function emailJaConvidado($email)
     {
-        $convite = $this->getByColumn($email, 'email')->first();
-        return $convite;
+        return $this->where('email_do_convidado', $email)->count() > 0;
+    }
+
+    public function obterPorEmail($email){
+        return $this->where('email_do_convidado', $email)->first();
     }
 }

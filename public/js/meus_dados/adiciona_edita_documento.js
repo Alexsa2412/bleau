@@ -39,7 +39,7 @@ $(document).ready(function(){
 
     let _display = new Display();
 
-    _display.mostraComplemento(tipoDocumento.val() == 'rg');
+    _display.mostraComplemento(tipoDocumento.val());
     _display.adicionaMascara($("#numero"), tipoDocumento.val());
 
     tipoDocumento.on("change", function(){

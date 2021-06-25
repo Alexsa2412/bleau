@@ -14,6 +14,6 @@ class PessoaRepository extends BaseRepository
 
     public function emailJaUtilizado($email)
     {
-        return $this->getByColumn($email, 'email')->first();
+        return $this->where('email', $email)->count() > 0;
     }
 }
