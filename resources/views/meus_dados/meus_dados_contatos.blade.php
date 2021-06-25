@@ -47,7 +47,7 @@
                         <div class="card-body">
                             <div class="row card-text">
                                 <div class="col">
-                                    {{ optional($contato->pais)->codigo_de_area_formatado }} {{$contato->numero_formatado}}
+                                    {{ optional($contato->pais)->codigo_de_area_formatado }} {{$contato->numeroFormatado}}
                                 </div>
                             </div>
                         </div>

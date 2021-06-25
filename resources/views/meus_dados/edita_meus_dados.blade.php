@@ -22,7 +22,7 @@
 
                     <div class="col-4">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="data_de_nascimento" id="data_de_nascimento" placeholder="01/01/2000" autocomplete="off"  value="{{(old('data_de_nascimento', $pessoa->data_de_nascimento))}}">
+                            <input type="text" class="form-control data" name="data_de_nascimento" id="data_de_nascimento" placeholder="01/01/2000" autocomplete="off"  value="{{(old('data_de_nascimento', $pessoa->data_de_nascimento))}}">
                             <label for="data de nascimento">Data de Nascimento</label>
                         </div>
                     </div>

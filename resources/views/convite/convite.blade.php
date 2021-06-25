@@ -21,14 +21,14 @@
                     </div>
                     <div class="col-6">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="email_do_convidado" id="email_do_convidado" placeholder="email do convidado" autocomplete="off" value="{{old('email_do_convidado')}}">
+                            <input type="text" class="form-control" name="email_do_convidado" id="email_do_convidado" placeholder="email_do_convidado" autocomplete="off" value="{{old('email_do_convidado')}}">
                             <label for="email_do_convidado">Email do Convidado</label>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col text-end">
-                        <a href="#" class="btn btn-outline-secondary">Cancelar</a>
+                        <a href="{{route('meus_dados')}}" class="btn btn-outline-secondary">Cancelar</a>
                         <input class="btn btn-outline-success" type="submit" value="Enviar">
                     </div>
                 </div>
