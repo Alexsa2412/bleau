@@ -24,7 +24,7 @@ class ConvidarRequest extends FormRequest
     public function rules()
     {
         return [
-            'email_do_convidado' => 'required|email|unique:convites',
+            'email_do_convidado' => 'required|email|unique:convite',
             'nome_do_convidado' => 'required|max:255'
         ];
     }
