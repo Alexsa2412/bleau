@@ -29,7 +29,7 @@ class ConviteController extends Controller
     {
         return [
             'email_do_convidado' => $request->get('email_do_convidado'),
-            'nome_convidado' => $request->get('nome_do_convidado'),
+            'nome_do_convidado' => $request->get('nome_do_convidado'),
             'pessoa_id' => auth()->user()->id,
             'codigo_do_convite' => md5($request->get('email_do_convidado'))
         ];
@@ -39,19 +39,15 @@ class ConviteController extends Controller
     {
         $email = $request->get('email_do_convidado');
 
-        $emailJaCadastrado = $this->pessoaRepository->emailJaUtilizado($email);
-        if(!empty($emailJaCadastrado))
+        if($this->pessoaRepository->emailJaUtilizado($email))
         {
             flash('Este e-mail "' . $email . '" não é elegível a receber um convite.')->warning();
             return redirect()->back();
         }
 
-        $emailJaConvidado = $this->conviteRepository->emailJaConvidado($email);
-        if(!empty($emailJaConvidado))
-            return view('convite.jaconvidado', compact('emailJaConvidado'));
-
-        $convite = $this->conviteRepository->create($this->obterRequisicao($request));
-        return view('convite.emailenviado', compact('convite'));
+        $this->conviteRepository->create($this->obterRequisicao($request));
+        flash("Seu convite para o e-mail <span style='font-weight: bold'>{$email}</span> foi enviado.")->success();
+        return redirect()->route('meus_dados');
     }
 
 }
