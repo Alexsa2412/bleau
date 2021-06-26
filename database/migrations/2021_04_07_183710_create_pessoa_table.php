@@ -34,6 +34,8 @@ class CreatePessoaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pessoa');
+        Schema::dropIfExists('pessoa', function(Blueprint $table){
+            $table->dropUnique('unq_pessoa_email');
+        });
     }
 }

@@ -28,6 +28,8 @@ class CreateCidadeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cidade');
+        Schema::dropIfExists('cidade', function(Blueprint $table){
+            $table->dropConstrainedForeignId('estado_id');
+        });
     }
 }

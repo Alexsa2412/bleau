@@ -32,6 +32,9 @@ class CreatePessoaDocumentoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pessoa_documento');
+        Schema::dropIfExists('pessoa_documento', function(Blueprint $table){
+            $table->dropConstrainedForeignId('estado_id');
+            $table->dropConstrainedForeignId('pessoa_id');
+        });
     }
 }

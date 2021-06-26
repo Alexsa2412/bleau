@@ -32,6 +32,8 @@ class CreateConviteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('convites');
+        Schema::dropIfExists('convite', function(Blueprint $table) {
+            $table->dropConstrainedForeignId('pessoa_id');
+        });
     }
 }

@@ -32,6 +32,9 @@ class CreatePessoaContatoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contato');
+        Schema::dropIfExists('pessoa_contato', function(Blueprint $table) {
+            $table->dropConstrainedForeignId('pais_id');
+            $table->dropConstrainedForeignId('pessoa_id');
+        });
     }
 }

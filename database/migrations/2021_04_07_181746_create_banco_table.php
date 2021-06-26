@@ -29,6 +29,8 @@ class CreateBancoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Banco');
+        Schema::dropIfExists('banco', function(Blueprint $table){
+            $table->dropConstrainedForeignId('pais_id');
+        });
     }
 }

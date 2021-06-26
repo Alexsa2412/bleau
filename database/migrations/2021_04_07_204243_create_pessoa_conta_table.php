@@ -33,6 +33,9 @@ class CreatePessoaContaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pessoa_conta');
+        Schema::dropIfExists('pessoa_conta', function(Blueprint $table){
+            $table->dropConstrainedForeignId('pessoa_id');
+            $table->dropConstrainedForeignId('banco_id');
+        });
     }
 }

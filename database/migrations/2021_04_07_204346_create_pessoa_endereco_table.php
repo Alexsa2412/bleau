@@ -36,6 +36,10 @@ class CreatePessoaEnderecoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pessoa_endereco');
+        Schema::dropIfExists('pessoa_endereco', function(Blueprint $table){
+            $table->dropConstrainedForeignId('pessoa_id');
+            $table->dropConstrainedForeignId('cidade_id');
+            $table->dropConstrainedForeignId('pais_id');
+        });
     }
 }

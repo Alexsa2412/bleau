@@ -29,6 +29,8 @@ class CreateEstadoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estado');
+        Schema::dropIfExists('estado', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('pais_id');
+        });
     }
 }
