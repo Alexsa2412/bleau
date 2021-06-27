@@ -12,7 +12,7 @@ class PessoaRepository extends BaseRepository
         return Pessoa::class;
     }
 
-    public function emailJaUtilizado($email)
+    public function emailJaCadastrado($email)
     {
         return $this->where('email', $email)->count() > 0;
     }

@@ -20,7 +20,7 @@ class CreateConviteTable extends Migration
             $table->string('codigo_do_convite', 32);
             $table->foreignId('pessoa_id')->constrained('pessoa', 'id');
             $table->enum('utilizado', ['nao','sim'])->default('nao');
-            $table->date('data_de_uso')->nullable(true);
+            $table->timestamp('data_de_uso')->nullable(true);
             $table->timestamps();
         });
     }

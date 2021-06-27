@@ -24,7 +24,7 @@ class ConvidarRequest extends FormRequest
     public function rules()
     {
         return [
-            'email_do_convidado' => 'required|email|unique:convite',
+            'email_do_convidado' => 'required|email',
             'nome_do_convidado' => 'required|max:255'
         ];
     }
@@ -34,7 +34,6 @@ class ConvidarRequest extends FormRequest
         return [
             'email_do_convidado.required' => 'Informe o e-mail do convidado.',
             'email_do_convidado.email' => 'Utilize um endereço de e-mail válido.',
-            'email_do_convidado.unique' => 'Este e-mail já foi utilizado em outro convite.',
             'nome_do_convidado.required' => 'Informe o nome do convidado.',
             'nome_do_convidado.max' => 'Informe um máximo de 255 caracteres para o nome do convidado.'
         ];

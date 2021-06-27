@@ -2,22 +2,28 @@
 
 namespace App\Http\Controllers\Convite;
 
+use App\Exceptions\ConviteJaUtilizadoException;
+use App\Exceptions\EmailJaCadastradoException;
+use App\Exceptions\EmailJaUtilizadoNoConviteException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Convite\ConvidarRequest;
+use App\Services\Convite\ConviteService;
+use App\Services\Pessoa\PessoaService;
 use App\Repositories\Convite\ConviteRepository;
-use App\Repositories\Pessoa\PessoaRepository;
-use Illuminate\Http\Request;
 
 class ConviteController extends Controller
 {
-    private $pessoaRepository;
     private $conviteRepository;
+    private $conviteService;
+    private $pessoaService;
 
-    public function __construct(PessoaRepository $pessoaRepository,
-        ConviteRepository $conviteRepository)
+    public function __construct(ConviteRepository $conviteRepository,
+        ConviteService $conviteService,
+        PessoaService $pessoaService)
     {
-        $this->pessoaRepository = $pessoaRepository;
         $this->conviteRepository = $conviteRepository;
+        $this->conviteService = $conviteService;
+        $this->pessoaService = $pessoaService;
     }
 
     public function convidar()
@@ -25,29 +31,41 @@ class ConviteController extends Controller
         return view('convite.convite');
     }
 
-    private function obterRequisicao(Request $request) : array
-    {
-        return [
-            'email_do_convidado' => $request->get('email_do_convidado'),
-            'nome_do_convidado' => $request->get('nome_do_convidado'),
-            'pessoa_id' => auth()->user()->id,
-            'codigo_do_convite' => md5($request->get('email_do_convidado'))
-        ];
-    }
-
     public function convidarPost(ConvidarRequest $request)
     {
-        $email = $request->get('email_do_convidado');
+        $requisicao = $this->conviteService->obterRequisicao($request);
+        $emailDoConvidado = $requisicao['email_do_convidado'];
 
-        if($this->pessoaRepository->emailJaUtilizado($email))
-        {
-            flash('Este e-mail "' . $email . '" não é elegível a receber um convite.')->warning();
+        try {
+            throw_if($this->pessoaService->emailJaCadastrado($emailDoConvidado), EmailJaCadastradoException::class);
+            throw_if($this->conviteService->emailJaConvidado($emailDoConvidado), EmailJaUtilizadoNoConviteException::class);
+        } catch (EmailJaCadastradoException $exception) {
+            flash('Este e-mail "' . $emailDoConvidado . '" não é elegível a receber um convite.')->warning();
+            return redirect()->back();
+        } catch(EmailJaUtilizadoNoConviteException $exception) {
+            flash($exception->getMessage())->warning();
             return redirect()->back();
         }
 
-        $this->conviteRepository->create($this->obterRequisicao($request));
-        flash("Seu convite para o e-mail <span style='font-weight: bold'>{$email}</span> foi enviado.")->success();
-        return redirect()->route('meus_dados');
+        $convite = $this->conviteRepository->create($requisicao);
+
+        $urlDeAceite = $this->conviteService->obterUrlDeAceite($convite->codigo_do_convite, $convite->email_do_convidado);
+        $this->conviteService->enviarEmailParaConvidado($convite, $urlDeAceite);
+
+        flash('Seu convite para ' . $convite->nome_do_convidado . ' no e-mail ' . $convite->email_do_convidado . ' foi enviado.');
+        return redirect()->route('convite.convidar');
     }
 
+    public function queroParticipar(string $codigoDoConvite, string $emailDoConvidado)
+    {
+        $convite = $this->conviteRepository->obterPorCodigoEEmailDoConvidado($codigoDoConvite, $emailDoConvidado);
+
+        try {
+            throw_if($convite->utilizado == 'sim', ConviteJaUtilizadoException::class);
+        } catch (ConviteJaUtilizadoException $exception) {
+            return view('convite.erro_convite', compact('exception'));
+        }
+
+        return view('pessoa.adiciona_dados_basicos', compact('convite'));
+    }
 }

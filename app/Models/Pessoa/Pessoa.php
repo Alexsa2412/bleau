@@ -2,6 +2,7 @@
 
 namespace App\Models\Pessoa;
 
+use App\Models\Convite\Convite;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,6 +33,11 @@ class Pessoa extends Model
     public function enderecos()
     {
         return $this->hasMany(PessoaEndereco::class);
+    }
+
+    public function convites()
+    {
+        return $this->hasMany(Convite::class);
     }
 
     public function getPrimeiroNomeAttribute()

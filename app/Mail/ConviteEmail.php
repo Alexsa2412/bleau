@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Convite\Convite;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,16 +12,27 @@ class ConviteEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $pessoa;
+    private $convite;
+    private $urlDeAceite;
 
-    public function __construct(Pessoa $pessoa)
+    public function __construct(Convite $convite, string $urlDeAceite)
     {
-        $this->pessoa = $pessoa;
+        $this->convite = $convite;
+        $this->urlDeAceite = $urlDeAceite;
     }
 
     public function build()
     {
-        $pessoa = $this->pessoa;
-        return $this->view('view.name', compact('pessoa'));
+        try {
+            return $this->from('nao-responda@bleauboard.com.br')
+                ->view('convite.emails.convite')
+                ->with(
+                    [
+                        'convite' => $this->convite,
+                        'urlDeAceite' => $this->urlDeAceite
+                    ]
+                );
+        } catch (\Exception $e) {
+        }
     }
 }

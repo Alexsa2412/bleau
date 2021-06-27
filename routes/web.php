@@ -29,6 +29,13 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::prefix('/convite')
+    ->group(function(){
+        Route::get('/{codigoDoConvite}/{emailDoConvidado}', [ConviteController::class, 'queroParticipar'])->name('convite.quero_participar');
+        Route::post('/cadastro-basico', [PessoaController::class, 'adicionaDadosBasicosPost'])->name('convite.cadastro_basico.store');
+    }
+);
+
 Route::prefix('/')
     ->group(function(){
         Route::get('login', function(){

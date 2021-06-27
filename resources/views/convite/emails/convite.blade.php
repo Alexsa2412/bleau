@@ -6,12 +6,19 @@
     <title>Convite</title>
 </head>
 <body style="background-color: #F0F8FF; font-family: Arial, Helvetica, sans-serif">
-    <h1 style="font-family: Arial, Helvetica, sans-serif; text-align: center">Convite</h1>
-    <div style="border-radius: 15px; border: 2px solid #668cff; padding:20px">
-        Caro Sr(a) <b>(nome do convidado)</b>, você foi convidado(a) pelo(a) <b>(nome de quem convidou)</b>, a se tornar membro do Conselho Azul.
+    <h1 style="font-family: Arial, Helvetica, sans-serif; font-size: .8em; text-align: center">Convite</h1>
+    <div style="border-radius: 5px; border: 2px solid #D7E1FF; padding:20px">
+        Caro(a) Sr(a) <b>{{$convite->nome_do_convidado}}</b>, você foi convidado(a) por
+        <b>{{$convite->pessoa->nome}}</b>, a se tornar membro do Conselho Azul.<br>
         Clique no botão abaixo para efetivar sua participação.
          </p>
-        <button type="button" name="Enviar" value="" style="border-radius: 15px; padding-top:10px; padding-bottom:10px; padding-left: 8px; padding-right 20px; cursor: pointer; background-color: DodgerBlue; color:white; border-style:none">Quero participar</button>
+        <div style="text-align: center; width: 100%">
+            <a href="{{$urlDeAceite}}" onMouseOver="this.style.backgroundColor='#0070DF'" onMouseOut="this.style.backgroundColor='#1E90FF'"
+                style="border-radius: 5px; padding: 10px 15px 10px 15px; cursor: pointer;
+                background-color: DodgerBlue; color:white; border-style:none; text-decoration: none; font-weight: bold">
+                Quero participar
+            </a>
+        </div>
     </div>
 </body>
 </html>

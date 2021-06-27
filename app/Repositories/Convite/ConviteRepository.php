@@ -17,7 +17,21 @@ class ConviteRepository extends BaseRepository
         return $this->where('email_do_convidado', $email)->count() > 0;
     }
 
-    public function obterPorEmail($email){
-        return $this->where('email_do_convidado', $email)->first();
+    public function obterPorEmail($emailDoConvidado)
+    {
+        return $this->where('email_do_convidado', $emailDoConvidado)->first();
+    }
+
+    public function obterPorCodigoDoConvite($codigoDoConvite)
+    {
+        return $this->where('codigo_do_convite', $codigoDoConvite)->first();
+    }
+
+    public function obterPorCodigoEEmailDoConvidado(string $codigoDoConvite, string $emailDoConvidado)
+    {
+        return $this->where('codigo_do_convite', $codigoDoConvite)
+            ->where('email_do_convidado', $emailDoConvidado)
+            ->with('pessoa')
+            ->first();
     }
 }
