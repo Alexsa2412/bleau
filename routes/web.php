@@ -104,6 +104,7 @@ Route::middleware(['auth'])
                         Route::post('/adiciona', [PessoaContatoController::class, 'adicionaContatoPost'])->name('meus_dados.adiciona_contato.store');
                         Route::get('/altera/{contato}', [PessoaContatoController::class, 'alteraContato'])->name('meus_dados.altera_contato');
                         Route::post('/altera/{contato}', [PessoaContatoController::class, 'alteraContatoPost'])->name('meus_dados.altera_contato.store');
+                        Route::delete('/exclui/{contato}', [PessoaContatoController::class, 'excluiContatoPost'])->name('meus_dados.exclui_contato.delete');
                     }
                 );
 

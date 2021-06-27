@@ -47,18 +47,25 @@ class PessoaContato extends Model
                 substr($numero, 6, 4);
         }
 
-        if ($caracteres == 9 and in_array($tipo_contato, ['celular'])) //celular sem ddd
+        if ($caracteres == 9 and in_array($tipo_contato, ['celular']) and substr($numero, 0, 1) == '9') //celular sem ddd
         {
             return substr($numero, 0, 1) . " " .
                 substr($numero, 1, 4) . "-" .
                 substr($numero, 5, 4);
         }
 
+        if ($caracteres == 10 and in_array($tipo_contato, ['celular'])) //celular antigo com ddd
+        {
+            return substr($numero, 0, 2) . " " .
+                substr($numero, 2, 4) . "-" .
+                substr($numero, 6, 4);
+        }
+
         if ($caracteres == 11 and in_array($tipo_contato, ['celular'])) //celular com ddd
         {
             return "(" . substr($numero, 0, 2) . ") " .
                 substr($numero, 2, 1) . " " .
-                substr($numero, 3, 5) . "-" .
+                substr($numero, 3, 4) . "-" .
                 substr($numero, 7, 4);
         }
 

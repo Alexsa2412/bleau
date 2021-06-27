@@ -48,4 +48,10 @@ class PessoaContatoController extends Controller
         $this->pessoaContatoRepository->updateById($contato->id, $request->all());
         return redirect()->route('meus_dados');
     }
+
+    public function excluiContatoPost(PessoaContato $contato){
+        $this->pessoaContatoRepository->deleteById($contato->id);
+        flash('Contato excluído.');
+        return redirect()->route('meus_dados');
+    }
 }

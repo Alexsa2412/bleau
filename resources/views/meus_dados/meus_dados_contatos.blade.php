@@ -38,9 +38,36 @@
                                     <a href="{{route('meus_dados.altera_contato', $contato)}}" class="btn btn-outline-secondary btn-sm">
                                         <i class="fas fa-pen"></i>
                                     </a>
-                                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toogle="modal" data-bs-target="#ModalContato{{$contato->id}}">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteContatoModal{{$contato->id}}">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="deleteContatoModal{{$contato->id}}" tabindex="-1" aria-labelledby="deleteContatoModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteContatoModal{{$contato->id}}">
+                                                        Excluir Contato
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-start">
+                                                    Deseja excluir o contato  de número <span class="fw-bold">{{$contato->numeroFormatado}}</span>?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form action="{{route('meus_dados.exclui_contato.delete', $contato)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                            <i class="far fa-trash-alt me-2"></i>Excluir contato
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -52,26 +79,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div id="ModalContato{{$contato->id}}" class="modal fade" role="dialog" style="z-index: 9000" aria-labelledby="ModalContato{{$contato->id}}Label" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Deseja excluir este contato?</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    ...
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
                 @empty
                     <div class="col text-center">
                         <a class="btn btn-outline-primary" href="{{route('meus_dados.adiciona_contato')}}"><i class="fas fa-plus-circle me-2"></i>Adicionar contato</a>
