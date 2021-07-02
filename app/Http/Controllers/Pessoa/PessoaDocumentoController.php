@@ -39,15 +39,16 @@ class PessoaDocumentoController extends Controller
         return redirect()->route('meus_dados');
     }
 
-    public function alteraDocumento(PessoaDocumento $documento)
+    public function alteraDocumento(PessoaDocumento $pessoaDocumento)
     {
+        abort_if(!$this->authorize('alteraDocumento', $pessoaDocumento), 403);
         $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
-        return view('meus_dados.edita_documento', compact('estados', 'documento'));
+        return view('meus_dados.edita_documento', compact('estados', 'pessoaDocumento'));
     }
 
-    public function alteraDocumentoPost(Request $request, PessoaDocumento $documento)
+    public function alteraDocumentoPost(Request $request, PessoaDocumento $pessoaDocumento)
     {
-        $this->pessoaDocumentoRepository->updateById($documento->id, $request->all());
+        $this->pessoaDocumentoRepository->updateById($pessoaDocumento->id, $request->all());
         flash($this->mensagemOK)->success();
         return redirect()->route('meus_dados');
     }

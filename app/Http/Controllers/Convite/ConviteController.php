@@ -50,7 +50,7 @@ class ConviteController extends Controller
         $convite = $this->conviteRepository->create($requisicao);
 
         $urlDeAceite = $this->conviteService->obterUrlDeAceite($convite->codigo_do_convite, $convite->email_do_convidado);
-        $this->conviteService->enviarEmailParaConvidado($convite, $urlDeAceite);
+        $this->conviteService->enviaEmailParaConvidado($convite, $urlDeAceite);
 
         flash('Seu convite para ' . $convite->nome_do_convidado . ' no e-mail ' . $convite->email_do_convidado . ' foi enviado.');
         return redirect()->route('convite.convidar');

@@ -289,6 +289,4 @@ class BancoSeeder extends Seeder
         Banco::create(['nome' =>'Banco Keb Hana Do Brasil S.A.','codigo' => '757','pais_id' => 1]);
         Banco::create(['nome' =>'Next Bank (Mesmo Código Do Bradesco)','codigo' => '237','pais_id' => 1]);
     }
-
-
 }

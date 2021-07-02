@@ -34,7 +34,7 @@ class ConviteService
         return $urlDoAceite;
     }
 
-    public function enviarEmailParaConvidado(Convite $convite, string $urlDeAceite)
+    public function enviaEmailParaConvidado(Convite $convite, string $urlDeAceite)
     {
         try {
             Mail::to($convite->email_do_convidado)->send(new ConviteEmail($convite, $urlDeAceite));
@@ -52,6 +52,6 @@ class ConviteService
         $convite = $this->conviteRepository->obterPorCodigoDoConvite($codigoDoConvite);
         $convite->utilizado = 'sim';
         $convite->data_de_uso = Carbon::now();
-        $convite->saveQuietly();
+        $convite->save();
     }
 }

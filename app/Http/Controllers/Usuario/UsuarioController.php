@@ -26,18 +26,12 @@ class UsuarioController extends Controller
 
     public function login(Request $request)
     {
-        //se eu já estiver logado me manda pra minha landpage do MeusDados
-        if (auth()->check())
-            redirect()->route('meus_dados');
-
         $credenciais = $request->only('email','password');
-        if (!Auth::attempt($credenciais))
+        if (!auth()->check() && !Auth::attempt($credenciais))
         {
             flash('Os dados de login informados são inválidos')->error();
             return redirect()->back();
         }
-
-        //caso tenha as credenciais corretas é redirecionado para a tela de login
         return redirect()->route('meus_dados');
     }
 
