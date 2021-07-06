@@ -41,7 +41,7 @@ class PessoaDocumentoController extends Controller
 
     public function alteraDocumento(PessoaDocumento $pessoaDocumento)
     {
-        abort_if(!$this->authorize('alteraDocumento', $pessoaDocumento), 403);
+        abort_if(!$this->authorize('alteraPessoaDocumento', $pessoaDocumento), 403);
         $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
         return view('meus_dados.edita_documento', compact('estados', 'pessoaDocumento'));
     }

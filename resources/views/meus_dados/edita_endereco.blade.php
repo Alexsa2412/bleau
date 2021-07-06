@@ -14,40 +14,40 @@
     </div>
     <div class="card-body">
         <div class="row card-text">
-            <form action="{{route('meus_dados.altera_endereco.store', $endereco)}}" method="post">
+            <form action="{{route('meus_dados.altera_endereco.store', $pessoaEndereco)}}" method="post">
                 @csrf
                 <div class="row mt-3">
                     <div class="col-6">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="logradouro" id="logradouro" placeholder="logradouro" autocomplete="off" value="{{(old('logradouro', $endereco->logradouro))}}" autofocus>
+                            <input type="text" class="form-control" name="logradouro" id="logradouro" placeholder="logradouro" autocomplete="off" value="{{(old('logradouro', $pessoaEndereco->logradouro))}}" autofocus>
                             <label for="logradouro">Logradouro</label>
                         </div>
                     </div>
 
                     <div class="col-2">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="numero" id="numero" placeholder="numero" autocomplete="off" value="{{(old('numero', $endereco->numero))}}">
+                            <input type="text" class="form-control" name="numero" id="numero" placeholder="numero" autocomplete="off" value="{{(old('numero', $pessoaEndereco->numero))}}">
                             <label for="numero">Número</label>
                         </div>
                     </div>
 
                     <div class="col-4">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="bairro" id="bairro" placeholder="bairro" autocomplete="off"  value="{{(old('bairro', $endereco->bairro))}}">
+                            <input type="text" class="form-control" name="bairro" id="bairro" placeholder="bairro" autocomplete="off"  value="{{(old('bairro', $pessoaEndereco->bairro))}}">
                             <label for="bairro">Bairro</label>
                         </div>
                     </div>
 
                     <div class="col-8">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="complemento" id="complemento" placeholder="complemento" autocomplete="off" value="{{(old('complemento', $endereco->complemento))}}">
+                            <input type="text" class="form-control" name="complemento" id="complemento" placeholder="complemento" autocomplete="off" value="{{(old('complemento', $pessoaEndereco->complemento))}}">
                             <label for="complemento">Complemento</label>
                         </div>
                     </div>
 
                     <div class="col-4">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control cep" name="cep" id="cep" placeholder="cep" autocomplete="off" value="{{(old('cep', $endereco->cep))}}">
+                            <input type="text" class="form-control cep" name="cep" id="cep" placeholder="cep" autocomplete="off" value="{{(old('cep', $pessoaEndereco->cep))}}">
                             <label for="cep">CEP</label>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                             <select class="form-select" name="pais_id" id="pais_id" aria-label="Pais">
                                 <option value="" selected>selecione o país</option>
                                 @foreach($paises as $pais)
-                                    <option value="{{$pais->id}}" {{(old('pais_id', $endereco->pais_id)==$pais->id) ? "selected" : ""}}>{{$pais->nome}}</option>
+                                    <option value="{{$pais->id}}" {{(old('pais_id', $pessoaEndereco->pais_id)==$pais->id) ? "selected" : ""}}>{{$pais->nome}}</option>
                                 @endforeach
                             </select>
                             <label for="pais_id">País</label>
@@ -69,10 +69,10 @@
                             <select class="form-select" name="estado_id" id="estado_id" aria-label="UF">
                                 <option value="" selected>selecione</option>
                                 @foreach($estados as $estado)
-                                    <option value="{{$estado->id}}" {{(old('estado_id') == $estado->id || optional(optional($endereco->cidade)->estado)->id == $estado->id) ? "selected" : ""}}>{{$estado->sigla}}</option>
+                                    <option value="{{$estado->id}}" {{(old('estado_id') == $estado->id || optional(optional($pessoaEndereco->cidade)->estado)->id == $estado->id) ? "selected" : ""}}>{{$pessoaEndereco->sigla}}</option>
                                 @endforeach
                             </select>
-                            <label for="estado_id">Estado {{optional($endereco->estado)->id}}</label>
+                            <label for="estado_id">Estado {{optional($pessoaEndereco->estado)->id}}</label>
                         </div>
                     </div>
 
@@ -81,7 +81,7 @@
                             <select class="form-select" name="cidade_id" id="cidade_id" aria-label="Cidade">
                                 <option value="" selected>selecione a cidade</option>
                                 @foreach($cidades as $cidade)
-                                    <option value="{{$cidade->id}}" {{(old('cidade_id') == $cidade->id || $endereco->cidade->id == $cidade->id) ? "selected" : ""}}>{{$cidade->nome}}</option>
+                                    <option value="{{$cidade->id}}" {{(old('cidade_id') == $cidade->id || $pessoaEndereco->cidade->id == $cidade->id) ? "selected" : ""}}>{{$cidade->nome}}</option>
                                 @endforeach
                             </select>
                             <label for="cidade_id">Cidade</label>
@@ -90,14 +90,14 @@
 
                     <div id="div-estado" class="col-2">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="estado_exterior" id="estado_exterior" placeholder="estado" autocomplete="off" value="{{(old('estado_exterior', $endereco->estado_exterior))}}" maxlength="2">
+                            <input type="text" class="form-control" name="estado_exterior" id="estado_exterior" placeholder="estado" autocomplete="off" value="{{(old('estado_exterior', $pessoaEndereco->estado_exterior))}}" maxlength="2">
                             <label for="estado">Estado</label>
                         </div>
                     </div>
 
                     <div id="div-cidade" class="col-6">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="cidade_exterior" id="cidade_exterior" placeholder="cidade" autocomplete="off" value="{{(old('cidade_exterior', $endereco->cidade_exterior))}}">
+                            <input type="text" class="form-control" name="cidade_exterior" id="cidade_exterior" placeholder="cidade" autocomplete="off" value="{{(old('cidade_exterior', $pessoaEndereco->cidade_exterior))}}">
                             <label for="cidade">Cidade</label>
                         </div>
                     </div>

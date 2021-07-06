@@ -39,6 +39,7 @@ class PessoaContatoController extends Controller
 
     public function alteraContato(PessoaContato $contato)
     {
+        abort_if(!$this->authorize('alteraContato', $contato), 403);
         $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
         return view('meus_dados.edita_contato', compact('paises', 'contato'));
     }
@@ -50,6 +51,7 @@ class PessoaContatoController extends Controller
     }
 
     public function excluiContatoPost(PessoaContato $contato){
+        abort_if(!$this->authorize('excluiContato', $contato), 403);
         $this->pessoaContatoRepository->deleteById($contato->id);
         flash('Contato excluído.');
         return redirect()->route('meus_dados');

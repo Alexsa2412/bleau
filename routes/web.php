@@ -86,8 +86,8 @@ Route::middleware(['auth'])
                     ->group(function(){
                         Route::get('/adiciona', [PessoaEnderecoController::class, 'adicionaEndereco'])->name('meus_dados.adiciona_endereco');
                         Route::post('/adiciona', [PessoaEnderecoController::class, 'adicionaEnderecoPost'])->name('meus_dados.adiciona_endereco.store');
-                        Route::get('/altera/{endereco}', [PessoaEnderecoController::class, 'alteraEndereco'])->name('meus_dados.altera_endereco');
-                        Route::post('/altera/{endereco}', [PessoaEnderecoController::class, 'alteraEnderecoPost'])->name('meus_dados.altera_endereco.store');
+                        Route::get('/altera/{pessoaEndereco}', [PessoaEnderecoController::class, 'alteraEndereco'])->name('meus_dados.altera_endereco');
+                        Route::post('/altera/{pessoaEndereco}', [PessoaEnderecoController::class, 'alteraEnderecoPost'])->name('meus_dados.altera_endereco.store');
                     }
                 );
 

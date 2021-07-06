@@ -8,7 +8,6 @@ use App\Http\Requests\Pessoa\InsereDadosBasicosRequest;
 use App\Services\Pessoa\PessoaService;
 use App\Models\Convite\Convite;
 use App\Models\Pessoa\Pessoa;
-use App\Repositories\Convite\ConviteRepository;
 use App\Repositories\Pessoa\PessoaRepository;
 
 class PessoaController extends Controller

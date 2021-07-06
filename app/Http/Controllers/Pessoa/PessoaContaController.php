@@ -39,6 +39,7 @@ class PessoaContaController extends Controller
 
     public function alteraConta(PessoaConta $conta)
     {
+        abort_if(!$this->authorize('alteraConta', $conta), 403);
         $bancos = $this->bancoRepository->obterBancosOrdenadosPorNome();
         return view('meus_dados.edita_conta', compact('conta', 'bancos'));
     }

@@ -31,34 +31,31 @@ class PessoaEnderecoController extends Controller
         $this->cidadeRepository = $cidadeRepository;
     }
 
-    public function alteraEndereco(PessoaEndereco $endereco)
-    {
-        $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
-        $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
-        $cidades = $this->cidadeRepository
-            ->obterCidadesOrdenadasPorNome()
-            ->where('estado_id', '=', optional(optional($endereco->cidade)->estado)->id);
-        return view('meus_dados.edita_endereco', compact('endereco', 'paises', 'estados','cidades'));
-    }
-
     public function trataDadosDaRequisicao(Request $request) : Request
     {
         if ($request->pais_id == 1)
             $request->merge(['estado_exterior' => null, 'cidade_exterior' => null]);
-
         if ($request->pais_id != 1)
             $request->merge(['estado_id' => null, 'cidade_id' => null]);
-
         $request->merge(['cep' => StringHelper::removeCaracteresEspeciais($request->cep)]);
-
         $request->merge(['pessoa_id' => auth()->user()->id]);
-
         return $request;
     }
 
-    public function alteraEnderecoPost(InsereAlteraEnderecoRequest $request, PessoaEndereco $endereco)
+    public function alteraEndereco(PessoaEndereco $pessoaEndereco)
     {
-        $this->pessoaEnderecoRepository->updateById($endereco->id, $this->trataDadosDaRequisicao($request)->all());
+        abort_if(!$this->authorize('alteraPessoaEndereco', $pessoaEndereco), 403);
+        $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
+        $estados = $this->estadoRepository->obterEstadosOrdenadosPorSigla();
+        $cidades = $this->cidadeRepository
+            ->obterCidadesOrdenadasPorNome()
+            ->where('estado_id', '=', optional(optional($pessoaEndereco->cidade)->estado)->id);
+        return view('meus_dados.edita_endereco', compact('pessoaEndereco', 'paises', 'estados','cidades'));
+    }
+
+    public function alteraEnderecoPost(InsereAlteraEnderecoRequest $request, PessoaEndereco $pessoaEndereco)
+    {
+        $this->pessoaEnderecoRepository->updateById($pessoaEndereco->id, $this->trataDadosDaRequisicao($request)->all());
         flash($this->mensagemOK);
         return redirect()->route('meus_dados');
     }
