@@ -6,16 +6,9 @@
     <div class="row mb-4">
         <div class="col text-center lh-sm fw-light">
             <p class="fs-3 fw-bolder">Recuperação de conta</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col text-center">
-            <p class="mb-4">
-                <small>
-                    informe seu e-mail para iniciar o processo de recuperação da sua conta
-                </small>
-            </p>
+            <small>
+                informe seu e-mail para iniciar o processo de recuperação da sua conta
+            </small>
         </div>
     </div>
 
