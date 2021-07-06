@@ -83,7 +83,7 @@
 
                         <div class="row">
                             <div class="col-12 text-center">
-                                <input class="btn btn-outline-success" type="submit" value="Começar a participar do Conselho Azul">
+                                <input class="btn btn-outline-primary" type="submit" value="Começar a participar do Conselho Azul">
                             </div>
                         </div>
                     </form>

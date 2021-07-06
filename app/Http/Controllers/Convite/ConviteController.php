@@ -68,4 +68,9 @@ class ConviteController extends Controller
 
         return view('pessoa.adiciona_dados_basicos', compact('convite'));
     }
+
+    public function teste()
+    {
+        return response()->json($this->conviteService->obterUrlDeAceite('abc123def456', 'email@servidor.com.br'));
+    }
 }

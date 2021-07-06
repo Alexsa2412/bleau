@@ -90,14 +90,14 @@
 
                     <div id="div-estado" class="col-2">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="estado" id="estado" placeholder="estado" autocomplete="off" value="{{(old('estado'))}}">
+                            <input type="text" class="form-control" name="estado_exterior" id="estado_exterior" placeholder="estado_exterior" autocomplete="off" value="{{(old('estado'))}}">
                             <label for="estado">Estado</label>
                         </div>
                     </div>
 
                     <div id="div-cidade" class="col-6">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="cidade" id="cidade" placeholder="cidade" autocomplete="off" value="{{(old('cidade'))}}">
+                            <input type="text" class="form-control" name="cidade_exterior" id="cidade_exterior" placeholder="cidade_exterior" autocomplete="off" value="{{(old('cidade'))}}">
                             <label for="cidade">Cidade</label>
                         </div>
                     </div>

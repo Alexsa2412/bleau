@@ -29,6 +29,8 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::get('/testeconvite', [ConviteController::class, 'teste']);
+
 Route::prefix('/convite')
     ->group(function(){
         Route::get('/{codigoDoConvite}/{emailDoConvidado}', [ConviteController::class, 'queroParticipar'])->name('convite.quero_participar');

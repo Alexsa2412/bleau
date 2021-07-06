@@ -31,11 +31,6 @@ class PessoaEnderecoController extends Controller
         $this->cidadeRepository = $cidadeRepository;
     }
 
-    private function adicionaIdDaPessoaNoRequest(Request $request) : Request
-    {
-        return $request->merge(['pessoa_id' => auth()->user()->id]);
-    }
-
     public function alteraEndereco(PessoaEndereco $endereco)
     {
         $paises = $this->paisRepository->obterPaisesOrdenadosPorNome();
@@ -55,6 +50,8 @@ class PessoaEnderecoController extends Controller
             $request->merge(['estado_id' => null, 'cidade_id' => null]);
 
         $request->merge(['cep' => StringHelper::removeCaracteresEspeciais($request->cep)]);
+
+        $request->merge(['pessoa_id' => auth()->user()->id]);
 
         return $request;
     }
@@ -76,7 +73,7 @@ class PessoaEnderecoController extends Controller
 
     public function adicionaEnderecoPost(InsereAlteraEnderecoRequest $request)
     {
-        $this->pessoaEnderecoRepository->create($this->adicionaIdDaPessoaNoRequest($request)->all());
+        $this->pessoaEnderecoRepository->create($this->trataDadosDaRequisicao($request)->all());
         flash($this->mensagemOK);
         return redirect()->route('meus_dados');
     }
