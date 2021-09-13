@@ -69,7 +69,7 @@
                             <select class="form-select" name="estado_id" id="estado_id" aria-label="UF">
                                 <option value="" selected>selecione</option>
                                 @foreach($estados as $estado)
-                                    <option value="{{$estado->id}}" {{(old('estado_id') == $estado->id || optional(optional($pessoaEndereco->cidade)->estado)->id == $estado->id) ? "selected" : ""}}>{{$pessoaEndereco->sigla}}</option>
+                                    <option value="{{$estado->id}}" {{(old('estado_id') == $estado->id || optional(optional($pessoaEndereco->cidade)->estado)->id == $estado->id) ? "selected" : ""}}>{{$estado->sigla}}</option>
                                 @endforeach
                             </select>
                             <label for="estado_id">Estado {{optional($pessoaEndereco->estado)->id}}</label>

@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Mail;
 class ConviteService
 {
     private $conviteRepository;
+    const CONVITE_UTILIZADO = 'sim';
+    const CONVITE_NAO_UTILIZADO = 'nao';
 
     public function __construct(ConviteRepository $conviteRepository)
     {
@@ -50,7 +52,7 @@ class ConviteService
     public function notificaUsoDoConvite(string $codigoDoConvite)
     {
         $convite = $this->conviteRepository->obterPorCodigoDoConvite($codigoDoConvite);
-        $convite->utilizado = 'sim';
+        $convite->utilizado = self::CONVITE_UTILIZADO;
         $convite->data_de_uso = Carbon::now();
         $convite->save();
     }

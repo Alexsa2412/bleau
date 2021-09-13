@@ -29,6 +29,10 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::get('/modeloemail', function(){
+    return view('_template.email.base_email');
+});
+
 Route::get('/testeconvite', [ConviteController::class, 'teste']);
 
 Route::prefix('/convite')

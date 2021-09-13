@@ -14,4 +14,9 @@ class UsuarioService
     {
         $this->usuarioRepository = $usuarioRepository;
     }
+
+    public function obterCodigoDeVerificacao() : string
+    {
+        return "";
+    }
 }

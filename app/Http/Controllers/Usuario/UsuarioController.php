@@ -81,12 +81,12 @@ class UsuarioController extends Controller
         return view('usuario.recuperar_senha.recuperar_senha');
     }
 
-    public function iniciarProcessoDeRecuperacaoDeConta(Request $request)
+    public function iniciarProcessoDeRecuperacaoDeSenha(Request $request)
     {
         $email = $request->get('email');
         if (empty($email))
         {
-            flash('Informe seu e-mail')->error()->overlay();
+            flash('Informe seu e-mail')->error();
             return redirect()->back();
         }
     }
